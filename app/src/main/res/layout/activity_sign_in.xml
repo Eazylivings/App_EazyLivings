@@ -92,7 +92,7 @@
         android:id="@+id/loginPage_textView_register_new_user_text_signup"
         android:onClick="onClickRegisterButton"
         android:textColor="#FF0000"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="15dp"
         android:layout_below="@+id/loginPage_textView_register_new_user"
         android:layout_centerHorizontal="true" />
 
