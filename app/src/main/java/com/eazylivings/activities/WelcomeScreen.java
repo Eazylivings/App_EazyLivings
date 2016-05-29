@@ -1,5 +1,6 @@
 package com.eazylivings.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -14,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.eazylivings.R;
+import com.eazylivings.activities.login.SignIn;
 
 public class WelcomeScreen extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -69,8 +71,12 @@ public class WelcomeScreen extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.userprofile_overflow_homepage) {
+
+        }
+        if (id == R.id.signin_overflow_homepage) {
+            Intent intent = new Intent(this,SignIn.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);
