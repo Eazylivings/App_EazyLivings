@@ -22,7 +22,7 @@ public class SignUp extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
     }
 
-    public void onClickRegisterNewUser(View view) {
+    public void onClickSignUpButton(View view) {
 
         final EditText userName = (EditText) findViewById(R.id.SignUpPage_editText_Name);
         final EditText password = (EditText) findViewById(R.id.SignUpPage_editText_password);
