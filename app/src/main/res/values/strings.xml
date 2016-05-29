@@ -1,9 +1,29 @@
 <resources>
     <string name="app_name">EazyLivings</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="email_address">Email Address</string>
+    <string name="username">Name</string>
+    <string name="back_to_login">Back to Login</string>
+    <string name="register">Register</string>
+    <string name="user_name">User Name</string>
+    <string name="contact_number">Contact Number</string>
+    <string name="address">Address</string>
+    <string name="title_activity_over_flow">OverFlow</string>
+
+    <string name="user_profile">User Profile</string>
+    <string name="log_out">LogOut</string>
+    <string name="log_in">LogIn</string>
+    <string name="update_profile">Update Profile</string>
+    <string name="your_preferences">Your Preferences</string>
+    <string name="go_back">Go Back</string>
+    <string name="preferences">Preferences</string>
     <string name="title_activity_welcome_screen">WelcomeScreen</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+
 </resources>

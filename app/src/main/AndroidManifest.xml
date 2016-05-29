@@ -27,7 +27,8 @@
             android:label="@string/title_activity_welcome_screen"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activities.login.SignIn" />
-        <activity android:name=".activities.login.ForgotPassword"></activity>
+        <activity android:name=".activities.login.ForgotPassword" />
+        <activity android:name=".activities.login.SignUp"></activity>
     </application>
 
 </manifest>
