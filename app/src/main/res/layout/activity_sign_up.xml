@@ -41,7 +41,7 @@
     <EditText
         android:layout_width="360dp"
         android:layout_height="50dp"
-        android:inputType="textPersonName"
+        android:inputType="phone"
         android:layout_gravity="center_horizontal"
         android:ems="10"
         android:id="@+id/SignUpPage_editText_PhoneNo"
