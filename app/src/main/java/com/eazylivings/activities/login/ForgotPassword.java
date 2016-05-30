@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.eazylivings.Mail.MailHandler;
 import com.eazylivings.R;
 import com.eazylivings.constant.Constants;
 
@@ -78,10 +79,10 @@ public class ForgotPassword extends AppCompatActivity {
 
     private boolean sendEmailForPasswordRetrieval(EditText emailAddress){
 
-        /*MailHandler mailHandler=new MailHandler(getApplicationContext());
-        if(emailAddress!=null) {
+        MailHandler mailHandler=new MailHandler(getApplicationContext(),this);
+        if(emailAddress!=null && emailAddress.getText()!=null) {
             mailHandler.execute("send email", Constants.FORGOTPASSWORD, emailAddress.getText().toString());
-        }*/
+        }
         String activityResult="Email successfully sent";
 
         return activityResult.equalsIgnoreCase("Email successfully sent");
