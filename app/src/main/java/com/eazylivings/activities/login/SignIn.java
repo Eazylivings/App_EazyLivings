@@ -70,13 +70,9 @@ public class SignIn extends AppCompatActivity {
 
     public void onClickForgotPassword(View view) {
 
-        if(Validator.isInternetAvailable(getApplicationContext())) {
+        Intent intent = new Intent(this, ForgotPassword.class);
+        startActivity(intent);
 
-            Intent intent = new Intent(this, ForgotPassword.class);
-            startActivity(intent);
-        }else{
-            generatePopupMessage("Please check internet connection.");
-        }
     }
 
     private void setupUserProfile(){
