@@ -30,7 +30,7 @@ public class SignUp extends AppCompatActivity {
         final EditText contactNumber = (EditText) findViewById(R.id.SignUpPage_editText_PhoneNo);
 
         boolean isEmailFormatCorrect=Validator.checkEmailFormat(emailAddress);
-        boolean isUserAlreadyPresent=Validator.checkExistingUser(userName,getApplicationContext(),this);
+        boolean isUserAlreadyPresent=Validator.checkExistingUser(userName);
         boolean isUserNameFormatCorrect=Validator.checkUsernameFormat(userName);
         boolean isPasswordFormatCorrect=Validator.checkPasswordFormat(password);
         boolean isContactNumberCorrect= Validator.checkContactNumber(contactNumber);
