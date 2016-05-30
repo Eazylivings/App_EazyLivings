@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -50,6 +51,7 @@ public class ForgotPassword extends AppCompatActivity {
         TextView defaultMessage=(TextView)findViewById(R.id.forgotPassword_button_defaultMessage) ;
         TextView newTo=(TextView)findViewById(R.id.forgotPassword_textView_newTo);
         TextView linkSignUp=(TextView)findViewById(R.id.forgotPassword_link_signUp);
+        ImageView image=(ImageView)findViewById(R.id.forgotPassword_button_image);
         boolean isEmailSuccessfullySent=false;
 
 
@@ -64,6 +66,7 @@ public class ForgotPassword extends AppCompatActivity {
             newTo.setVisibility(View.GONE);
             emailAddress.setVisibility(View.GONE);
             retrievePassword.setVisibility(View.GONE);
+            image.setVisibility(View.GONE);
         }
         if(isEmailSuccessfullySent && defaultMessage!=null){
             defaultMessage.setText(Constants.MESSAGE_FOR_SUCCESSFUL_RESET_PASSWORD);
