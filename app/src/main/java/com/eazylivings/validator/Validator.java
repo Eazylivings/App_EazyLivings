@@ -6,6 +6,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.widget.EditText;
 
+import com.eazylivings.constant.Constants;
 import com.eazylivings.databasehandler.ServerDatabaseHandler;
 
 public class Validator {
@@ -42,15 +43,23 @@ public class Validator {
         }
     }
 
-    public static boolean checkExistingUser(EditText userName, Context context, Activity activity){
+    public static boolean checkExistingUser(EditText userName){
 
-        ServerDatabaseHandler serverDatabaseHandler=new ServerDatabaseHandler(context,activity);
-        if(userName!=null){
-            return serverDatabaseHandler.getExistingUser(userName.getText().toString());
+        ServerSideValidationHandler serverSideValidationHandler=new ServerSideValidationHandler();
+        boolean checkFlag=false;
+        if(userName!=null && userName.getText()!=null){
+            String result= serverSideValidationHandler.checkUserExists(Constants.CHECKEXISTINGUSER,userName.getText().toString());
+            if(result!=null && result.equalsIgnoreCase("true")){
+                checkFlag=true;
+            }
+            else{
+                checkFlag=false;
+            }
         }else
         {
-            return false;
+            checkFlag=false;
         }
+        return  checkFlag;
     }
 
     public static boolean checkContactNumber(EditText contactNumber){
