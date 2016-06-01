@@ -13,4 +13,77 @@
     tools:showIn="@layout/app_bar_welcome_screen"
     >
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/moving_to_a_new_flat"
+        android:id="@+id/welcomeScreen_textView_movingToFlat"
+        android:layout_marginTop="201dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Explore"
+        android:id="@+id/welcomeScreen_textView_explore"
+        android:layout_alignTop="@+id/welcomeScreen_textView_movingToFlat"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="31dp"
+        android:layout_marginEnd="31dp"
+        android:onClick="onClickExplore" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/welcomeScreen_textView_moveForward"
+        android:src="@drawable/ic_arrow_forward_black_24dp"
+        android:layout_alignBottom="@+id/welcomeScreen_textView_explore"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="onClickExplore" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/welcomeScreen_textView_background"
+        android:src="@drawable/background"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_height="50dp"
+        android:layout_width="360dp"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/welcomeScreen_button_letsGetStarted"
+        android:onClick="onClickStart"
+        android:background="#2E9AFE"
+        android:textColor="@drawable/button_text_color"
+        android:text="@string/let_apos_s_get_started"
+        android:textSize="18sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="37dp" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/welcomeScreen_textView_movingToFlat"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageButton"
+            android:src="@drawable/bathroom" />
+
+    </LinearLayout>
+
 </RelativeLayout>

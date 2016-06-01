@@ -35,5 +35,7 @@
     <string name="loginpagedesc">Please enter your registered Email Id/Mobile Number and password to login to your eazylivings account</string>
     <string name="signuppagedesc">Please enter your Email Id and Mobile Number to create your eazylivings account</string>
     <string name="signin">SignIn</string>
+    <string name="moving_to_a_new_flat">Moving to a New Flat?</string>
+    <string name="let_apos_s_get_started">Let\'s Get Started</string>
 
 </resources>

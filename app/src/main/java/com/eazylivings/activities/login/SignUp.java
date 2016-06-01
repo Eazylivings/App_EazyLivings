@@ -6,12 +6,10 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 
 import com.eazylivings.R;
 import com.eazylivings.VO.UserDetails;
-import com.eazylivings.activities.WelcomeScreen;
 import com.eazylivings.constant.Constants;
 import com.eazylivings.databasehandler.ServerDatabaseHandler;
 import com.eazylivings.validator.Validator;
@@ -45,7 +43,7 @@ public class SignUp extends AppCompatActivity {
         boolean isPasswordFormatCorrect=Validator.checkPasswordFormat(password);
         boolean isContactNumberCorrect= Validator.checkContactNumber(contactNumber);
 
-        if(true/*isUserNameFormatCorrect && isEmailFormatCorrect && !isUserAlreadyPresent && isPasswordFormatCorrect && isContactNumberCorrect*/){
+        if(isUserNameFormatCorrect && isEmailFormatCorrect && !isUserAlreadyPresent && isPasswordFormatCorrect && isContactNumberCorrect){
 
 
             UserDetails userDetails=new UserDetails();
@@ -58,7 +56,7 @@ public class SignUp extends AppCompatActivity {
             serverDatabaseHandler.execute(Constants.REGISTER,userName.getText().toString(),password.getText().toString(),emailAddress.getText().toString(),contactNumber.getText().toString());
 
 
-        }/*else if(isUserAlreadyPresent){
+        }else if(isUserAlreadyPresent){
             generatePopupMessages("This user is already present. Please sign in.");
         }else if(!isUserNameFormatCorrect){
             generatePopupMessages("Please check username");
@@ -68,7 +66,9 @@ public class SignUp extends AppCompatActivity {
             generatePopupMessages("Please choose correct password");
         }else if(!isContactNumberCorrect){
             generatePopupMessages("Please provide correct contact number.");
-        }*/
+        }else{
+            generatePopupMessages("Sorry something went wrong. Please try again after sometime");
+        }
     }
 
     public void onClickSignIn(View view){
@@ -92,17 +92,5 @@ public class SignUp extends AppCompatActivity {
                     });
             alertDialog.show();
         }
-    }
-    private void backButtonListener(Button backButton){
-
-        if (backButton != null) {
-            backButton.setOnClickListener(new Button.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    finish();
-                }
-            });
-        }
-
     }
 }

@@ -92,6 +92,14 @@ public class WelcomeScreen extends AppCompatActivity
 
     }
 
+    public void onClickStart(View view){
+
+    }
+
+    public void onClickExplore(View view){
+
+    }
+
 
 
 

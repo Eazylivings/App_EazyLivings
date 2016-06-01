@@ -48,27 +48,32 @@ public class ForgotPassword extends AppCompatActivity {
 
     public void onClickRetrievePassword(View view) {
 
-        EditText emailAddress = (EditText) findViewById(R.id.forgotPassword_button_emailAddress);
+        if(Validator.isInternetAvailable(getApplicationContext())) {
 
-        if (emailAddress == null || emailAddress.getText().toString().equalsIgnoreCase("") || !Validator.checkEmailFormat(emailAddress)) {
-            generatePopupMessages("Please check email Address.");
-        }else{
+            EditText emailAddress = (EditText) findViewById(R.id.forgotPassword_button_emailAddress);
 
-            Button retrievePassword = (Button) findViewById(R.id.forgotPassword_button_retrievePassword);
-            TextView newTo = (TextView) findViewById(R.id.forgotPassword_textView_newTo);
-            TextView linkSignUp = (TextView) findViewById(R.id.forgotPassword_link_signUp);
+            if (emailAddress == null || emailAddress.getText().toString().equalsIgnoreCase("") || !Validator.checkEmailFormat(emailAddress)) {
+                generatePopupMessages("Please check email Address.");
+            } else {
 
-            if (emailAddress != null && retrievePassword != null && newTo != null && linkSignUp != null) {
+                Button retrievePassword = (Button) findViewById(R.id.forgotPassword_button_retrievePassword);
+                TextView newTo = (TextView) findViewById(R.id.forgotPassword_textView_newTo);
+                TextView linkSignUp = (TextView) findViewById(R.id.forgotPassword_link_signUp);
 
-                linkSignUp.setVisibility(View.GONE);
-                newTo.setVisibility(View.GONE);
-                emailAddress.setVisibility(View.GONE);
-                retrievePassword.setVisibility(View.GONE);
+                if (emailAddress != null && retrievePassword != null && newTo != null && linkSignUp != null) {
 
+                    linkSignUp.setVisibility(View.GONE);
+                    newTo.setVisibility(View.GONE);
+                    emailAddress.setVisibility(View.GONE);
+                    retrievePassword.setVisibility(View.GONE);
+
+                }
+                MailHandler mailHandler = new MailHandler(getApplicationContext(), this);
+                mailHandler.execute("send email", Constants.FORGOTPASSWORD, emailAddress.getText().toString());
             }
-            MailHandler mailHandler=new MailHandler(getApplicationContext(),this);
-            mailHandler.execute("send email", Constants.FORGOTPASSWORD, emailAddress.getText().toString());
-    }
+        }else{
+            generatePopupMessages("Oops!!! You are not online!!!");
+        }
     }
 
     private void generatePopupMessages(String message){
