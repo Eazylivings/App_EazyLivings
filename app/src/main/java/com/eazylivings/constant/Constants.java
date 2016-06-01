@@ -10,7 +10,7 @@ public class Constants {
 
     //Sign Up details Table and Columns Names
     public final static String SIGNUP_DETAILS_TABLE="user_details_";
-    public final static String CHECKEXISTINGUSER="check existing user";
+    public final static String CHECK_EXISTING_USER ="check existing user";
 
     public final static String COLUMN_USER_NAME="user_name";
     public final static String COLUMN_EMAIL_ADDRESS="email_address";
@@ -28,11 +28,10 @@ public class Constants {
 
     public final static String FORGOTPASSWORD="forgotPassword";
 
-    public final static String SENDEMAIL="send email";
+    public final static String SEND_EMAIL ="send email";
 
-    public final static String MESSAGE_FOR_SUCCESSFUL_RESET_PASSWORD ="An Email has been sent to your registered email address.Please login with the One time password in the mails."+
-            " You can change the password by updating User Profile";
-    public final static String MESSAGE_FAIL_RESET_PASSWORD="An error Occurred while resetting your password. Please try again after sometime.";
+    public final static String MESSAGE_FOR_SUCCESSFUL_RESET_PASSWORD ="We have sent your password on your registered email address.";
+    public final static String MESSAGE_FAIL_RESET_PASSWORD="Oops!! Sorry Mate. Something happend while sending the password. Come back again after sometime.";
 
 
 

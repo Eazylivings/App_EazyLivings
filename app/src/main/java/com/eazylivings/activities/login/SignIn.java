@@ -72,7 +72,7 @@ public class SignIn extends AppCompatActivity {
     }
 
     public void onClickForgotPassword(View view) {
-
+        finish();
         Intent intent = new Intent(this, ForgotPassword.class);
         startActivity(intent);
 

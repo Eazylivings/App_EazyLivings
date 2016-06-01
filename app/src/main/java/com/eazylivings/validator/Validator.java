@@ -1,13 +1,11 @@
 package com.eazylivings.validator;
 
-import android.app.Activity;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.widget.EditText;
 
 import com.eazylivings.constant.Constants;
-import com.eazylivings.databasehandler.ServerDatabaseHandler;
 
 public class Validator {
 
@@ -48,7 +46,7 @@ public class Validator {
         ServerSideValidationHandler serverSideValidationHandler=new ServerSideValidationHandler();
         boolean checkFlag=false;
         if(userName!=null && userName.getText()!=null){
-            String result= serverSideValidationHandler.checkUserExists(Constants.CHECKEXISTINGUSER,userName.getText().toString());
+            String result= serverSideValidationHandler.checkUserExists(Constants.CHECK_EXISTING_USER,userName.getText().toString());
             if(result!=null && result.equalsIgnoreCase("true")){
                 checkFlag=true;
             }

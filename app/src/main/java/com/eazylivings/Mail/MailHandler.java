@@ -6,15 +6,18 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.eazylivings.R;
 import com.eazylivings.activities.WelcomeScreen;
 import com.eazylivings.activities.login.ForgotPassword;
+import com.eazylivings.activities.login.SignIn;
 import com.eazylivings.constant.Constants;
 
 import java.io.BufferedReader;
@@ -48,7 +51,7 @@ public class MailHandler extends AsyncTask<String,Void,String> {
     protected String doInBackground(String... params) {
         currentAction= params[0];
         String loginUrl = "http://eazylivings.com/mail.php";
-        if(currentAction.equals(Constants.SENDEMAIL))
+        if(currentAction.equals(Constants.SEND_EMAIL))
         {
         if (params[1].equals(Constants.FORGOTPASSWORD)) {
             try {
@@ -100,26 +103,31 @@ public class MailHandler extends AsyncTask<String,Void,String> {
 
     @Override
     protected void onPreExecute() {
-        if(currentAction.equalsIgnoreCase(Constants.SENDEMAIL)) {
+        /*if(currentAction.equalsIgnoreCase(Constants.SEND_EMAIL)) {
 
             ProgressBar progressBar = (ProgressBar) activity.findViewById(R.id.loginPage_progressBar_progress);
             progressBar.setVisibility(View.VISIBLE);
-        }
+        }*/
     }
 
     @Override
     protected void onPostExecute(String accountAuthenticationString) {
-        if (accountAuthenticationString.equalsIgnoreCase("Email Sent successfully")) {
-            generatePopupMessage("The passsword for your account has been sent to your registered Email Id");
-            Intent intent = new Intent(context,WelcomeScreen.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(intent);
 
-        }else {
-            generatePopupMessage("Please provide a valid & registered Email Id and try again");
-            Intent intent = new Intent(context,ForgotPassword.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(intent);
+        TextView defaultMessage = (TextView) activity.findViewById(R.id.forgotPassword_button_defaultMessage);
+        Button signInButton=(Button)activity.findViewById(R.id.forgotPassword_button_signIn);
+        ImageView image = (ImageView) activity.findViewById(R.id.forgotPassword_button_image);
+
+        if (accountAuthenticationString.equalsIgnoreCase("Email Sent successfully") && defaultMessage!=null && signInButton!=null && image!=null) {
+
+            defaultMessage.setText(Constants.MESSAGE_FOR_SUCCESSFUL_RESET_PASSWORD);
+            signInButton.setVisibility(View.VISIBLE);
+            image.setBackgroundResource(R.drawable.emailsentsmiley);
+        }else if(defaultMessage!=null && image!=null){
+            defaultMessage.setText(Constants.MESSAGE_FAIL_RESET_PASSWORD);
+            image.setBackgroundResource(R.drawable.failtosendpassword);
+
+        }else{
+            generatePopupMessage("Some error occurred. Please try again after sometime");
         }
     }
 

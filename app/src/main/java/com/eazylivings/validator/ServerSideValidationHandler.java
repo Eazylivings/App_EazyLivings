@@ -1,12 +1,7 @@
 package com.eazylivings.validator;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.os.AsyncTask;
-import android.preference.PreferenceManager;
 
-import com.eazylivings.VO.UserDetails;
 import com.eazylivings.constant.Constants;
 
 import java.io.BufferedReader;
@@ -34,7 +29,7 @@ public class ServerSideValidationHandler {
     protected String checkUserExists(String action,String userName) {
         currentAction=action;
         String CheckUserUrl = "http://eazylivings.com/ExistingUser.php";
-          if (action.equals(Constants.CHECKEXISTINGUSER)) {
+          if (action.equals(Constants.CHECK_EXISTING_USER)) {
                 try {
                     URL url = new URL(CheckUserUrl);
                     HttpURLConnection httpUrlConnection = (HttpURLConnection) url.openConnection();

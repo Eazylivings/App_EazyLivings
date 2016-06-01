@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.eazylivings.Mail.MailHandler;
 import com.eazylivings.R;
 import com.eazylivings.constant.Constants;
+import com.eazylivings.validator.Validator;
 
 public class ForgotPassword extends AppCompatActivity {
 
@@ -45,47 +46,29 @@ public class ForgotPassword extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void onClickRetrievePassword(View view){
+    public void onClickRetrievePassword(View view) {
 
-        EditText emailAddress=(EditText)findViewById(R.id.forgotPassword_button_emailAddress);
-        Button retrievePassword=(Button)findViewById(R.id.forgotPassword_button_retrievePassword);
-        TextView defaultMessage=(TextView)findViewById(R.id.forgotPassword_button_defaultMessage) ;
-        TextView newTo=(TextView)findViewById(R.id.forgotPassword_textView_newTo);
-        TextView linkSignUp=(TextView)findViewById(R.id.forgotPassword_link_signUp);
-        ImageView image=(ImageView)findViewById(R.id.forgotPassword_button_image);
-        boolean isEmailSuccessfullySent=false;
+        EditText emailAddress = (EditText) findViewById(R.id.forgotPassword_button_emailAddress);
 
-
-        if(emailAddress!=null){
-            isEmailSuccessfullySent=sendEmailForPasswordRetrieval(emailAddress);
-        }else{
+        if (emailAddress == null || emailAddress.getText().toString().equalsIgnoreCase("") || !Validator.checkEmailFormat(emailAddress)) {
             generatePopupMessages("Please check email Address.");
-        }
-        if(emailAddress!=null && retrievePassword!=null && newTo!=null && linkSignUp!=null) {
+        }else{
 
-            linkSignUp.setVisibility(View.GONE);
-            newTo.setVisibility(View.GONE);
-            emailAddress.setVisibility(View.GONE);
-            retrievePassword.setVisibility(View.GONE);
-            image.setVisibility(View.GONE);
-        }
-        if(isEmailSuccessfullySent && defaultMessage!=null){
-            defaultMessage.setText(Constants.MESSAGE_FOR_SUCCESSFUL_RESET_PASSWORD);
-            signInButton.setVisibility(View.VISIBLE);
-        }else if(defaultMessage!=null){
-            defaultMessage.setText(Constants.MESSAGE_FAIL_RESET_PASSWORD);
-        }
-    }
+            Button retrievePassword = (Button) findViewById(R.id.forgotPassword_button_retrievePassword);
+            TextView newTo = (TextView) findViewById(R.id.forgotPassword_textView_newTo);
+            TextView linkSignUp = (TextView) findViewById(R.id.forgotPassword_link_signUp);
 
-    private boolean sendEmailForPasswordRetrieval(EditText emailAddress){
+            if (emailAddress != null && retrievePassword != null && newTo != null && linkSignUp != null) {
 
-        MailHandler mailHandler=new MailHandler(getApplicationContext(),this);
-        if(emailAddress!=null && emailAddress.getText()!=null) {
+                linkSignUp.setVisibility(View.GONE);
+                newTo.setVisibility(View.GONE);
+                emailAddress.setVisibility(View.GONE);
+                retrievePassword.setVisibility(View.GONE);
+
+            }
+            MailHandler mailHandler=new MailHandler(getApplicationContext(),this);
             mailHandler.execute("send email", Constants.FORGOTPASSWORD, emailAddress.getText().toString());
-        }
-        String activityResult="Email successfully sent";
-
-        return activityResult.equalsIgnoreCase("Email successfully sent");
+    }
     }
 
     private void generatePopupMessages(String message){
