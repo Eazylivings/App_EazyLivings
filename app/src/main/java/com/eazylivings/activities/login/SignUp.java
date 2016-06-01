@@ -1,6 +1,7 @@
 package com.eazylivings.activities.login;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.widget.EditText;
 
 import com.eazylivings.R;
 import com.eazylivings.VO.UserDetails;
+import com.eazylivings.activities.WelcomeScreen;
 import com.eazylivings.constant.Constants;
 import com.eazylivings.databasehandler.ServerDatabaseHandler;
 import com.eazylivings.validator.Validator;
@@ -20,6 +22,14 @@ public class SignUp extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+    }
+
+
+    @Override
+    public void onBackPressed(){
+        finish();
+        Intent intent = new Intent(getApplicationContext(),SignIn.class);
+        startActivity(intent);
     }
 
     public void onClickSignUpButton(View view) {
@@ -59,6 +69,14 @@ public class SignUp extends AppCompatActivity {
         }else if(!isContactNumberCorrect){
             generatePopupMessages("Please provide correct contact number.");
         }*/
+    }
+
+    public void onClickSignIn(View view){
+
+        finish();
+        Intent intent = new Intent(getApplicationContext(),SignIn.class);
+        startActivity(intent);
+
     }
 
     private void generatePopupMessages(String message){

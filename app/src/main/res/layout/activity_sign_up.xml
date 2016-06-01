@@ -99,5 +99,18 @@
         android:layout_centerHorizontal="true"
         android:textSize="18dp"/>
 
+    <Button
+        android:layout_height="50dp"
+        android:layout_width="180dp"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/loginPage_imageButton_backToLogin"
+        android:onClick="onClickSignIn"
+        android:background="#2E9AFE"
+        android:textColor="@drawable/button_text_color"
+        android:text="@string/signin"
+        android:textSize="18sp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
 
 </RelativeLayout>

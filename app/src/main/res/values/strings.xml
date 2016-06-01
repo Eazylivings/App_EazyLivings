@@ -34,5 +34,6 @@
     <string name="action_settings">Settings</string>
     <string name="loginpagedesc">Please enter your registered Email Id/Mobile Number and password to login to your eazylivings account</string>
     <string name="signuppagedesc">Please enter your Email Id and Mobile Number to create your eazylivings account</string>
+    <string name="signin">SignIn</string>
 
 </resources>

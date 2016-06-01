@@ -50,8 +50,11 @@ public class SignIn extends AppCompatActivity {
 
                 boolean isUserOnline = Validator.isInternetAvailable(getApplicationContext());
                 if (isUserOnline) {
+                    finish();
                     ServerDatabaseHandler serverDatabaseHandler=new ServerDatabaseHandler(getApplicationContext(),this);
                     serverDatabaseHandler.execute(Constants.LOGIN,editText_userName.getText().toString(),editText_password.getText().toString());
+                }else{
+                    generatePopupMessage("Oops!!! You are not online!!!");
                 }
             }
         }
