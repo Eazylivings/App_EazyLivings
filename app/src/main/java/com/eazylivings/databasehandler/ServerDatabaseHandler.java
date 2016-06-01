@@ -135,6 +135,7 @@ public class ServerDatabaseHandler  extends AsyncTask<String,Void,String> {
             Intent intent = new Intent(context,WelcomeScreen.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
+            activity.finish();
 
         } else if(accountAuthenticationString.equalsIgnoreCase("Login Failed")) {
             generatePopupMessage("Please check login details and try again");
