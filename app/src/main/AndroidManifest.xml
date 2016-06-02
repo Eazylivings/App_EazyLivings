@@ -29,7 +29,9 @@
         <activity android:name=".activities.login.SignIn" />
         <activity android:name=".activities.login.ForgotPassword" />
         <activity android:name=".activities.login.SignUp" />
-        <activity android:name=".activities.MyAccount"></activity>
+        <activity android:name=".activities.MyAccount" />
+        <activity android:name=".activities.services.WalkthroughServices" />
+        <activity android:name=".activities.services.OfferedServices"></activity>
     </application>
 
 </manifest>

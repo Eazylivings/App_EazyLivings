@@ -24,6 +24,7 @@ import android.widget.Toast;
 import com.eazylivings.R;
 import com.eazylivings.VO.UserDetails;
 import com.eazylivings.activities.login.SignIn;
+import com.eazylivings.activities.services.OfferedServices;
 import com.eazylivings.constant.Constants;
 import com.eazylivings.databasehandler.LocalDatabaseHandler;
 import com.eazylivings.sharedpreference.SharedPreference;
@@ -93,6 +94,8 @@ public class WelcomeScreen extends AppCompatActivity
     }
 
     public void onClickStart(View view){
+        Intent intent=new Intent(getApplicationContext(), OfferedServices.class);
+        startActivity(intent);
 
     }
 
