@@ -5,8 +5,8 @@ public class Constants {
 
     public final static int DATABASE_VERSION=1;
     public final static String DATABASE_NAME="eazylivings.db";
-
-
+    public final static String USER_PROFILE_ACTION="userProfileAction";
+    public final static String USER_PROFILE="getUserDetails";
 
     //Sign Up details Table and Columns Names
     public final static String SIGNUP_DETAILS_TABLE="user_details_";
