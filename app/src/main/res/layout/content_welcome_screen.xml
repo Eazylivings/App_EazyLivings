@@ -87,7 +87,8 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_row="0"
-            android:layout_column="0" />
+            android:layout_column="0"
+            android:onClick="onClickExplore" />
 
         <ImageButton
             android:layout_width="wrap_content"
@@ -95,7 +96,8 @@
             android:id="@+id/welcomeScreen_imageButton_kitchen"
             android:layout_row="0"
             android:layout_column="1"
-            android:src="@drawable/kitchen" />
+            android:src="@drawable/kitchen"
+            android:onClick="onClickExplore" />
 
         <ImageButton
             android:layout_width="wrap_content"
@@ -103,7 +105,8 @@
             android:id="@+id/welcomeScreen_imageButton_bedroom"
             android:layout_row="0"
             android:layout_column="2"
-            android:src="@drawable/bedroom" />
+            android:src="@drawable/bedroom"
+            android:onClick="onClickExplore" />
 
     </GridLayout>
 

@@ -37,7 +37,7 @@ public class OfferedServices extends AppCompatActivity {
 
                         clickedService = String.valueOf(parent.getItemAtPosition(position));
                         Intent intent = new Intent(getApplicationContext(), WalkthroughServices.class);
-                        intent.putExtra("clickedService", clickedService);
+                        intent.putExtra("clickedService", position);
                         startActivity(intent);
 
                     }

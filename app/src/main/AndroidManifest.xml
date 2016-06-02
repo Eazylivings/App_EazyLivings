@@ -31,7 +31,8 @@
         <activity android:name=".activities.login.SignUp" />
         <activity android:name=".activities.MyAccount" />
         <activity android:name=".activities.services.WalkthroughServices" />
-        <activity android:name=".activities.services.OfferedServices"></activity>
+        <activity android:name=".activities.services.OfferedServices" />
+        <activity android:name=".activities.services.flatsetup.FlatSetup"></activity>
     </application>
 
 </manifest>

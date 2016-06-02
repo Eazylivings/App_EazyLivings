@@ -25,6 +25,7 @@ import com.eazylivings.R;
 import com.eazylivings.VO.UserDetails;
 import com.eazylivings.activities.login.SignIn;
 import com.eazylivings.activities.services.OfferedServices;
+import com.eazylivings.activities.services.WalkthroughServices;
 import com.eazylivings.constant.Constants;
 import com.eazylivings.databasehandler.LocalDatabaseHandler;
 import com.eazylivings.sharedpreference.SharedPreference;
@@ -100,6 +101,10 @@ public class WelcomeScreen extends AppCompatActivity
     }
 
     public void onClickExplore(View view){
+
+        Intent intent=new Intent(getApplicationContext(), WalkthroughServices.class);
+        intent.putExtra("clickedService",0);
+        startActivity(intent);
 
     }
 
