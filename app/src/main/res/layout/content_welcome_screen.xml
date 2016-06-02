@@ -8,10 +8,23 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.eazylivings.activities.WelcomeScreen"
     android:id="@+id/welcomeScreen__relativeLayout">
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="65dp"
+    android:id="@+id/viewerPageTop">
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPagerWelcomeScreen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</RelativeLayout>
 
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="80dp">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -46,13 +59,6 @@
         android:layout_alignParentEnd="true"
         android:onClick="onClickExplore" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/welcomeScreen_textView_background"
-        android:src="@drawable/background"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_height="50dp"
@@ -116,9 +122,8 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/we_are_not_packers_or_movers"
         android:id="@+id/textView2"
-        android:layout_below="@+id/welcomeScreen__gridLayout"
-        android:layout_alignLeft="@+id/welcomeScreen_textView_background"
-        android:layout_alignStart="@+id/welcomeScreen_textView_background" />
+        android:layout_below="@+id/welcomeScreen__gridLayout"/>
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -127,8 +132,7 @@
         android:text="@string/neither_we_are_service_providers"
         android:id="@+id/textView3"
         android:layout_below="@+id/textView2"
-        android:layout_alignRight="@+id/welcomeScreen_textView_background"
-        android:layout_alignEnd="@+id/welcomeScreen_textView_background" />
+        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -143,3 +147,5 @@
         android:layout_marginTop="26dp" />
 
 </RelativeLayout>
+</RelativeLayout>
+
