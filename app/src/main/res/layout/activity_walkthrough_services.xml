@@ -7,7 +7,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.eazylivings.activities.services.WalkthroughServices">
+    tools:context="com.eazylivings.activities.services.WalkthroughServices"
+    android:id="@+id/walkthroughServices_relativelayout">
 
     <Button
         android:layout_height="50dp"
@@ -25,10 +26,15 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/walkthroughServices_testView_test"
+        android:text="New Text"
+        android:id="@+id/walkthroughService_textView_steps"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="108dp" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="39dp"
+        android:layout_marginStart="39dp"
+        android:layout_marginTop="39dp"
+        android:textColor="#FFFFFF"
+        android:textSize="20dp" />
+
 </RelativeLayout>

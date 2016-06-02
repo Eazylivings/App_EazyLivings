@@ -45,5 +45,9 @@ public class Constants {
     public final static String CLEANING_DESCRIPTION="We will provide you people who will clean you house and make it hygienic all the time.";
 
 
+    public static final String USER_PROFILE_ACTION="";
+    public static String USER_PROFILE="";
+
+
 
 }

@@ -18,7 +18,7 @@ public class MyAccount extends AppCompatActivity {
         setContentView(R.layout.activity_my_account);
         String emailAddress="sharma.vibek80@gmail.com";
         UserProfileHandler userProfileHandler=new UserProfileHandler(getApplicationContext(),this);
-        userProfileHandler.execute(Constants.USER_PROFILE_ACTION,Constants.USER_PROFILE,emailAddress);
+        //userProfileHandler.execute(Constants.USER_PROFILE_ACTION,Constants.USER_PROFILE,emailAddress);
 
     }
 

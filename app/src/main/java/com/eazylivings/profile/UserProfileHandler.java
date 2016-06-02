@@ -81,7 +81,7 @@ import java.net.URLEncoder;
                     JSONArray jsonarray = new JSONArray(result);
                     for (int i = 0; i < jsonarray.length(); i++) {
                         JSONObject jsonobject = jsonarray.getJSONObject(i);
-                        userDetails.setUserId(jsonobject.getInt("userId"));
+                        //userDetails.setUserId(jsonobject.getInt("userId"));
                         userDetails.setUserName(jsonobject.getString("name"));
                         userDetails.setEmail_address(jsonobject.getString("emailId"));
                         userDetails.setContact_number(jsonobject.getString("phoneNo"));
