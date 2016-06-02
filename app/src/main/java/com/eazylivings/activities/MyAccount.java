@@ -8,6 +8,7 @@ import com.eazylivings.R;
 import com.eazylivings.VO.UserDetails;
 import com.eazylivings.constant.Constants;
 import com.eazylivings.databasehandler.LocalDatabaseHandler;
+import com.eazylivings.profile.UserProfileHandler;
 
 public class MyAccount extends AppCompatActivity {
 
@@ -15,6 +16,10 @@ public class MyAccount extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_account);
+        String emailAddress="sharma.vibek80@gmail.com";
+        UserProfileHandler userProfileHandler=new UserProfileHandler(getApplicationContext(),this);
+        userProfileHandler.execute(Constants.USER_PROFILE_ACTION,Constants.USER_PROFILE,emailAddress);
+
     }
 
     /*private void setUserProfile(String userName){
