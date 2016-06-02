@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
@@ -24,26 +23,28 @@ public class OfferedServices extends AppCompatActivity {
 
         setTitle("EazyLivings's Offerings");
 
-        String services[]={"Cleaning","Washing"};
-        ListAdapter listAdapter= new ServiceImageDescriptionAdaptor(this,services);
-        ListView listView=(ListView)findViewById(R.id.offeredServices_listView_servicesList);
-        listView.setAdapter(listAdapter);
+        String services[] = {"Flat Setup","Cleaning", "Washing","Cooking"};
+        ListAdapter listAdapter = new ServiceImageDescriptionAdaptor(this, services);
+        ListView listView = (ListView) findViewById(R.id.offeredServices_listView_servicesList);
+        if (listView != null) {
+            listView.setAdapter(listAdapter);
 
         listView.setOnItemClickListener(
 
-                new AdapterView.OnItemClickListener(){
+                new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                        clickedService=String.valueOf(parent.getItemAtPosition(position));
-                        Intent intent=new Intent(getApplicationContext(),WalkthroughServices.class);
-                        intent.putExtra("clickedService",clickedService);
+                        clickedService = String.valueOf(parent.getItemAtPosition(position));
+                        Intent intent = new Intent(getApplicationContext(), WalkthroughServices.class);
+                        intent.putExtra("clickedService", clickedService);
                         startActivity(intent);
 
                     }
                 }
 
         );
+    }
 
     }
 }
