@@ -4,6 +4,12 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+
+import com.eazylivings.ServiceImageDescriptionAdaptor;
 
 import com.eazylivings.R;
 
@@ -17,11 +23,27 @@ public class OfferedServices extends AppCompatActivity {
         setContentView(R.layout.activity_offered_services);
 
         setTitle("EazyLivings's Offerings");
-    }
 
-    public void onClickService(View view){
-        Intent intent=new Intent(getApplicationContext(),WalkthroughServices.class);
-        intent.putExtra("clickedService",clickedService);
-        startActivity(intent);
+        String services[]={"Cleaning","Washing"};
+        ListAdapter listAdapter= new ServiceImageDescriptionAdaptor(this,services);
+        ListView listView=(ListView)findViewById(R.id.offeredServices_listView_servicesList);
+        listView.setAdapter(listAdapter);
+
+        listView.setOnItemClickListener(
+
+                new AdapterView.OnItemClickListener(){
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                        clickedService=String.valueOf(parent.getItemAtPosition(position));
+                        Intent intent=new Intent(getApplicationContext(),WalkthroughServices.class);
+                        intent.putExtra("clickedService",clickedService);
+                        startActivity(intent);
+
+                    }
+                }
+
+        );
+
     }
 }
