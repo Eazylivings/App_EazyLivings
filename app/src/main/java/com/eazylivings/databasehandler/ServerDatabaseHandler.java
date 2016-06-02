@@ -141,13 +141,17 @@ public class ServerDatabaseHandler  extends AsyncTask<String,Void,String> {
             generatePopupMessage("Please check login details and try again");
 
         }else if(result.equalsIgnoreCase("Registration Success")){
-           DeviceSetup deviceSetup;
+           /*DeviceSetup deviceSetup;
             deviceSetup=new DeviceSetup(context,Constants.DATABASE_NAME,null, Constants.DATABASE_VERSION);
             //dbCreation.insertServicesIntoTable();
             deviceSetup.createUserSpecificTables(userName);
-            deviceSetup.insertUserDetails(userDetails);
+            deviceSetup.insertUserDetails(userDetails);*/
 
             setSharedPreferences("userName",userName);
+            Intent intent = new Intent(context,WelcomeScreen.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
+            activity.finish();
 
         }else if(result.equalsIgnoreCase("Registration Failed")){
             generatePopupMessage("Failed to register. Please try again with correct inputs");

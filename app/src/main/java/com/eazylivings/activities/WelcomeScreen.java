@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -26,6 +27,7 @@ import com.eazylivings.VO.UserDetails;
 import com.eazylivings.activities.login.SignIn;
 import com.eazylivings.activities.services.OfferedServices;
 import com.eazylivings.activities.services.WalkthroughServices;
+import com.eazylivings.adapter.CustomSwipeAdapter;
 import com.eazylivings.constant.Constants;
 import com.eazylivings.databasehandler.LocalDatabaseHandler;
 import com.eazylivings.sharedpreference.SharedPreference;
@@ -33,7 +35,8 @@ import com.eazylivings.sharedpreference.SharedPreference;
 public class WelcomeScreen extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-
+    ViewPager viewPager;
+    CustomSwipeAdapter adapter;
     String welcomeText="Welcome ";
     String userName;
     SharedPreference sharedPreference;
@@ -42,6 +45,9 @@ public class WelcomeScreen extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_screen);
+        viewPager=(ViewPager) findViewById(R.id.viewPagerWelcomeScreen);
+        adapter=new CustomSwipeAdapter(this);
+        viewPager.setAdapter(adapter);
         setWelcomeScreen();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
