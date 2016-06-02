@@ -41,7 +41,7 @@
     <EditText
         android:layout_width="360dp"
         android:layout_height="50dp"
-        android:inputType="phone"
+        android:inputType="number"
         android:layout_gravity="center_horizontal"
         android:ems="10"
         android:id="@+id/SignUpPage_editText_PhoneNo"
@@ -57,7 +57,7 @@
     <EditText
         android:layout_width="360dp"
         android:layout_height="50dp"
-        android:inputType="textPersonName"
+        android:inputType="textEmailAddress"
         android:layout_gravity="center_horizontal"
         android:ems="10"
         android:id="@+id/SignUpPage_editText_email"

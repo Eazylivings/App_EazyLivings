@@ -2,12 +2,21 @@ package com.eazylivings.VO;
 
 
 public class UserDetails {
-
+    int userId;
     String userName;
     String email_address;
     String password;
     String residential_address;
     String contact_number;
+
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 
     public String getUserName() {
         return userName;
