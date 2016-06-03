@@ -2,8 +2,6 @@ package com.eazylivings.activities.login;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,7 +11,6 @@ import android.widget.ProgressBar;
 
 import com.eazylivings.R;
 import com.eazylivings.activities.WelcomeScreen;
-import com.eazylivings.databasehandler.DeviceSetup;
 import com.eazylivings.databasehandler.ServerDatabaseHandler;
 import com.eazylivings.constant.Constants;
 import com.eazylivings.validator.Validator;
@@ -21,7 +18,6 @@ import com.eazylivings.validator.Validator;
 public class SignIn extends AppCompatActivity {
 
     private String userName;
-    DeviceSetup deviceSetup;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,26 +71,6 @@ public class SignIn extends AppCompatActivity {
         Intent intent = new Intent(this, ForgotPassword.class);
         startActivity(intent);
 
-    }
-
-    private void setupUserProfile(){
-
-        boolean isUserSpecificTablesPresent=deviceSetup.checkIfUserSpecificTableExists(userName);
-
-        if(isUserSpecificTablesPresent){
-            setSession();
-
-        }else{
-            deviceSetup.createUserSpecificTables(userName);
-            deviceSetup.populateUerSpecificTables(userName);
-            setSession();
-        }
-    }
-
-    private void setSession(){
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        prefs.edit().putBoolean("loginStatus", true).apply();
-        prefs.edit().putString("userName", userName).apply();
     }
 
     private void generatePopupMessage(String message){

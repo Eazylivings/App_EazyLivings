@@ -9,4 +9,135 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.eazylivings.activities.MyAccount">
 
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/myAccount_imageView_profilePic"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/profilepic"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="User Name"
+        android:id="@+id/myAccount_textView_name"
+        android:layout_marginTop="41dp"
+        android:layout_below="@+id/myAccount_imageView_profilePic"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="8"
+        android:id="@+id/myAccount_editText_userName"
+        android:layout_alignBottom="@+id/myAccount_textView_name"
+        android:layout_alignLeft="@+id/myAccount_imageView_profilePic"
+        android:layout_alignStart="@+id/myAccount_imageView_profilePic"
+        android:layout_marginLeft="39dp"
+        android:layout_marginStart="39dp"
+        android:hint="User Name"
+        android:editable="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Email Address"
+        android:id="@+id/myAccount_textView_emailAddress"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/myAccount_editText_userName"
+        android:layout_toStartOf="@+id/myAccount_editText_userName" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="8"
+        android:id="@+id/myAccount_editText_userEmailAddress"
+        android:hint="Email Address"
+        android:layout_alignBottom="@+id/myAccount_textView_emailAddress"
+        android:layout_alignLeft="@+id/myAccount_editText_userName"
+        android:layout_alignStart="@+id/myAccount_editText_userName"
+        android:editable="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Contact Number"
+        android:id="@+id/myAccount_textView_contactNumber"
+        android:layout_marginTop="33dp"
+        android:layout_below="@+id/myAccount_textView_emailAddress"
+        android:layout_alignLeft="@+id/myAccount_textView_emailAddress"
+        android:layout_alignStart="@+id/myAccount_textView_emailAddress" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:ems="8"
+        android:id="@+id/myAccount_editText_userContactNumber"
+        android:layout_alignBottom="@+id/myAccount_textView_contactNumber"
+        android:layout_alignLeft="@+id/myAccount_editText_userEmailAddress"
+        android:layout_alignStart="@+id/myAccount_editText_userEmailAddress"
+        android:hint="Contact Number"
+        android:editable="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Address"
+        android:id="@+id/myAccount_textView_address"
+        android:layout_marginTop="24dp"
+        android:layout_below="@+id/myAccount_textView_contactNumber"
+        android:layout_alignLeft="@+id/myAccount_textView_name"
+        android:layout_alignStart="@+id/myAccount_textView_name" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPostalAddress"
+        android:ems="10"
+        android:id="@+id/myAccount_editText_userAddress"
+        android:layout_alignBottom="@+id/myAccount_textView_address"
+        android:layout_alignLeft="@+id/myAccount_editText_userContactNumber"
+        android:layout_alignStart="@+id/myAccount_editText_userContactNumber"
+        android:hint="Address"
+        android:editable="true" />
+
+    <Button
+        android:layout_height="50dp"
+        android:layout_width="360dp"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/myAccount_button_update"
+        android:onClick="onClickUpdate"
+        android:background="#2E9AFE"
+        android:textColor="@drawable/button_text_color"
+        android:text="Update"
+        android:textSize="18dp"
+        android:layout_below="@+id/myAccount_textView_address"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp" />
+
+    <Button
+        android:layout_height="50dp"
+        android:layout_width="360dp"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/myAccount_button_updateChanges"
+        android:onClick="onClickUpdateChanges"
+        android:background="#2E9AFE"
+        android:textColor="@drawable/button_text_color"
+        android:text="Update Changes"
+        android:textSize="18dp"
+        android:layout_alignTop="@+id/myAccount_button_update"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>

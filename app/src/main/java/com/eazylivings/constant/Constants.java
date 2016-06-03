@@ -5,8 +5,10 @@ public class Constants {
 
     public final static int DATABASE_VERSION=1;
     public final static String DATABASE_NAME="eazylivings.db";
+
     public final static String USER_PROFILE_ACTION="userProfileAction";
     public final static String USER_PROFILE="getUserDetails";
+    public static final String USER_PROFILE_URL="http://eazylivings.com/profile.php";
 
     //Sign Up details Table and Columns Names
     public final static String SIGNUP_DETAILS_TABLE="user_details_";
@@ -32,9 +34,6 @@ public class Constants {
     public final static String MESSAGE_FOR_SUCCESSFUL_RESET_PASSWORD ="We have sent your password on your registered email address.";
     public final static String MESSAGE_FAIL_RESET_PASSWORD="Oops!! Sorry Mate. Something happend while sending the password. Come back again after sometime.";
 
-
-
-
     public final static String FLAT_NAME="Planning to move into a flat?";
     public final static String FLAT_DESCRIPTION="We will help you in accumulating all the essentials that you will need from day one into your new flat";
     public final static String COOKING_NAME="Looking for a cook or want parcels";
@@ -43,11 +42,5 @@ public class Constants {
     public final static String WASHING_DESCRIPTION="We will help you in finding a person who will wash as well as iron your clothes";
     public final static String CLEANING_NAME="Looking for a cleaner?";
     public final static String CLEANING_DESCRIPTION="We will provide you people who will clean you house and make it hygienic all the time.";
-
-
-    public static final String USER_PROFILE_ACTION="";
-    public static String USER_PROFILE="";
-
-
 
 }

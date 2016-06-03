@@ -11,9 +11,14 @@ import android.widget.ProgressBar;
 
 import com.eazylivings.R;
 import com.eazylivings.VO.UserDetails;
+import com.eazylivings.activities.MyAccount;
 import com.eazylivings.activities.WelcomeScreen;
 import com.eazylivings.constant.Constants;
+import com.eazylivings.profile.UserProfileSetup;
 import com.eazylivings.sharedpreference.SharedPreference;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -33,7 +38,7 @@ public class ServerDatabaseHandler  extends AsyncTask<String,Void,String> {
     static String result="";
     static String currentAction="";
     String userName="";
-    UserDetails userDetails=new UserDetails();
+    UserDetails userDetails;
     Activity activity;
 
     public ServerDatabaseHandler(Context ctx,Activity baseActivity){
@@ -45,29 +50,35 @@ public class ServerDatabaseHandler  extends AsyncTask<String,Void,String> {
     protected String doInBackground(String... params) {
 
         currentAction = params[0];
+        userName=params[1];
 
         String post_data="";
 
         try {
             URL url=new URL(Constants.LOGIN_URL);
-            userName=params[1];
             if(currentAction.equalsIgnoreCase(Constants.LOGIN)){
                 url = new URL(Constants.LOGIN_URL);
-                post_data = URLEncoder.encode("user_name", "UTF-8") + "=" + URLEncoder.encode(params[1], "UTF-8") + "&"
+                post_data = URLEncoder.encode("user_name", "UTF-8") + "=" + URLEncoder.encode(userName, "UTF-8") + "&"
                         + URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode(params[2], "UTF-8");
 
             }else if(currentAction.equalsIgnoreCase(Constants.REGISTER)){
                 url = new URL(Constants.REGISTER_URL);
-                post_data = URLEncoder.encode("user_name", "UTF-8") + "=" + URLEncoder.encode(params[1], "UTF-8") + "&"
+                userDetails=new UserDetails();
+                post_data = URLEncoder.encode("user_name", "UTF-8") + "=" + URLEncoder.encode(userName, "UTF-8") + "&"
                         + URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode(params[2], "UTF-8")+"&"
                         + URLEncoder.encode("name", "UTF-8") + "=" + URLEncoder.encode(params[3], "UTF-8")+"&"
                         + URLEncoder.encode("phoneNo", "UTF-8") + "=" + URLEncoder.encode(params[4], "UTF-8");
 
 
-                userDetails.setUserName(params[1]);
+                userDetails.setUserName(userName);
                 userDetails.setPassword(params[2]);
                 userDetails.setEmail_address(params[3]);
                 userDetails.setContact_number(params[4]);
+
+            }else if(currentAction.equalsIgnoreCase(Constants.USER_PROFILE_ACTION)){
+                url = new URL(Constants.USER_PROFILE_URL);
+                post_data = URLEncoder.encode("emailAddress", "UTF-8") + "=" + URLEncoder.encode(userName, "UTF-8");
+
             }
 
             HttpURLConnection httpUrlConnection = (HttpURLConnection) url.openConnection();
@@ -131,6 +142,9 @@ public class ServerDatabaseHandler  extends AsyncTask<String,Void,String> {
 
         if (accountAuthenticationString.equalsIgnoreCase("Login Success")) {
 
+            UserProfileSetup userProfileSetup=new UserProfileSetup(context,activity);
+            userProfileSetup.setupUserProfile(userName);
+
             setSharedPreferences("userName",userName);
             Intent intent = new Intent(context,WelcomeScreen.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -141,20 +155,43 @@ public class ServerDatabaseHandler  extends AsyncTask<String,Void,String> {
             generatePopupMessage("Please check login details and try again");
 
         }else if(result.equalsIgnoreCase("Registration Success")){
-           /*DeviceSetup deviceSetup;
+            DeviceSetup deviceSetup;
             deviceSetup=new DeviceSetup(context,Constants.DATABASE_NAME,null, Constants.DATABASE_VERSION);
             //dbCreation.insertServicesIntoTable();
             deviceSetup.createUserSpecificTables(userName);
-            deviceSetup.insertUserDetails(userDetails);*/
+            deviceSetup.insertUserDetails(userDetails);
 
             setSharedPreferences("userName",userName);
-            Intent intent = new Intent(context,WelcomeScreen.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(intent);
-            activity.finish();
 
         }else if(result.equalsIgnoreCase("Registration Failed")){
             generatePopupMessage("Failed to register. Please try again with correct inputs");
+
+        }else if(currentAction.equalsIgnoreCase(Constants.USER_PROFILE_ACTION)){
+            userDetails=new UserDetails();
+            try {
+                JSONArray jsonarray = new JSONArray(accountAuthenticationString);
+                for (int i = 0; i < jsonarray.length(); i++) {
+                    JSONObject jsonobject = jsonarray.getJSONObject(i);
+                    userDetails.setUserId(jsonobject.getInt("userId"));
+                    userDetails.setUserName(jsonobject.getString("name"));
+                    userDetails.setEmail_address(jsonobject.getString("emailId"));
+                    userDetails.setContact_number(jsonobject.getString("phoneNo"));
+                    userDetails.setResidential_address(jsonobject.getString("address"));
+                }
+
+                if (userDetails!=null) {
+                    DeviceSetup deviceSetup;
+                    deviceSetup=new DeviceSetup(context,Constants.DATABASE_NAME,null, Constants.DATABASE_VERSION);
+                    deviceSetup.insertUserDetails(userDetails);
+
+
+                }else {
+                }
+
+            }catch (Exception e){
+
+            }
+
         }else{
             generatePopupMessage("Some error occurred. Please try again after sometime");
         }

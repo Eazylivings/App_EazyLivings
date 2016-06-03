@@ -19,12 +19,14 @@ public class DeviceSetup extends SQLiteOpenHelper {
     private String IS_SUBSCRIBED="is_subscribed";
     ContentValues values;
     SQLiteDatabase db;
+    Context applicationContext;
 
 
 
 
     public DeviceSetup(Context context, String dataBaseName, SQLiteDatabase.CursorFactory factory, int dataBaseVersion) {
         super(context,dataBaseName, factory,dataBaseVersion);
+        this.applicationContext=context;
     }
 
     @Override
@@ -120,6 +122,11 @@ public class DeviceSetup extends SQLiteOpenHelper {
 
             }
         }
+    }
+
+    public UserDetails getUserProfileDetails(String userName){
+        UserDetails userDetails=new UserDetails();
+        return userDetails;
     }
 
     private ArrayList<String> populateListOfServices(){

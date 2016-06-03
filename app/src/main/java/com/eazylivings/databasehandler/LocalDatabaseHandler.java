@@ -38,7 +38,7 @@ public class LocalDatabaseHandler extends SQLiteOpenHelper {
 
     //Select details from Table
 
-    public UserDetails fetchDetailsFromTable(String username) {
+    public UserDetails getUserProfileDetails(String username) {
 
         UserDetails userDetails = new UserDetails();
         SQLiteDatabase db = getWritableDatabase();
