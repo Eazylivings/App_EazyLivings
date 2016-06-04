@@ -69,7 +69,6 @@ public class ServerDatabaseHandler  extends AsyncTask<String,Void,String> {
                         + URLEncoder.encode("name", "UTF-8") + "=" + URLEncoder.encode(params[3], "UTF-8")+"&"
                         + URLEncoder.encode("phoneNo", "UTF-8") + "=" + URLEncoder.encode(params[4], "UTF-8");
 
-
                 userDetails.setUserName(userName);
                 userDetails.setPassword(params[2]);
                 userDetails.setEmail_address(params[3]);
