@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.eazylivings.R;
@@ -13,7 +11,6 @@ import com.eazylivings.UpdateMyAccount;
 import com.eazylivings.VO.UserDetails;
 import com.eazylivings.constant.Constants;
 import com.eazylivings.databasehandler.DeviceSetup;
-import com.eazylivings.databasehandler.LocalDatabaseHandler;
 import com.eazylivings.profile.UserProfileSetup;
 import com.eazylivings.sharedpreference.SharedPreference;
 

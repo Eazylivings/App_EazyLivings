@@ -24,10 +24,10 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="User Name"
         android:id="@+id/updateMyAccount_largeText_userName"
-        android:layout_below="@+id/myAccount_imageView_profilePic"
+        android:layout_above="@+id/updateMyAccount_largeText_emailAddress"
         android:layout_toLeftOf="@+id/myAccount_imageView_profilePic"
         android:layout_toStartOf="@+id/myAccount_imageView_profilePic"
-        android:layout_marginTop="41dp" />
+        android:layout_marginBottom="30dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -35,9 +35,10 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Email Address"
         android:id="@+id/updateMyAccount_largeText_emailAddress"
-        android:layout_centerVertical="true"
+        android:layout_above="@+id/updateMyAccount_largeText_contactNumber"
         android:layout_alignLeft="@+id/updateMyAccount_largeText_userName"
-        android:layout_alignStart="@+id/updateMyAccount_largeText_userName" />
+        android:layout_alignStart="@+id/updateMyAccount_largeText_userName"
+        android:layout_marginBottom="27dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -45,10 +46,10 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Contact Number"
         android:id="@+id/updateMyAccount_largeText_contactNumber"
-        android:layout_below="@+id/updateMyAccount_largeText_emailAddress"
+        android:layout_above="@+id/myAccount_largeText_residentialAddress"
         android:layout_alignLeft="@+id/updateMyAccount_largeText_emailAddress"
         android:layout_alignStart="@+id/updateMyAccount_largeText_emailAddress"
-        android:layout_marginTop="37dp" />
+        android:layout_marginBottom="32dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -56,10 +57,10 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Residential Address"
         android:id="@+id/myAccount_largeText_residentialAddress"
-        android:layout_below="@+id/updateMyAccount_largeText_contactNumber"
+        android:layout_above="@+id/myAccount_button_updateInformation"
         android:layout_alignLeft="@+id/updateMyAccount_largeText_contactNumber"
         android:layout_alignStart="@+id/updateMyAccount_largeText_contactNumber"
-        android:layout_marginTop="31dp" />
+        android:layout_marginBottom="38dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -115,8 +116,8 @@
         android:textColor="@drawable/button_text_color"
         android:text="Update Information"
         android:textSize="18dp"
-        android:layout_marginBottom="24dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

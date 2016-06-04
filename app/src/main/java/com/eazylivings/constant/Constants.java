@@ -43,4 +43,6 @@ public class Constants {
     public final static String CLEANING_NAME="Looking for a cleaner?";
     public final static String CLEANING_DESCRIPTION="We will provide you people who will clean you house and make it hygienic all the time.";
 
+    public static final String SAVE_USER_UPDATE="update information";
+
 }

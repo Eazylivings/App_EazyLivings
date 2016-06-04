@@ -79,6 +79,11 @@ public class ServerDatabaseHandler  extends AsyncTask<String,Void,String> {
                 url = new URL(Constants.USER_PROFILE_URL);
                 post_data = URLEncoder.encode("emailAddress", "UTF-8") + "=" + URLEncoder.encode(userName, "UTF-8");
 
+            }else if(currentAction.equalsIgnoreCase(Constants.SAVE_USER_UPDATE)){
+                url = new URL(Constants.USER_PROFILE_URL);
+                post_data = URLEncoder.encode("user_name", "UTF-8") + "=" + URLEncoder.encode(userName, "UTF-8") + "&"
+                        + URLEncoder.encode("name", "UTF-8") + "=" + URLEncoder.encode(params[2], "UTF-8")+"&"
+                        + URLEncoder.encode("phoneNo", "UTF-8") + "=" + URLEncoder.encode(params[3], "UTF-8");
             }
 
             HttpURLConnection httpUrlConnection = (HttpURLConnection) url.openConnection();
