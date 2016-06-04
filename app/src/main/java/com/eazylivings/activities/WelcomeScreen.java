@@ -15,7 +15,6 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,24 +27,74 @@ import com.eazylivings.activities.services.WalkthroughServices;
 import com.eazylivings.adapter.CustomSwipeAdapter;
 import com.eazylivings.sharedpreference.SharedPreference;
 
-public class WelcomeScreen extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ViewPager;
+import android.os.Bundle;
+import android.util.DisplayMetrics;
 
-    ViewPager viewPager;
-    CustomSwipeAdapter adapter;
+import com.eazylivings.carousel.MyPagerAdapter;
+
+public class WelcomeScreen extends FragmentActivity
+implements NavigationView.OnNavigationItemSelectedListener {
     String userName;
     SharedPreference sharedPreference;
+
+    public final static int LOOPS = 1000;
+    public static int FIRST_PAGE; // = count * LOOPS / 2;
+    public final static float BIG_SCALE = 1.0f;
+    public final static float SMALL_SCALE = 0.7f;
+    public final static float DIFF_SCALE = BIG_SCALE - SMALL_SCALE;
+    public MyPagerAdapter adapter;
+    public ViewPager pager;
+    /*** variables for the View */
+    public int coverUrl[];
+    public static int count;
+
+    public static WelcomeScreen mainActivityCtx;
+
+    public static int currentPage = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_screen);
-        viewPager = (ViewPager) findViewById(R.id.viewPagerWelcomeScreen);
-        adapter = new CustomSwipeAdapter(this);
-        viewPager.setAdapter(adapter);
-        setWelcomeScreen();
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+       // setSupportActionBar(toolbar);
+
+        coverUrl = new int[] { R.drawable.one, R.drawable.two,
+                R.drawable.three, R.drawable.four, R.drawable.five };
+
+        mainActivityCtx = this;
+        pager = (ViewPager) findViewById(R.id.myviewpager);
+        count = coverUrl.length;
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        int pageMargin = 0;
+        pageMargin = (int) ((metrics.widthPixels / 4) *2);
+        pager.setPageMargin(-pageMargin);
+
+        try {
+            adapter = new MyPagerAdapter(this,this.getSupportFragmentManager());
+            pager.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+
+            FIRST_PAGE = count * LOOPS / 2;
+
+            pager.setOnPageChangeListener(adapter);
+            // Set current item to the middle page so we can fling to both
+            // directions left and right
+            pager.setCurrentItem(FIRST_PAGE); // FIRST_PAGE
+            // pager.setFocusableInTouchMode(true);
+            pager.setOffscreenPageLimit(3);
+            // Set margin for pages as a negative number, so a part of next and
+            // previous pages will be showed
+
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         if (fab != null){
