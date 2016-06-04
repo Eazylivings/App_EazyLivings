@@ -35,7 +35,6 @@ import java.net.URLEncoder;
 public class ServerDatabaseHandler  extends AsyncTask<String,Void,String> {
 
     Context context;
-    static String result="";
     static String currentAction="";
     String userName="";
     UserDetails userDetails;
@@ -49,6 +48,7 @@ public class ServerDatabaseHandler  extends AsyncTask<String,Void,String> {
     @Override
     protected String doInBackground(String... params) {
 
+        String result="";
         currentAction = params[0];
         userName=params[1];
 
@@ -88,21 +88,17 @@ public class ServerDatabaseHandler  extends AsyncTask<String,Void,String> {
             OutputStream outputStream = httpUrlConnection.getOutputStream();
             BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
 
+            bufferedWriter.write(post_data);
+            bufferedWriter.flush();
+            bufferedWriter.close();
 
-            if(bufferedWriter!=null) {
-                bufferedWriter.write(post_data);
-                bufferedWriter.flush();
-                bufferedWriter.close();
-            }
+            outputStream.close();
 
-            if(outputStream!=null) {
-                outputStream.close();
-            }
             InputStream inputStream = httpUrlConnection.getInputStream();
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
 
             String line = "";
-            result="";
+
             while ((line = bufferedReader.readLine()) != null) {
                 result += line;
             }
@@ -110,6 +106,33 @@ public class ServerDatabaseHandler  extends AsyncTask<String,Void,String> {
             bufferedReader.close();
             inputStream.close();
             httpUrlConnection.disconnect();
+            if(currentAction.equalsIgnoreCase(Constants.USER_PROFILE_ACTION)){
+
+                userDetails=new UserDetails();
+                try {
+                    JSONArray jsonarray = new JSONArray(result);
+                    for (int i = 0; i < jsonarray.length(); i++) {
+                        JSONObject jsonobject = jsonarray.getJSONObject(i);
+                        userDetails.setUserId(jsonobject.getInt("userId"));
+                        userDetails.setUserName(jsonobject.getString("name"));
+                        userDetails.setEmail_address(jsonobject.getString("emailId"));
+                        userDetails.setContact_number(jsonobject.getString("phoneNo"));
+                        userDetails.setResidential_address(jsonobject.getString("address"));
+                    }
+
+                    if (userDetails!=null) {
+                        DeviceSetup deviceSetup;
+                        deviceSetup=new DeviceSetup(context,Constants.DATABASE_NAME,null, Constants.DATABASE_VERSION);
+                        deviceSetup.saveUserDetailsUsingSharedPreference(userDetails,context);
+                    }else {
+                        generatePopupMessage("Some error occurred. Please try again after sometime");
+                    }
+
+                }catch (Exception e){
+
+                }
+
+            }
             return result;
         } catch (MalformedURLException e) {
             result="Exception Occurred";
@@ -135,15 +158,13 @@ public class ServerDatabaseHandler  extends AsyncTask<String,Void,String> {
 
     @Override
     protected void onPostExecute(String accountAuthenticationString) {
+
         if(currentAction.equalsIgnoreCase(Constants.LOGIN)) {
             ProgressBar progressBar = (ProgressBar) activity.findViewById(R.id.loginPage_progressBar_progress);
             progressBar.setVisibility(View.INVISIBLE);
         }
 
         if (accountAuthenticationString.equalsIgnoreCase("Login Success")) {
-
-            UserProfileSetup userProfileSetup=new UserProfileSetup(context,activity);
-            userProfileSetup.setupUserProfile(userName);
 
             setSharedPreferences("userName",userName);
             Intent intent = new Intent(context,WelcomeScreen.class);
@@ -154,16 +175,10 @@ public class ServerDatabaseHandler  extends AsyncTask<String,Void,String> {
         } else if(accountAuthenticationString.equalsIgnoreCase("Login Failed")) {
             generatePopupMessage("Please check login details and try again");
 
-        }else if(result.equalsIgnoreCase("Registration Success")){
-            DeviceSetup deviceSetup;
-            deviceSetup=new DeviceSetup(context,Constants.DATABASE_NAME,null, Constants.DATABASE_VERSION);
-            //dbCreation.insertServicesIntoTable();
-            deviceSetup.createUserSpecificTables(userName);
-            deviceSetup.insertUserDetails(userDetails);
+        }else if(accountAuthenticationString.equalsIgnoreCase("Registration Success")){
 
-            setSharedPreferences("userName",userName);
 
-        }else if(result.equalsIgnoreCase("Registration Failed")){
+        }else if(accountAuthenticationString.equalsIgnoreCase("Registration Failed")){
             generatePopupMessage("Failed to register. Please try again with correct inputs");
 
         }else if(currentAction.equalsIgnoreCase(Constants.USER_PROFILE_ACTION)){
@@ -184,8 +199,8 @@ public class ServerDatabaseHandler  extends AsyncTask<String,Void,String> {
                     deviceSetup=new DeviceSetup(context,Constants.DATABASE_NAME,null, Constants.DATABASE_VERSION);
                     deviceSetup.insertUserDetails(userDetails);
 
-
                 }else {
+                    generatePopupMessage("Some error occurred. Please try again after sometime");
                 }
 
             }catch (Exception e){

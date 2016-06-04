@@ -6,9 +6,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.eazylivings.VO.UserDetails;
 import com.eazylivings.constant.Constants;
+import com.eazylivings.sharedpreference.SharedPreference;
 
 import java.util.ArrayList;
 
@@ -56,77 +58,54 @@ public class DeviceSetup extends SQLiteOpenHelper {
 
             db.insert(Constants.USER_PREFERENCES_TABLE,null,values);
 
-        }    }
-
-    public void createUserSpecificTables(String userName){
-
-        if(userName!=null){
-            userName=userName.split("@")[0];
-        }
-        boolean isTableAlreadyExist=checkIfUserSpecificTableExists(userName);
-        if(isTableAlreadyExist){
-
-            db.execSQL("DROP TABLE user_details_"+userName);
-            db.execSQL("DROP TABLE user_preferences_"+userName);
-
-            db.execSQL("CREATE TABLE user_details_"+userName+"(_id  INTEGER PRIMARY KEY AUTOINCREMENT,"+
-                    " first_name TEXT, last_name TEXT, email_address TEXT, contact_number TEXT, residential_address TEXT )");
-            db.execSQL("CREATE TABLE user_preferences_"+userName+"(_id INTEGER PRIMARY KEY AUTOINCREMENT,service_name TEXT, is_subscribed BOOLEAN)");
-
-        }else{
-            db.execSQL("CREATE TABLE user_details_"+userName+"(_id  INTEGER PRIMARY KEY AUTOINCREMENT,"+
-                    " user_name TEXT,password TEXT, email_address TEXT, contact_number TEXT, residential_address TEXT )");
-            db.execSQL("CREATE TABLE user_preferences_"+userName+"(_id INTEGER PRIMARY KEY AUTOINCREMENT,service_name TEXT, is_subscribed BOOLEAN)");
-        }
-
-    }
-
-    public boolean checkIfUserSpecificTableExists(String userName){
-
-        if(userName!=null){
-            userName=userName.split("@")[0];
-        }
-
-        Cursor cursor = db.rawQuery("select DISTINCT tbl_name from sqlite_master where tbl_name = 'user_details_"+userName+"'", null);
-        if(cursor!=null) {
-            if(cursor.getCount()>0) {
-                cursor.close();
-                return true;
-            }else{
-                cursor.close();
-                return false;
-            }
-        }else{
-            cursor.close();
-            return false;
         }
     }
 
-    public void populateUerSpecificTables(String userName){
-
-    }
 
     //At time of registration, users details like username, email address and password will be stored here. Phone number can also be captured
     public void insertUserDetails(UserDetails userDetails){
+        db = getWritableDatabase();
         if(userDetails!=null){
             ContentValues values=new ContentValues();
             values.put(Constants.COLUMN_USER_NAME,userDetails.getUserName());
-            values.put(Constants.COLUMN_PASSWORD,userDetails.getPassword());
             values.put(Constants.COLUMN_EMAIL_ADDRESS,userDetails.getEmail_address());
             values.put(Constants.COLUMN_CONTACT_NUMBER,userDetails.getContact_number());
             values.put(Constants.COLUMN_ADDRESS,"");
 
             if(db!=null) {
-                db = getWritableDatabase();
+
                 db.insert("user_details_" + userDetails.getUserName(), null, values);
+                db.insert("user_details_" + userDetails.getUserName(), null, values);
+                db.close();
 
             }
         }
     }
 
-    public UserDetails getUserProfileDetails(String userName){
+    public void saveUserDetailsUsingSharedPreference(UserDetails userDetails,Context context){
+
+        SharedPreference preference=new SharedPreference();
+        preference.setStringValueInSharedPreference(context,"user_name",userDetails.getUserName());
+        preference.setStringValueInSharedPreference(context,"email_address",userDetails.getEmail_address());
+        preference.setStringValueInSharedPreference(context,"contact_number",userDetails.getContact_number());
+        preference.setStringValueInSharedPreference(context,"address",userDetails.getResidential_address());
+        preference.setBooleanValueInSharedPreference(context,"isProfileAlreadyLoaded",true);
+    }
+
+
+    public UserDetails getUserDetailsUsingSharedPreferences(Context context){
+
+        SharedPreference sharedPreference=new SharedPreference();
         UserDetails userDetails=new UserDetails();
+
+        userDetails.setUserName(sharedPreference.getStringValueFromSharedPreference(context,"user_name"));
+        userDetails.setEmail_address(sharedPreference.getStringValueFromSharedPreference(context,"email_address"));
+        userDetails.setContact_number(sharedPreference.getStringValueFromSharedPreference(context,"contact_number"));
+        userDetails.setResidential_address(sharedPreference.getStringValueFromSharedPreference(context,"address"));
+
         return userDetails;
+
+
     }
 
     private ArrayList<String> populateListOfServices(){

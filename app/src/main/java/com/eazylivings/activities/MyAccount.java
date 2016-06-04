@@ -1,15 +1,20 @@
 package com.eazylivings.activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.eazylivings.R;
+import com.eazylivings.UpdateMyAccount;
 import com.eazylivings.VO.UserDetails;
 import com.eazylivings.constant.Constants;
+import com.eazylivings.databasehandler.DeviceSetup;
 import com.eazylivings.databasehandler.LocalDatabaseHandler;
+import com.eazylivings.profile.UserProfileSetup;
 import com.eazylivings.sharedpreference.SharedPreference;
 
 public class MyAccount extends AppCompatActivity {
@@ -21,27 +26,26 @@ public class MyAccount extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_account);
 
-        Button updateChangesButton=(Button)findViewById(R.id.myAccount_button_updateChanges);
-        if(updateChangesButton!=null){
-            updateChangesButton.setVisibility(View.INVISIBLE);
-        }
-
-        UserDetails userDetails;
         SharedPreference preference=new SharedPreference();
         String userName=preference.getStringValueFromSharedPreference(getApplicationContext(),"userName");
 
-        LocalDatabaseHandler localDatabaseHandler=new LocalDatabaseHandler(getApplicationContext(),Constants.DATABASE_NAME,null,Constants.DATABASE_VERSION);
+        UserProfileSetup userProfileSetup=new UserProfileSetup(getApplicationContext(),this);
+        userProfileSetup.setupUserProfile(userName);
 
-        userDetails=localDatabaseHandler.getUserProfileDetails(userName);
+        DeviceSetup deviceSetup=new DeviceSetup(getApplicationContext(),Constants.DATABASE_NAME,null,Constants.DATABASE_VERSION);
+
+        UserDetails userDetails=deviceSetup.getUserDetailsUsingSharedPreferences(getApplicationContext());
         setUserProfile(userDetails);
     }
 
     private void setUserProfile(UserDetails userDetails){
 
-        TextView profile_userName=(TextView)findViewById(R.id.myAccount_editText_userName);
-        TextView profile_emailAddress=(TextView)findViewById(R.id.myAccount_editText_userEmailAddress);
-        TextView profile_contactNumber=(TextView)findViewById(R.id.myAccount_editText_userContactNumber);
-        TextView profile_address=(TextView)findViewById(R.id.myAccount_editText_userAddress);
+        TextView profile_userName=(TextView)findViewById(R.id.myAccount_mediumText_userName);
+        TextView profile_emailAddress=(TextView)findViewById(R.id.myAccount_mediumText_emailAddress);
+        TextView profile_contactNumber=(TextView)findViewById(R.id.myAccount_mediumText_contactNumber);
+        TextView profile_address=(TextView)findViewById(R.id.myAccount_mediumText_residentialAddress);
+
+
         if(userDetails!=null) {
             if (profile_userName != null) {
                 profile_userName.setText(userDetails.getUserName());
@@ -58,27 +62,12 @@ public class MyAccount extends AppCompatActivity {
         }
         }
 
-    public void onClickUpdate(View view){
-        TextView profile_userName=(TextView)findViewById(R.id.myAccount_editText_userName);
-        TextView profile_emailAddress=(TextView)findViewById(R.id.myAccount_editText_userEmailAddress);
-        TextView profile_contactNumber=(TextView)findViewById(R.id.myAccount_editText_userContactNumber);
-        TextView profile_address=(TextView)findViewById(R.id.myAccount_editText_userAddress);
-        Button updateButton=(Button)findViewById(R.id.myAccount_button_update);
-        Button updateChangesButton=(Button)findViewById(R.id.myAccount_button_updateChanges);
+    public void onClickUpdateInformation(View view){
 
-        if(profile_userName!=null && profile_emailAddress!=null && profile_contactNumber!=null && profile_address!=null && updateButton!=null && updateChangesButton!=null){
-            updateButton.setVisibility(View.INVISIBLE);
-            updateChangesButton.setVisibility(View.VISIBLE);
-
-
-        }
-
-
+        Intent intent=new Intent(getApplicationContext(), UpdateMyAccount.class);
+        startActivity(intent);
     }
 
-    public void onClickUpdateChanges(View view){
-
-    }
 
 
 }

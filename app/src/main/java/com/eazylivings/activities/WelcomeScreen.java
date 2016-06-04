@@ -19,17 +19,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.eazylivings.R;
-import com.eazylivings.VO.UserDetails;
 import com.eazylivings.activities.login.SignIn;
 import com.eazylivings.activities.services.OfferedServices;
 import com.eazylivings.activities.services.WalkthroughServices;
 import com.eazylivings.adapter.CustomSwipeAdapter;
-import com.eazylivings.constant.Constants;
-import com.eazylivings.databasehandler.LocalDatabaseHandler;
 import com.eazylivings.sharedpreference.SharedPreference;
 
 public class WelcomeScreen extends AppCompatActivity
@@ -37,7 +33,6 @@ public class WelcomeScreen extends AppCompatActivity
 
     ViewPager viewPager;
     CustomSwipeAdapter adapter;
-    String welcomeText="Welcome ";
     String userName;
     SharedPreference sharedPreference;
 
@@ -45,30 +40,36 @@ public class WelcomeScreen extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_screen);
-        viewPager=(ViewPager) findViewById(R.id.viewPagerWelcomeScreen);
-        adapter=new CustomSwipeAdapter(this);
+        viewPager = (ViewPager) findViewById(R.id.viewPagerWelcomeScreen);
+        adapter = new CustomSwipeAdapter(this);
         viewPager.setAdapter(adapter);
         setWelcomeScreen();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        if (fab != null){
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
+            });
+    }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
+        if(drawer!=null) {
+            drawer.setDrawerListener(toggle);
+        }
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        if(navigationView!=null) {
+            navigationView.setNavigationItemSelectedListener(this);
+        }
     }
 
     public void setWelcomeScreen(){
@@ -114,16 +115,11 @@ public class WelcomeScreen extends AppCompatActivity
 
     }
 
-
-
-
-
-
     private Boolean exit = false;
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
+        if (drawer!=null &&drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         }
 
@@ -179,19 +175,22 @@ public class WelcomeScreen extends AppCompatActivity
                 break;
 
             case R.id.logOut:
-                generatePopupMessage("Successfully Logged Out..");
-                finish();
+
                 intent = new Intent(this, SignIn.class);
                 startActivity(intent);
                 sharedPreference.removeValueFromSharedPreference(getApplicationContext(),"loginStatus");
                 sharedPreference.removeValueFromSharedPreference(getApplicationContext(),"userName");
+                sharedPreference.removeValueFromSharedPreference(getApplicationContext(),"isProfileAlreadyLoaded");
+                finish();
                 break;
             case R.id.logIn:
-                finish();
+
                 intent = new Intent(this, SignIn.class);
                 startActivity(intent);
                 sharedPreference.removeValueFromSharedPreference(getApplicationContext(),"loginStatus");
                 sharedPreference.removeValueFromSharedPreference(getApplicationContext(),"userName");
+                sharedPreference.removeValueFromSharedPreference(getApplicationContext(),"isProfileAlreadyLoaded");
+                finish();
                 break;
             case R.id.preferences:
                 finish();
@@ -225,7 +224,9 @@ public class WelcomeScreen extends AppCompatActivity
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+        if(drawer!=null) {
+            drawer.closeDrawer(GravityCompat.START);
+        }
         return true;
     }
 

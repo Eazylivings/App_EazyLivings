@@ -8,6 +8,7 @@ import android.preference.PreferenceManager;
 import com.eazylivings.constant.Constants;
 import com.eazylivings.databasehandler.DeviceSetup;
 import com.eazylivings.databasehandler.ServerDatabaseHandler;
+import com.eazylivings.sharedpreference.SharedPreference;
 
 public class UserProfileSetup {
 
@@ -19,32 +20,18 @@ public class UserProfileSetup {
         this.baseActivity=activity;
     }
 
-    DeviceSetup deviceSetup;
-
     public void setupUserProfile(String userName) {
 
-        ServerDatabaseHandler serverDatabaseHandler=new ServerDatabaseHandler(context,baseActivity);
+        SharedPreference preference=new SharedPreference();
 
-        deviceSetup=new DeviceSetup(context, Constants.DATABASE_NAME,null,Constants.DATABASE_VERSION);
-        boolean isUserSpecificTablesPresent = deviceSetup.checkIfUserSpecificTableExists(userName);
+        boolean isProfileAlreadyLoaded=preference.getBooleanValueFromSharedPreference(context,"isProfileAlreadyLoaded");
 
-        if (isUserSpecificTablesPresent) {
-            setSession(userName);
-            serverDatabaseHandler.execute(Constants.USER_PROFILE_ACTION,userName);
-
-        } else {
-            deviceSetup.createUserSpecificTables(userName);
-            deviceSetup.populateUerSpecificTables(userName);
-            setSession(userName);
+        if(!isProfileAlreadyLoaded){
+            ServerDatabaseHandler serverDatabaseHandler=new ServerDatabaseHandler(context,baseActivity);
             serverDatabaseHandler.execute(Constants.USER_PROFILE_ACTION,userName);
         }
     }
 
-    private void setSession(String userName){
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        prefs.edit().putBoolean("loginStatus", true).apply();
-        prefs.edit().putString("userName", userName).apply();
-    }
 
     }
 

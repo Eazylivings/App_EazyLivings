@@ -7,17 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 import com.eazylivings.R;
 
-/**
- * Created by Vibek on 6/2/2016.
- */
 public class CustomSwipeAdapter extends PagerAdapter {
     private int[] imageResources={R.drawable.one,R.drawable.two,R.drawable.three,R.drawable.four,R.drawable.five};
     private Context ctx;
-    private LayoutInflater layoutInflater;
+    LayoutInflater layoutInflater;
 
     public CustomSwipeAdapter(Context ctx){
         this.ctx=ctx;
@@ -38,8 +34,12 @@ public class CustomSwipeAdapter extends PagerAdapter {
         layoutInflater=(LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View itemView=layoutInflater.inflate(R.layout.swipe_layout,container,false);
         ImageView imageView=(ImageView)itemView.findViewById(R.id.welcomeScreen_textView_background);
-        imageView.setImageResource(imageResources[position]);
-        container.addView(itemView);
+        if(imageView!=null) {
+            imageView.setImageResource(imageResources[position]);
+        }
+        if(container!=null) {
+            container.addView(itemView);
+        }
         return itemView;
     }
 

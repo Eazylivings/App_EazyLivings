@@ -32,7 +32,9 @@
         <activity android:name=".activities.MyAccount" />
         <activity android:name=".activities.services.WalkthroughServices" />
         <activity android:name=".activities.services.OfferedServices" />
-        <activity android:name=".activities.services.flatsetup.FlatSetup"></activity>
+        <activity android:name=".activities.services.flatsetup.FlatSetup" />
+        <activity android:name=".activities.services.cooking.ChoiceOfCooking" />
+        <activity android:name=".UpdateMyAccount"></activity>
     </application>
 
 </manifest>

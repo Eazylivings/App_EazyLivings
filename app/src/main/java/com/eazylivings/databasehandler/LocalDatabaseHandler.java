@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.eazylivings.VO.UserDetails;
 import com.eazylivings.constant.Constants;
@@ -42,26 +43,30 @@ public class LocalDatabaseHandler extends SQLiteOpenHelper {
 
         UserDetails userDetails = new UserDetails();
         SQLiteDatabase db = getWritableDatabase();
-        String query = "SELECT * FROM " + Constants.SIGNUP_DETAILS_TABLE + username;
+        String query = "SELECT * FROM user_details_"+ username;
 
         //Cursor points to a location in results
 
-        Cursor cursor = db.rawQuery(query, null);
-        if (cursor != null){
-            cursor.moveToFirst();
-            String columnArray[] = cursor.getColumnNames();
+        try {
+            Cursor cursor = db.rawQuery(query, null);
+            if (cursor != null) {
+                cursor.moveToFirst();
+                String columnArray[] = cursor.getColumnNames();
 
-            while (!cursor.isAfterLast()) {
+                while (!cursor.isAfterLast()) {
 
-                userDetails.setUserName(cursor.getString(cursor.getColumnIndex(columnArray[0])));
-                userDetails.setEmail_address(cursor.getString(cursor.getColumnIndex(columnArray[1])));
-                userDetails.setContact_number(cursor.getString(cursor.getColumnIndex(columnArray[2])));
-                userDetails.setResidential_address(cursor.getString(cursor.getColumnIndex(columnArray[3])));
+                    userDetails.setUserName(cursor.getString(cursor.getColumnIndex(columnArray[1])));
+                    userDetails.setEmail_address(cursor.getString(cursor.getColumnIndex(columnArray[2])));
+                    userDetails.setContact_number(cursor.getString(cursor.getColumnIndex(columnArray[3])));
+                    userDetails.setResidential_address(cursor.getString(cursor.getColumnIndex(columnArray[4])));
 
+                }
+                if (db != null) {
+                    db.close();
+                }
             }
-            if(db!=null){
-                db.close();
-            }
+        }catch(Exception e){
+            Log.i("","");
         }
 
         return userDetails;
