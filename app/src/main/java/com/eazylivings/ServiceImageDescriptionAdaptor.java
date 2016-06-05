@@ -26,39 +26,33 @@ public class ServiceImageDescriptionAdaptor extends ArrayAdapter<String>{
         String clickedService=getItem(position);
         TextView serviceName=(TextView)view.findViewById(R.id.serviceImageShortDescription_imageView_sericeName);
         ImageView serviceImage=(ImageView)view.findViewById(R.id.serviceImageShortDescription_imageView_sericeImage);
-        TextView serviceDescription=(TextView)view.findViewById(R.id.serviceImageShortDescription_imageView_sericeDescription);
 
         switch (position){
 
             case 0:
                 serviceName.setText(Constants.FLAT_NAME);
                 serviceImage.setImageResource(R.drawable.flatsetup);
-                serviceDescription.setText(Constants.FLAT_DESCRIPTION);
                 break;
 
             case 1:
 
-                serviceName.setText(Constants.CLEANING_NAME);
-                serviceImage.setImageResource(R.drawable.cleaning);
-                serviceDescription.setText(Constants.CLEANING_DESCRIPTION);
+                serviceName.setText(Constants.COOKING_NAME);
+                serviceImage.setImageResource(R.drawable.cooking);
                 break;
 
             case 2:
-                serviceName.setText(Constants.WASHING_NAME);
-                serviceImage.setImageResource(R.drawable.washing);
-                serviceDescription.setText(Constants.WASHING_DESCRIPTION);
+                serviceName.setText(Constants.CLEANING_NAME);
+                serviceImage.setImageResource(R.drawable.cleaning);
                 break;
 
             case 3:
-                serviceName.setText(Constants.COOKING_NAME);
-                serviceImage.setImageResource(R.drawable.cooking);
-                serviceDescription.setText(Constants.COOKING_DESCRIPTION);
+                serviceName.setText(Constants.WASHING_NAME);
+                serviceImage.setImageResource(R.drawable.washing);
                 break;
 
             default:
                 serviceName.setText(clickedService);
                 serviceImage.setImageResource(R.drawable.background);
-                serviceDescription.setText("Hello..........................");
                 break;
 
         }

@@ -17,9 +17,4 @@
         android:id="@+id/serviceImageShortDescription_imageView_sericeImage"
         android:background="@drawable/background" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Text"
-        android:id="@+id/serviceImageShortDescription_imageView_sericeDescription" />
 </LinearLayout>

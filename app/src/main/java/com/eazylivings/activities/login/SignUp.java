@@ -25,9 +25,9 @@ public class SignUp extends AppCompatActivity {
 
     @Override
     public void onBackPressed(){
-        finish();
         Intent intent = new Intent(getApplicationContext(),SignIn.class);
         startActivity(intent);
+        finish();
     }
 
     public void onClickSignUpButton(View view) {
@@ -37,52 +37,64 @@ public class SignUp extends AppCompatActivity {
         final EditText emailAddress = (EditText) findViewById(R.id.SignUpPage_editText_email);
         final EditText contactNumber = (EditText) findViewById(R.id.SignUpPage_editText_PhoneNo);
 
-        boolean isEmailFormatCorrect=Validator.checkEmailFormat(emailAddress);
-        boolean isUserAlreadyPresent=Validator.checkExistingUser(userName);
-        boolean isUserNameFormatCorrect=Validator.checkUsernameFormat(userName);
-        boolean isPasswordFormatCorrect=Validator.checkPasswordFormat(password);
-        boolean isContactNumberCorrect= Validator.checkContactNumber(contactNumber);
+        if(userName==null){
+            generatePopupMessages(Constants.ENTER_USERNAME);
 
-        if(isUserNameFormatCorrect && isEmailFormatCorrect && !isUserAlreadyPresent && isPasswordFormatCorrect && isContactNumberCorrect){
+        }else if(password==null){
+            generatePopupMessages(Constants.ENTER_PASSWORD);
+
+        }else if(emailAddress==null){
+            generatePopupMessages(Constants.ENTER_EMAIL_ADDRESS);
+
+        }else if(contactNumber==null){
+            generatePopupMessages(Constants.ENTER_CONTACT_NUMBER);
+
+        }else {
+
+            boolean isEmailFormatCorrect = Validator.checkEmailFormat(emailAddress);
+            boolean isUserAlreadyPresent = Validator.checkExistingUser(userName);
+            boolean isUserNameFormatCorrect = Validator.checkUsernameFormat(userName);
+            boolean isPasswordFormatCorrect = Validator.checkPasswordFormat(password);
+            boolean isContactNumberCorrect = Validator.checkContactNumber(contactNumber);
+
+            if (isUserNameFormatCorrect && isEmailFormatCorrect && !isUserAlreadyPresent && isPasswordFormatCorrect && isContactNumberCorrect) {
 
 
-            UserDetails userDetails=new UserDetails();
-            userDetails.setUserName(userName.getText().toString());
-            userDetails.setPassword(password.getText().toString());
-            userDetails.setEmail_address(emailAddress.getText().toString());
-            userDetails.setContact_number(contactNumber.getText().toString());
+                UserDetails userDetails = new UserDetails();
+                userDetails.setUserName(userName.getText().toString());
+                userDetails.setPassword(password.getText().toString());
+                userDetails.setEmail_address(emailAddress.getText().toString());
+                userDetails.setContact_number(contactNumber.getText().toString());
 
-            ServerDatabaseHandler serverDatabaseHandler=new ServerDatabaseHandler(getApplicationContext(),this);
-            serverDatabaseHandler.execute(Constants.REGISTER,userName.getText().toString(),password.getText().toString(),emailAddress.getText().toString(),contactNumber.getText().toString());
+                ServerDatabaseHandler serverDatabaseHandler = new ServerDatabaseHandler(getApplicationContext(), this);
+                serverDatabaseHandler.execute(Constants.REGISTER, userName.getText().toString(), password.getText().toString(), emailAddress.getText().toString(), contactNumber.getText().toString());
 
 
-        }else if(isUserAlreadyPresent){
-            generatePopupMessages("This user is already present. Please sign in.");
-        }else if(!isUserNameFormatCorrect){
-            generatePopupMessages("Please check username");
-        }else if(!isEmailFormatCorrect){
-            generatePopupMessages("Please provide correct email address");
-        }else if(!isPasswordFormatCorrect){
-            generatePopupMessages("Please choose correct password");
-        }else if(!isContactNumberCorrect){
-            generatePopupMessages("Please provide correct contact number.");
-        }else{
-            generatePopupMessages("Sorry something went wrong. Please try again after sometime");
+            } else if (isUserAlreadyPresent) {
+                generatePopupMessages(Constants.USER_ALREADY_PRESENT);
+            } else if (!isUserNameFormatCorrect) {
+                generatePopupMessages(Constants.ENTER_CORRECT_USERNAME);
+            } else if (!isEmailFormatCorrect) {
+                generatePopupMessages(Constants.ENTER_CORRECT_EMAIL_ADDRESS);
+            } else if (!isPasswordFormatCorrect) {
+                generatePopupMessages(Constants.ENTER_CORRECT_PASSWORD);
+            } else {
+                generatePopupMessages(Constants.ERROR_MESSAGE);
+            }
         }
     }
 
     public void onClickSignIn(View view){
 
-        finish();
         Intent intent = new Intent(getApplicationContext(),SignIn.class);
         startActivity(intent);
-
+        finish();
     }
 
     private void generatePopupMessages(String message){
         {
             AlertDialog alertDialog = new AlertDialog.Builder(SignUp.this).create();
-            alertDialog.setTitle("Alert");
+            alertDialog.setTitle(Constants.ALERT_TITLE);
             alertDialog.setMessage(message);
             alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                     new DialogInterface.OnClickListener() {

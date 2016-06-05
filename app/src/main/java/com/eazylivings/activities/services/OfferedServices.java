@@ -11,6 +11,7 @@ import android.widget.ListView;
 import com.eazylivings.ServiceImageDescriptionAdaptor;
 
 import com.eazylivings.R;
+import com.eazylivings.constant.Constants;
 
 public class OfferedServices extends AppCompatActivity {
 
@@ -21,9 +22,9 @@ public class OfferedServices extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_offered_services);
 
-        setTitle("EazyLivings's Offerings");
+        setTitle(Constants.OFFERED_SERVICES_TITLE);
 
-        String services[] = {"Flat Setup","Cleaning", "Washing","Cooking"};
+        String services[] = {"Flat Setup","Cooking","Cleaning", "Washing"};
         ListAdapter listAdapter = new ServiceImageDescriptionAdaptor(this, services);
         ListView listView = (ListView) findViewById(R.id.offeredServices_listView_servicesList);
         if (listView != null) {
@@ -37,7 +38,7 @@ public class OfferedServices extends AppCompatActivity {
 
                         clickedService = String.valueOf(parent.getItemAtPosition(position));
                         Intent intent = new Intent(getApplicationContext(), WalkthroughServices.class);
-                        intent.putExtra("clickedService", position);
+                        intent.putExtra(Constants.SHARED_PREFERENCE_CLICKED_SERVICE, position);
                         startActivity(intent);
 
                     }

@@ -7,14 +7,15 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.eazylivings.R;
 import com.eazylivings.VO.UserDetails;
-import com.eazylivings.activities.MyAccount;
 import com.eazylivings.activities.WelcomeScreen;
 import com.eazylivings.constant.Constants;
-import com.eazylivings.profile.UserProfileSetup;
 import com.eazylivings.sharedpreference.SharedPreference;
 
 import org.json.JSONArray;
@@ -56,6 +57,7 @@ public class ServerDatabaseHandler  extends AsyncTask<String,Void,String> {
 
         try {
             URL url=new URL(Constants.LOGIN_URL);
+
             if(currentAction.equalsIgnoreCase(Constants.LOGIN)){
                 url = new URL(Constants.LOGIN_URL);
                 post_data = URLEncoder.encode("user_name", "UTF-8") + "=" + URLEncoder.encode(userName, "UTF-8") + "&"
@@ -78,11 +80,14 @@ public class ServerDatabaseHandler  extends AsyncTask<String,Void,String> {
                 url = new URL(Constants.USER_PROFILE_URL);
                 post_data = URLEncoder.encode("emailAddress", "UTF-8") + "=" + URLEncoder.encode(userName, "UTF-8");
 
-            }else if(currentAction.equalsIgnoreCase(Constants.SAVE_USER_UPDATE)){
+           }else if(currentAction.equalsIgnoreCase(Constants.SAVE_USER_UPDATE)){
                 url = new URL(Constants.USER_PROFILE_URL);
                 post_data = URLEncoder.encode("user_name", "UTF-8") + "=" + URLEncoder.encode(userName, "UTF-8") + "&"
                         + URLEncoder.encode("name", "UTF-8") + "=" + URLEncoder.encode(params[2], "UTF-8")+"&"
                         + URLEncoder.encode("phoneNo", "UTF-8") + "=" + URLEncoder.encode(params[3], "UTF-8");
+            }else if(currentAction.equalsIgnoreCase(Constants.FORGOT_PASSWORD)){
+                url = new URL(Constants.FORGOT_PASSWORD_MAIL_URL);
+                post_data = URLEncoder.encode("emailAddress", "UTF-8") + "=" + URLEncoder.encode(params[1], "UTF-8");
             }
 
             HttpURLConnection httpUrlConnection = (HttpURLConnection) url.openConnection();
@@ -101,7 +106,7 @@ public class ServerDatabaseHandler  extends AsyncTask<String,Void,String> {
             InputStream inputStream = httpUrlConnection.getInputStream();
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
 
-            String line = "";
+            String line;
 
             while ((line = bufferedReader.readLine()) != null) {
                 result += line;
@@ -126,13 +131,14 @@ public class ServerDatabaseHandler  extends AsyncTask<String,Void,String> {
 
                     if (userDetails!=null) {
                         DeviceSetup deviceSetup;
-                        deviceSetup=new DeviceSetup(context,Constants.DATABASE_NAME,null, Constants.DATABASE_VERSION);
+                        deviceSetup=new DeviceSetup(context);
                         deviceSetup.saveUserDetailsUsingSharedPreference(userDetails,context);
                     }else {
                         generatePopupMessage("Some error occurred. Please try again after sometime");
                     }
 
                 }catch (Exception e){
+                    e.printStackTrace();
 
                 }
 
@@ -180,37 +186,27 @@ public class ServerDatabaseHandler  extends AsyncTask<String,Void,String> {
             generatePopupMessage("Please check login details and try again");
 
         }else if(accountAuthenticationString.equalsIgnoreCase("Registration Success")){
-
+            generatePopupMessage("Failed to register. Please try again with correct inputs");
 
         }else if(accountAuthenticationString.equalsIgnoreCase("Registration Failed")){
             generatePopupMessage("Failed to register. Please try again with correct inputs");
 
-        }else if(currentAction.equalsIgnoreCase(Constants.USER_PROFILE_ACTION)){
-            userDetails=new UserDetails();
-            try {
-                JSONArray jsonarray = new JSONArray(accountAuthenticationString);
-                for (int i = 0; i < jsonarray.length(); i++) {
-                    JSONObject jsonobject = jsonarray.getJSONObject(i);
-                    userDetails.setUserId(jsonobject.getInt("userId"));
-                    userDetails.setUserName(jsonobject.getString("name"));
-                    userDetails.setEmail_address(jsonobject.getString("emailId"));
-                    userDetails.setContact_number(jsonobject.getString("phoneNo"));
-                    userDetails.setResidential_address(jsonobject.getString("address"));
-                }
+        }else if(accountAuthenticationString.equalsIgnoreCase("Email Sent successfully")){
+            TextView defaultMessage = (TextView) activity.findViewById(R.id.forgotPassword_button_defaultMessage);
+            Button signInButton=(Button)activity.findViewById(R.id.forgotPassword_button_signIn);
+            ImageView image = (ImageView) activity.findViewById(R.id.forgotPassword_button_image);
 
-                if (userDetails!=null) {
-                    DeviceSetup deviceSetup;
-                    deviceSetup=new DeviceSetup(context,Constants.DATABASE_NAME,null, Constants.DATABASE_VERSION);
-                    deviceSetup.insertUserDetails(userDetails);
+            if(defaultMessage!=null && signInButton!=null && image!=null){
+                defaultMessage.setText(Constants.MESSAGE_FOR_SUCCESSFUL_RESET_PASSWORD);
+                signInButton.setVisibility(View.VISIBLE);
+                image.setBackgroundResource(R.drawable.emailsentsmiley);
+            }else if(defaultMessage!=null && image!=null){
+                defaultMessage.setText(Constants.MESSAGE_FAIL_RESET_PASSWORD);
+                image.setBackgroundResource(R.drawable.failtosendpassword);
 
-                }else {
-                    generatePopupMessage("Some error occurred. Please try again after sometime");
-                }
-
-            }catch (Exception e){
-
+            }else{
+                generatePopupMessage("Some error occurred. Please try again after sometime");
             }
-
         }else{
             generatePopupMessage("Some error occurred. Please try again after sometime");
         }
@@ -221,18 +217,12 @@ public class ServerDatabaseHandler  extends AsyncTask<String,Void,String> {
         super.onProgressUpdate(values);
     }
 
-    public boolean getExistingUser(String userName){
-        boolean isUserPresent=false;
-
-        return isUserPresent;
-    }
-
     private void setSharedPreferences(String key,String value){
 
 
         SharedPreference sharedPreference=new SharedPreference();
         sharedPreference.setStringValueInSharedPreference(context,key,value);
-        sharedPreference.setBooleanValueInSharedPreference(context,"loginStatus",true);
+        sharedPreference.setBooleanValueInSharedPreference(context,Constants.SHARED_PREFERENCE_LOGIN_STATUS,true);
     }
 
     private void generatePopupMessage(String message){

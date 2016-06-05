@@ -99,17 +99,31 @@
         android:layout_centerHorizontal="true"
         android:textSize="18dp"/>
 
-    <Button
-        android:layout_height="50dp"
-        android:layout_width="180dp"
-        android:layout_gravity="center_horizontal"
-        android:id="@+id/loginPage_imageButton_backToLogin"
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="15sp"
+        android:gravity="center_horizontal"
+        android:text="@string/already_part_of_eazylivings"
+        android:id="@+id/textView6"
+        android:onClick="onClickRegisterButton"
+        android:textColor="#000000"
+        android:layout_below="@+id/loginPage_imageButton_signIn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="23dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:text="SignIn"
+        android:id="@+id/textView7"
         android:onClick="onClickSignIn"
-        android:background="#2E9AFE"
-        android:textColor="@drawable/button_text_color"
-        android:text="@string/signin"
-        android:textSize="18sp"
-        android:layout_alignParentBottom="true"
+        android:textColor="#FF0000"
+        android:layout_below="@+id/textView6"
         android:layout_centerHorizontal="true" />
 
 

@@ -24,12 +24,11 @@ import com.eazylivings.R;
 import com.eazylivings.activities.login.SignIn;
 import com.eazylivings.activities.services.OfferedServices;
 import com.eazylivings.activities.services.WalkthroughServices;
-import com.eazylivings.adapter.CustomSwipeAdapter;
+
+import com.eazylivings.constant.Constants;
 import com.eazylivings.sharedpreference.SharedPreference;
 
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.view.ViewPager;
-import android.os.Bundle;
 import android.util.DisplayMetrics;
 
 import com.eazylivings.carousel.MyPagerAdapter;
@@ -51,8 +50,6 @@ implements NavigationView.OnNavigationItemSelectedListener {
     public static int count;
 
     public static WelcomeScreen mainActivityCtx;
-
-    public static int currentPage = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,12 +122,12 @@ implements NavigationView.OnNavigationItemSelectedListener {
 
         //1. Check whether any user is logged in or not
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        boolean isUserLoggedIn=prefs.getBoolean("loginStatus",false);
+        boolean isUserLoggedIn=prefs.getBoolean(Constants.SHARED_PREFERENCE_LOGIN_STATUS,false);
 
         //2. If user is logged in
         if(isUserLoggedIn){
             //2a. Set Title Bar with user Name.
-            userName = prefs.getString("userName", "Newbie.");
+            userName = prefs.getString(Constants.SHARED_PREFERENCE_USERNAME,Constants.SHARED_PREFERENCE_DEFAULT_USERNAME);
             setTitle("Welcome "+ userName + "!!");
 
             //2b. Set Overflow Menu. This is already taken Care of.
@@ -159,7 +156,7 @@ implements NavigationView.OnNavigationItemSelectedListener {
     public void onClickExplore(View view){
 
         Intent intent=new Intent(getApplicationContext(), WalkthroughServices.class);
-        intent.putExtra("clickedService",0);
+        intent.putExtra(Constants.SHARED_PREFERENCE_CLICKED_SERVICE,0);
         startActivity(intent);
 
     }
@@ -193,7 +190,7 @@ implements NavigationView.OnNavigationItemSelectedListener {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        boolean isUserLoggedIn = prefs.getBoolean("loginStatus",false);
+        boolean isUserLoggedIn = prefs.getBoolean(Constants.SHARED_PREFERENCE_LOGIN_STATUS,false);
 
         if(isUserLoggedIn) {
             getMenuInflater().inflate(R.menu.logout, menu);
@@ -213,12 +210,12 @@ implements NavigationView.OnNavigationItemSelectedListener {
         switch(item.getItemId()){
             case R.id.userProfile:
 
-                if(sharedPreference.getBooleanValueFromSharedPreference(getApplicationContext(),"loginStatus")){
+                if(sharedPreference.getBooleanValueFromSharedPreference(getApplicationContext(),Constants.SHARED_PREFERENCE_LOGIN_STATUS)){
                     intent = new Intent(this, MyAccount.class);
-                    intent.putExtra("userName",userName);
+                    intent.putExtra(Constants.SHARED_PREFERENCE_USERNAME,userName);
                     startActivity(intent);
                 }else{
-                    generatePopupMessage("Please login to see your profile");
+                    generatePopupMessage(Constants.LOGIN_FOR_PROFILE);
                 }
 
                 break;
@@ -227,26 +224,27 @@ implements NavigationView.OnNavigationItemSelectedListener {
 
                 intent = new Intent(this, SignIn.class);
                 startActivity(intent);
-                sharedPreference.removeValueFromSharedPreference(getApplicationContext(),"loginStatus");
-                sharedPreference.removeValueFromSharedPreference(getApplicationContext(),"userName");
-                sharedPreference.removeValueFromSharedPreference(getApplicationContext(),"isProfileAlreadyLoaded");
+                sharedPreference.removeValueFromSharedPreference(getApplicationContext(),Constants.SHARED_PREFERENCE_LOGIN_STATUS);
+                sharedPreference.removeValueFromSharedPreference(getApplicationContext(),Constants.SHARED_PREFERENCE_USERNAME);
+                sharedPreference.removeValueFromSharedPreference(getApplicationContext(),Constants.SHARED_PREFERENCE_PROFILE_ALREADY_LOADED);
+                sharedPreference.clearSharedPreference(getApplicationContext());
                 finish();
                 break;
             case R.id.logIn:
 
                 intent = new Intent(this, SignIn.class);
                 startActivity(intent);
-                sharedPreference.removeValueFromSharedPreference(getApplicationContext(),"loginStatus");
-                sharedPreference.removeValueFromSharedPreference(getApplicationContext(),"userName");
-                sharedPreference.removeValueFromSharedPreference(getApplicationContext(),"isProfileAlreadyLoaded");
+                sharedPreference.removeValueFromSharedPreference(getApplicationContext(),Constants.SHARED_PREFERENCE_LOGIN_STATUS);
+                sharedPreference.removeValueFromSharedPreference(getApplicationContext(),Constants.SHARED_PREFERENCE_USERNAME);
+                sharedPreference.removeValueFromSharedPreference(getApplicationContext(),Constants.SHARED_PREFERENCE_PROFILE_ALREADY_LOADED);
                 finish();
                 break;
             case R.id.preferences:
                 finish();
                 intent = new Intent(this, SignIn.class);
                 startActivity(intent);
-                sharedPreference.setBooleanValueInSharedPreference(getApplicationContext(),"loginStatus", false);
-                sharedPreference.setStringValueInSharedPreference(getApplicationContext(),"username","Newbie.");
+                sharedPreference.setBooleanValueInSharedPreference(getApplicationContext(),Constants.SHARED_PREFERENCE_LOGIN_STATUS, false);
+                sharedPreference.setStringValueInSharedPreference(getApplicationContext(),Constants.SHARED_PREFERENCE_USERNAME,Constants.SHARED_PREFERENCE_DEFAULT_USERNAME);
                 break;
         }
         return true;
@@ -283,7 +281,7 @@ implements NavigationView.OnNavigationItemSelectedListener {
 
     private void generatePopupMessage(String message){
         AlertDialog alertDialog = new AlertDialog.Builder(this).create(); //Use context
-        alertDialog.setTitle("Warning");
+        alertDialog.setTitle(Constants.ALERT_WARNING);
         alertDialog.setMessage(message);
         alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                 new DialogInterface.OnClickListener() {

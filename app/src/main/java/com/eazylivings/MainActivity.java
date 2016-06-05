@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 
 import com.eazylivings.activities.WelcomeScreen;
+import com.eazylivings.constant.Constants;
 
 public class MainActivity extends Activity {
 
@@ -17,8 +18,8 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        if(!prefs.getBoolean("loginStatus", false)){
-            prefs.edit().remove("userName");
+        if(!prefs.getBoolean(Constants.SHARED_PREFERENCE_LOGIN_STATUS, false)){
+            prefs.edit().remove(Constants.SHARED_PREFERENCE_USERNAME);
         }
 
         new Handler().postDelayed(new Runnable() {

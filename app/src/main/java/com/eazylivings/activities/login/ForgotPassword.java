@@ -6,16 +6,13 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.eazylivings.Mail.MailHandler;
 import com.eazylivings.R;
 import com.eazylivings.constant.Constants;
+import com.eazylivings.databasehandler.ServerDatabaseHandler;
 import com.eazylivings.validator.Validator;
 
 public class ForgotPassword extends AppCompatActivity {
@@ -53,14 +50,14 @@ public class ForgotPassword extends AppCompatActivity {
             EditText emailAddress = (EditText) findViewById(R.id.forgotPassword_button_emailAddress);
 
             if (emailAddress == null || emailAddress.getText().toString().equalsIgnoreCase("") || !Validator.checkEmailFormat(emailAddress)) {
-                generatePopupMessages("Please check email Address.");
+                generatePopupMessages(Constants.CHECK_EMAIL_ADDRESS);
             } else {
 
                 Button retrievePassword = (Button) findViewById(R.id.forgotPassword_button_retrievePassword);
                 TextView newTo = (TextView) findViewById(R.id.forgotPassword_textView_newTo);
                 TextView linkSignUp = (TextView) findViewById(R.id.forgotPassword_link_signUp);
 
-                if (emailAddress != null && retrievePassword != null && newTo != null && linkSignUp != null) {
+                if (retrievePassword != null && newTo != null && linkSignUp != null) {
 
                     linkSignUp.setVisibility(View.GONE);
                     newTo.setVisibility(View.GONE);
@@ -68,8 +65,8 @@ public class ForgotPassword extends AppCompatActivity {
                     retrievePassword.setVisibility(View.GONE);
 
                 }
-                MailHandler mailHandler = new MailHandler(getApplicationContext(), this);
-                mailHandler.execute("send email", Constants.FORGOTPASSWORD, emailAddress.getText().toString());
+                ServerDatabaseHandler handler=new ServerDatabaseHandler(getApplicationContext(), this);
+                handler.execute(Constants.FORGOT_PASSWORD, emailAddress.getText().toString());
             }
         }else{
             generatePopupMessages("Oops!!! You are not online!!!");

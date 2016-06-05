@@ -7,6 +7,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.eazylivings.R;
+import com.eazylivings.constant.Constants;
 
 public class WalkthroughServices extends AppCompatActivity {
 
@@ -18,7 +19,7 @@ public class WalkthroughServices extends AppCompatActivity {
 
         Bundle bundle=getIntent().getExtras();
         if(bundle!=null){
-            clickedService=bundle.getInt("clickedService");
+            clickedService=bundle.getInt(Constants.SHARED_PREFERENCE_CLICKED_SERVICE);
         }
 
         setServiceBasedContent(clickedService);
@@ -50,7 +51,7 @@ public class WalkthroughServices extends AppCompatActivity {
 
         RelativeLayout layout=(RelativeLayout)findViewById(R.id.walkthroughServices_relativelayout);
         TextView textView=(TextView)findViewById(R.id.walkthroughService_textView_steps);
-        String textViewText="";
+        String textViewText;
 
         if(layout!=null && textView!=null) {
 
@@ -58,7 +59,7 @@ public class WalkthroughServices extends AppCompatActivity {
             switch (serviceSelected) {
 
                 case 0:
-                    setTitle("Flat Setup");
+                    setTitle(Constants.WALK_THROUGH_SERVICES_FLAT_TITLE);
                     layout.setBackgroundResource(R.drawable.imageone);
                     textViewText="1. Provide us the location of the flat.\n\n"+
                             "2. Select the items which you want us to deliver at your place.\n\n"+
@@ -67,7 +68,7 @@ public class WalkthroughServices extends AppCompatActivity {
                     break;
 
                 case 1:
-                    setTitle("Cleaning");
+                    setTitle(Constants.WALK_THROUGH_SERVICES_COOKING_TITLE);
                     layout.setBackgroundResource(R.drawable.imagetwo);
                     textViewText="1. Provide us the location of the flat.\n\n"+
                             "2. Select the items which you e.\n\n"+
@@ -76,7 +77,7 @@ public class WalkthroughServices extends AppCompatActivity {
                     break;
 
                 case 2:
-                    setTitle("Washing");
+                    setTitle(Constants.WALK_THROUGH_SERVICES_CLEANING_TITLE);
                     layout.setBackgroundResource(R.drawable.imagethree);
                     textViewText="1. Provide us the location of the flat.\n\n"+
                             "2.which you want us to deliver at your place.\n\n"+
@@ -85,7 +86,7 @@ public class WalkthroughServices extends AppCompatActivity {
                     break;
 
                 case 3:
-                    setTitle("Cooking");
+                    setTitle(Constants.WALK_THROUGH_SERVICES_WASHING_TITLE);
                     layout.setBackgroundResource(R.drawable.imagefour);
                     textViewText="1. Provide us the location of the flat.\n\n"+
                             "2. Select the items which you want us to deliver at your place.";
@@ -96,7 +97,5 @@ public class WalkthroughServices extends AppCompatActivity {
                     break;
             }
         }
-
-
     }
 }

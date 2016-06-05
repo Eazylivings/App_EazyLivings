@@ -2,11 +2,8 @@ package com.eazylivings.profile;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 
 import com.eazylivings.constant.Constants;
-import com.eazylivings.databasehandler.DeviceSetup;
 import com.eazylivings.databasehandler.ServerDatabaseHandler;
 import com.eazylivings.sharedpreference.SharedPreference;
 
@@ -24,7 +21,7 @@ public class UserProfileSetup {
 
         SharedPreference preference=new SharedPreference();
 
-        boolean isProfileAlreadyLoaded=preference.getBooleanValueFromSharedPreference(context,"isProfileAlreadyLoaded");
+        boolean isProfileAlreadyLoaded=preference.getBooleanValueFromSharedPreference(context,Constants.SHARED_PREFERENCE_PROFILE_ALREADY_LOADED);
 
         if(!isProfileAlreadyLoaded){
             ServerDatabaseHandler serverDatabaseHandler=new ServerDatabaseHandler(context,baseActivity);

@@ -8,7 +8,7 @@ public class Constants {
 
     public final static String USER_PROFILE_ACTION="userProfileAction";
     public final static String USER_PROFILE="getUserDetails";
-    public static final String USER_PROFILE_URL="http://eazylivings.com/profile.php";
+
 
     //Sign Up details Table and Columns Names
     public final static String SIGNUP_DETAILS_TABLE="user_details_";
@@ -24,10 +24,9 @@ public class Constants {
 
     public final static String LOGIN="login";
     public final static String REGISTER="register";
-    public final static String LOGIN_URL="http://eazylivings.com/login.php";
-    public final static String REGISTER_URL="http://eazylivings.com/register.php";
 
-    public final static String FORGOTPASSWORD="forgotPassword";
+
+    public final static String FORGOT_PASSWORD ="forgotPassword";
 
     public final static String SEND_EMAIL ="send email";
 
@@ -45,4 +44,52 @@ public class Constants {
 
     public static final String SAVE_USER_UPDATE="update information";
 
+
+
+
+    //Popup messages
+    public static final String CHECK_EMAIL_ADDRESS ="Please check email address";
+    public static final String ENTER_USERNAME="Hey Mate, you forgot to enter username!!";
+    public static final String ENTER_PASSWORD="Hey Mate, you forgot to enter password!!";
+    public static final String ENTER_EMAIL_ADDRESS="Hey Mate, you forgot to enter email address!!";
+    public static final String ENTER_CONTACT_NUMBER="Hey Mate, you forgot to enter contact number!!";
+    public static final String ENTER_CORRECT_EMAIL_ADDRESS="Hey Mate, email address is not correct. Please check once";
+    public static final String ENTER_CORRECT_USERNAME="Hey Mate, user name is not correct. Please check once";
+    public static final String ENTER_CORRECT_PASSWORD="Hey Mate, password is not correct. Please check once";
+    public static final String ENTER_CORRECT_CONTACT_NUMBER="Hey Mate, contact number is not correct. Please check once";
+    public static final String NOT_ONLINE="Oops!! You are not online.";
+    public static final String USER_ALREADY_PRESENT="We think you are already part of EazyLivings. Please try to login with this email address";
+    public static final String ERROR_MESSAGE="This should not happen. Anyways something went wrong.Come back again fella ";
+    public static final String LOGIN_FOR_PROFILE="Please login to see your profile";
+
+    //URLS
+    public final static String LOGIN_URL="http://eazylivings.com/login.php";
+    public final static String REGISTER_URL="http://eazylivings.com/register.php";
+    public static final String USER_PROFILE_URL="http://eazylivings.com/profile.php";
+    public static final String FORGOT_PASSWORD_MAIL_URL="http://eazylivings.com/mail.php";
+
+
+    //Alert Titles
+    public static final String ALERT_TITLE="Message";
+    public static final String ALERT_WARNING="Warning";
+
+    //Action Bar Titles
+    public static final String OFFERED_SERVICES_TITLE="EazyLivings's Offerings";
+    public static final String WALK_THROUGH_SERVICES_FLAT_TITLE="";
+    public static final String WALK_THROUGH_SERVICES_COOKING_TITLE="";
+    public static final String WALK_THROUGH_SERVICES_CLEANING_TITLE="";
+    public static final String WALK_THROUGH_SERVICES_WASHING_TITLE="";
+
+
+    //Shared Preference Key
+    public static final String SHARED_PREFERENCE_CLICKED_SERVICE="clickedService";
+    public static final String SHARED_PREFERENCE_USERNAME="userName";
+    public static final String SHARED_PREFERENCE_LOGIN_STATUS="loginStatus";
+    public static final String SHARED_PREFERENCE_PROFILE_ALREADY_LOADED="isProfileAlreadyLoaded";
+    public static final String SHARED_PREFERENCE_DEFAULT_USERNAME="Newbie.";
+    public static final String SHARED_PREFERENCE_DEFAULT_STRING="Empty";
+
+
 }
+
+

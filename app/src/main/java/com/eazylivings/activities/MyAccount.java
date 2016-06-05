@@ -24,7 +24,7 @@ public class MyAccount extends AppCompatActivity {
         setContentView(R.layout.activity_my_account);
 
         SharedPreference preference=new SharedPreference();
-        String userName=preference.getStringValueFromSharedPreference(getApplicationContext(),"userName");
+        String userName=preference.getStringValueFromSharedPreference(getApplicationContext(), Constants.SHARED_PREFERENCE_USERNAME);
 
         UserProfileSetup userProfileSetup=new UserProfileSetup(getApplicationContext(),this);
         userProfileSetup.setupUserProfile(userName);

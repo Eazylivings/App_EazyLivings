@@ -17,20 +17,21 @@ import com.eazylivings.validator.Validator;
 
 public class SignIn extends AppCompatActivity {
 
-    private String userName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
         ProgressBar progressBar=(ProgressBar)findViewById(R.id.loginPage_progressBar_progress);
-        progressBar.setVisibility(View.INVISIBLE);
+        if(progressBar!=null) {
+            progressBar.setVisibility(View.INVISIBLE);
+        }
     }
 
     @Override
     public void onBackPressed(){
-        finish();
         Intent intent = new Intent(getApplicationContext(),WelcomeScreen.class);
         startActivity(intent);
+        finish();
     }
 
     public void onClickLoginButton(View view) {
@@ -39,9 +40,9 @@ public class SignIn extends AppCompatActivity {
 
         if(editText_userName!=null && editText_password!=null) {
             if (editText_userName.getText().toString().equalsIgnoreCase("")) {
-                generatePopupMessage("Please enter username");
+                generatePopupMessage(Constants.ENTER_USERNAME);
             } else if (editText_password.getText().toString().equalsIgnoreCase("")) {
-                generatePopupMessage("Please enter password");
+                generatePopupMessage(Constants.ENTER_PASSWORD);
             } else {
 
                 boolean isUserOnline = Validator.isInternetAvailable(getApplicationContext());
@@ -49,7 +50,7 @@ public class SignIn extends AppCompatActivity {
                     ServerDatabaseHandler serverDatabaseHandler=new ServerDatabaseHandler(getApplicationContext(),this);
                     serverDatabaseHandler.execute(Constants.LOGIN,editText_userName.getText().toString(),editText_password.getText().toString());
                 }else{
-                    generatePopupMessage("Oops!!! You are not online!!!");
+                    generatePopupMessage(Constants.NOT_ONLINE);
                 }
             }
         }
@@ -62,15 +63,14 @@ public class SignIn extends AppCompatActivity {
             Intent intent = new Intent(this, SignUp.class);
             startActivity(intent);
         }else{
-            generatePopupMessage("Please check internet connection.");
+            generatePopupMessage(Constants.NOT_ONLINE);
         }
     }
 
     public void onClickForgotPassword(View view) {
-        finish();
         Intent intent = new Intent(this, ForgotPassword.class);
         startActivity(intent);
-
+        finish();
     }
 
     private void generatePopupMessage(String message){

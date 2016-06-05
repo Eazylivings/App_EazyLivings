@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.eazylivings.constant.Constants;
+
 
 public class SharedPreference {
 
@@ -13,14 +15,14 @@ public class SharedPreference {
         if(preferences!=null) {
             SharedPreferences.Editor editor = preferences.edit();
             editor.putString(key, value);
-            editor.commit();
+            editor.apply();
         }
     }
 
     public String getStringValueFromSharedPreference(Context context,String key){
         SharedPreferences preferences =  PreferenceManager.getDefaultSharedPreferences(context);
         if(preferences!=null) {
-            return preferences.getString(key, "empty");
+            return preferences.getString(key, Constants.SHARED_PREFERENCE_DEFAULT_STRING);
         }else{
             return "";
         }
@@ -32,17 +34,14 @@ public class SharedPreference {
         if(preferences!=null) {
             SharedPreferences.Editor editor = preferences.edit();
             editor.putBoolean(key, value);
-            editor.commit();
+            editor.apply();
         }
     }
 
     public boolean getBooleanValueFromSharedPreference(Context context,String key){
         SharedPreferences preferences =  PreferenceManager.getDefaultSharedPreferences(context);
-        if(preferences!=null) {
-            return preferences.getBoolean(key, false);
-        }else{
-            return false;
-        }
+        return preferences.getBoolean(key, false);
+
     }
 
 
@@ -51,7 +50,7 @@ public class SharedPreference {
         SharedPreferences preferences =  PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = preferences.edit();
         editor.remove(valueToBeDeleted);
-        editor.commit();
+        editor.apply();
 
 
     }
@@ -59,7 +58,7 @@ public class SharedPreference {
         SharedPreferences preferences =  PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = preferences.edit();
         editor.clear();
-        editor.commit();
+        editor.apply();
 
     }
 }
