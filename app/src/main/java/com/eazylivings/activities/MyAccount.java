@@ -29,7 +29,7 @@ public class MyAccount extends AppCompatActivity {
         UserProfileSetup userProfileSetup=new UserProfileSetup(getApplicationContext(),this);
         userProfileSetup.setupUserProfile(userName);
 
-        DeviceSetup deviceSetup=new DeviceSetup(getApplicationContext(),Constants.DATABASE_NAME,null,Constants.DATABASE_VERSION);
+        DeviceSetup deviceSetup=new DeviceSetup(getApplicationContext());
 
         UserDetails userDetails=deviceSetup.getUserDetailsUsingSharedPreferences(getApplicationContext());
         setUserProfile(userDetails);
