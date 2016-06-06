@@ -40,13 +40,12 @@ implements NavigationView.OnNavigationItemSelectedListener {
     SharedPreference sharedPreference;
 
     public final static int LOOPS = 1000;
-    public static int FIRST_PAGE; // = count * LOOPS / 2;
+    public static int FIRST_PAGE;
     public final static float BIG_SCALE = 1.0f;
     public final static float SMALL_SCALE = 0.7f;
     public final static float DIFF_SCALE = BIG_SCALE - SMALL_SCALE;
     public MyPagerAdapter adapter;
     public ViewPager pager;
-    /*** variables for the View */
     public int coverUrl[];
     public static int count;
 
@@ -58,7 +57,7 @@ implements NavigationView.OnNavigationItemSelectedListener {
         setContentView(R.layout.activity_welcome_screen);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-       // setSupportActionBar(toolbar);
+
 
         coverUrl = new int[] { R.drawable.one, R.drawable.two,
                 R.drawable.three, R.drawable.four, R.drawable.five };
@@ -68,8 +67,7 @@ implements NavigationView.OnNavigationItemSelectedListener {
         count = coverUrl.length;
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        int pageMargin = 0;
-        pageMargin = (int) ((metrics.widthPixels / 4) *2);
+        int pageMargin = ((metrics.widthPixels / 4) *2);
         pager.setPageMargin(-pageMargin);
 
         try {
@@ -114,38 +112,34 @@ implements NavigationView.OnNavigationItemSelectedListener {
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        if(navigationView!=null) {
-            navigationView.setNavigationItemSelectedListener(this);
+        Menu menu = navigationView.getMenu();
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        boolean isUserLoggedIn = prefs.getBoolean(Constants.SHARED_PREFERENCE_LOGIN_STATUS,false);
+        if(isUserLoggedIn){
+            menu.removeItem(R.id.drawer_logIn);
+        }else{
+            menu.removeItem(R.id.drawer_logOut);
+            menu.removeItem(R.id.drawer_userPreference);
         }
+        navigationView.setNavigationItemSelectedListener(this);
+
+        setWelcomeScreen();
     }
 
     public void setWelcomeScreen(){
 
-        //1. Check whether any user is logged in or not
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         boolean isUserLoggedIn=prefs.getBoolean(Constants.SHARED_PREFERENCE_LOGIN_STATUS,false);
 
-        //2. If user is logged in
         if(isUserLoggedIn){
-            //2a. Set Title Bar with user Name.
+
             userName = prefs.getString(Constants.SHARED_PREFERENCE_USERNAME,Constants.SHARED_PREFERENCE_DEFAULT_USERNAME);
             setTitle("Welcome "+ userName + "!!");
-
-            //2b. Set Overflow Menu. This is already taken Care of.
-
-            //2c. Set User Profile
-
         }
-
-        //3. If user is not logged In
         else{
-            //3a. Set Title Bar with Newbie.
             setTitle("Welcome Newbie!!");
-
-            //3b. Set Overflow Menu. This is already taken Care of.
         }
-
-
     }
 
     public void onClickStart(View view){
@@ -187,29 +181,22 @@ implements NavigationView.OnNavigationItemSelectedListener {
 
         }
 
+    @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        boolean isUserLoggedIn = prefs.getBoolean(Constants.SHARED_PREFERENCE_LOGIN_STATUS,false);
-
-        if(isUserLoggedIn) {
-            getMenuInflater().inflate(R.menu.logout, menu);
-        }else{
-            getMenuInflater().inflate(R.menu.login, menu);
-        }
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(MenuItem item) {
 
         Intent intent;
         super.onOptionsItemSelected(item);
         sharedPreference=new SharedPreference();
-
+        TextView textView=(TextView)findViewById(R.id.nav_bar_username);
+        if(sharedPreference!=null &&  sharedPreference.getStringValueFromSharedPreference(mainActivityCtx,"userName")!=null) {
+            textView.setText(sharedPreference.getStringValueFromSharedPreference(mainActivityCtx, "userName"));
+        }
+        if(sharedPreference!=null &&  sharedPreference.getStringValueFromSharedPreference(mainActivityCtx,"email")!=null) {
+            textView.setText(sharedPreference.getStringValueFromSharedPreference(mainActivityCtx, "email"));
+        }
         switch(item.getItemId()){
-            case R.id.userProfile:
+            case R.id.drawer_userProfile:
 
                 if(sharedPreference.getBooleanValueFromSharedPreference(getApplicationContext(),Constants.SHARED_PREFERENCE_LOGIN_STATUS)){
                     intent = new Intent(this, MyAccount.class);
@@ -221,7 +208,7 @@ implements NavigationView.OnNavigationItemSelectedListener {
 
                 break;
 
-            case R.id.logOut:
+            case R.id.drawer_logOut:
 
                 intent = new Intent(this, SignIn.class);
                 startActivity(intent);
@@ -231,7 +218,7 @@ implements NavigationView.OnNavigationItemSelectedListener {
                 sharedPreference.clearSharedPreference(getApplicationContext());
                 finish();
                 break;
-            case R.id.logIn:
+            case R.id.drawer_logIn:
 
                 intent = new Intent(this, SignIn.class);
                 startActivity(intent);
@@ -240,52 +227,13 @@ implements NavigationView.OnNavigationItemSelectedListener {
                 sharedPreference.removeValueFromSharedPreference(getApplicationContext(),Constants.SHARED_PREFERENCE_PROFILE_ALREADY_LOADED);
                 finish();
                 break;
-            case R.id.preferences:
+            case R.id.drawer_userPreference:
                 finish();
                 intent = new Intent(this, SignIn.class);
                 startActivity(intent);
                 sharedPreference.setBooleanValueInSharedPreference(getApplicationContext(),Constants.SHARED_PREFERENCE_LOGIN_STATUS, false);
                 sharedPreference.setStringValueInSharedPreference(getApplicationContext(),Constants.SHARED_PREFERENCE_USERNAME,Constants.SHARED_PREFERENCE_DEFAULT_USERNAME);
                 break;
-        }
-        return true;
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        Intent intent;
-        super.onOptionsItemSelected(item);
-        sharedPreference=new SharedPreference();
-        TextView textView=(TextView)findViewById(R.id.nav_bar_username);
-        if(sharedPreference!=null &&  sharedPreference.getStringValueFromSharedPreference(mainActivityCtx,"userName")!=null) {
-            textView.setText(sharedPreference.getStringValueFromSharedPreference(mainActivityCtx, "userName"));
-        }
-        TextView textView1=(TextView)findViewById(R.id.nav_bar_email);
-        if(sharedPreference!=null &&  sharedPreference.getStringValueFromSharedPreference(mainActivityCtx,"email")!=null) {
-            textView.setText(sharedPreference.getStringValueFromSharedPreference(mainActivityCtx, "email"));
-        }
-        int id = item.getItemId();
-
-        if (id == R.id.userprofilenav) {
-
-            if(sharedPreference.getBooleanValueFromSharedPreference(getApplicationContext(),"loginStatus")){
-                intent = new Intent(this, MyAccount.class);
-                intent.putExtra("userName",userName);
-                startActivity(intent);
-            }else{
-                generatePopupMessage("Please login to see your profile");
-            }
-
-            // Handle the camera action
-        } else if (id == R.id.loginnav) {
-            intent = new Intent(this, SignIn.class);
-            startActivity(intent);
-            sharedPreference.removeValueFromSharedPreference(getApplicationContext(),"loginStatus");
-            sharedPreference.removeValueFromSharedPreference(getApplicationContext(),"userName");
-            sharedPreference.removeValueFromSharedPreference(getApplicationContext(),"isProfileAlreadyLoaded");
-            finish();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
