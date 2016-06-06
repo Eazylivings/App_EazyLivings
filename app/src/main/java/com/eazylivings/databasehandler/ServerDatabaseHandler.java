@@ -162,7 +162,9 @@ public class ServerDatabaseHandler  extends AsyncTask<String,Void,String> {
         if(currentAction.equalsIgnoreCase(Constants.LOGIN)) {
 
             ProgressBar progressBar = (ProgressBar) activity.findViewById(R.id.loginPage_progressBar_progress);
-            progressBar.setVisibility(View.VISIBLE);
+            if(progressBar!=null) {
+                progressBar.setVisibility(View.VISIBLE);
+            }
         }
     }
 
