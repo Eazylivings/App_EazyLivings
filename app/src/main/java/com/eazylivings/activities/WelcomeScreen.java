@@ -18,6 +18,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.eazylivings.R;
@@ -254,20 +255,37 @@ implements NavigationView.OnNavigationItemSelectedListener {
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
+        Intent intent;
+        super.onOptionsItemSelected(item);
+        sharedPreference=new SharedPreference();
+        TextView textView=(TextView)findViewById(R.id.nav_bar_username);
+        if(sharedPreference!=null &&  sharedPreference.getStringValueFromSharedPreference(mainActivityCtx,"userName")!=null) {
+            textView.setText(sharedPreference.getStringValueFromSharedPreference(mainActivityCtx, "userName"));
+        }
+        TextView textView1=(TextView)findViewById(R.id.nav_bar_email);
+        if(sharedPreference!=null &&  sharedPreference.getStringValueFromSharedPreference(mainActivityCtx,"email")!=null) {
+            textView.setText(sharedPreference.getStringValueFromSharedPreference(mainActivityCtx, "email"));
+        }
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.userprofilenav) {
+
+            if(sharedPreference.getBooleanValueFromSharedPreference(getApplicationContext(),"loginStatus")){
+                intent = new Intent(this, MyAccount.class);
+                intent.putExtra("userName",userName);
+                startActivity(intent);
+            }else{
+                generatePopupMessage("Please login to see your profile");
+            }
+
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        } else if (id == R.id.loginnav) {
+            intent = new Intent(this, SignIn.class);
+            startActivity(intent);
+            sharedPreference.removeValueFromSharedPreference(getApplicationContext(),"loginStatus");
+            sharedPreference.removeValueFromSharedPreference(getApplicationContext(),"userName");
+            sharedPreference.removeValueFromSharedPreference(getApplicationContext(),"isProfileAlreadyLoaded");
+            finish();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
