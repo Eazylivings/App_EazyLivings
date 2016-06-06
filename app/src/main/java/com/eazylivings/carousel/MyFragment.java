@@ -29,8 +29,7 @@ public class MyFragment extends Fragment {
         if (container == null) {
             return null;
         }
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(500,500);
-        inflater=getLayoutInflater(savedInstanceState);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(400,400);
         LinearLayout fragmentLL  = (LinearLayout) inflater.inflate(R.layout.mf, container, false);
         int pos   = this.getArguments().getInt("pos");
         /*TextView tv  = (TextView) fragmentLL.findViewById(R.id.text);

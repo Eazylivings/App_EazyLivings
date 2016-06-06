@@ -59,7 +59,7 @@ public class MyPagerAdapter extends FragmentPagerAdapter implements ViewPager.On
         try {
             if (positionOffset >= 0f && positionOffset <= 1f) {
                 cur = getRootView( position );
-                next = getRootView( position +1 );
+                next = getRootView( position +1);
 
                 cur.setScaleBoth(WelcomeScreen.BIG_SCALE   - WelcomeScreen.DIFF_SCALE * positionOffset);
                 next.setScaleBoth(WelcomeScreen.SMALL_SCALE  + WelcomeScreen.DIFF_SCALE * positionOffset);
