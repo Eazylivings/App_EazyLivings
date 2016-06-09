@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.eazylivings.R;
-import com.eazylivings.UpdateMyAccount;
+import com.eazylivings.activities.login.UpdateMyAccount;
 import com.eazylivings.VO.UserDetails;
 import com.eazylivings.constant.Constants;
 import com.eazylivings.databasehandler.DeviceSetup;

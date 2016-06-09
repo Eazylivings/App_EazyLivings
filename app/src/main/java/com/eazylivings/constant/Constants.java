@@ -67,6 +67,7 @@ public class Constants {
     public final static String REGISTER_URL="http://eazylivings.com/register.php";
     public static final String USER_PROFILE_URL="http://eazylivings.com/profile.php";
     public static final String FORGOT_PASSWORD_MAIL_URL="http://eazylivings.com/mail.php";
+    public static final String CHECK_EXISTING_USER_URL="http://eazylivings.com/ExistingUser.php";
 
 
     //Alert Titles
@@ -88,6 +89,7 @@ public class Constants {
     public static final String SHARED_PREFERENCE_PROFILE_ALREADY_LOADED="isProfileAlreadyLoaded";
     public static final String SHARED_PREFERENCE_DEFAULT_USERNAME="Newbie.";
     public static final String SHARED_PREFERENCE_DEFAULT_STRING="Empty";
+    public static final String SHARED_PREFERENCE_EMAIL_ADDRESS="emailAddress";
 
 
 }

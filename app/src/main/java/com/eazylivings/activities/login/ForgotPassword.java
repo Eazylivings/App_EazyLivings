@@ -36,11 +36,18 @@ public class ForgotPassword extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(),SignIn.class);
         startActivity(intent);
     }
+    public void onClickSignUp(View view){
+
+        Intent intent=new Intent(getApplicationContext(),SignUp.class);
+        startActivity(intent);
+        finish();
+
+    }
     public void onSignInClick(View view){
 
-        finish();
         Intent intent=new Intent(getApplicationContext(),SignIn.class);
         startActivity(intent);
+        finish();
     }
 
     public void onClickRetrievePassword(View view) {

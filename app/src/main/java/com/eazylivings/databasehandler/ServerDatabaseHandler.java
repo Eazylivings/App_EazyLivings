@@ -40,6 +40,7 @@ public class ServerDatabaseHandler  extends AsyncTask<String,Void,String> {
     String userName="";
     UserDetails userDetails;
     Activity activity;
+    String result="";
 
     public ServerDatabaseHandler(Context ctx,Activity baseActivity){
         context=ctx;
@@ -49,7 +50,7 @@ public class ServerDatabaseHandler  extends AsyncTask<String,Void,String> {
     @Override
     protected String doInBackground(String... params) {
 
-        String result="";
+
         currentAction = params[0];
         userName=params[1];
 
@@ -87,6 +88,9 @@ public class ServerDatabaseHandler  extends AsyncTask<String,Void,String> {
                         + URLEncoder.encode("phoneNo", "UTF-8") + "=" + URLEncoder.encode(params[3], "UTF-8");
             }else if(currentAction.equalsIgnoreCase(Constants.FORGOT_PASSWORD)){
                 url = new URL(Constants.FORGOT_PASSWORD_MAIL_URL);
+                post_data = URLEncoder.encode("emailAddress", "UTF-8") + "=" + URLEncoder.encode(params[1], "UTF-8");
+            }else if(currentAction.equalsIgnoreCase(Constants.CHECK_EXISTING_USER)){
+                url = new URL(Constants.CHECK_EXISTING_USER_URL);
                 post_data = URLEncoder.encode("emailAddress", "UTF-8") + "=" + URLEncoder.encode(params[1], "UTF-8");
             }
 
@@ -178,7 +182,7 @@ public class ServerDatabaseHandler  extends AsyncTask<String,Void,String> {
 
         if (accountAuthenticationString.equalsIgnoreCase("Login Success")) {
 
-            setSharedPreferences("userName",userName);
+            setSharedPreferences(Constants.SHARED_PREFERENCE_USERNAME,userName);
             Intent intent = new Intent(context,WelcomeScreen.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
@@ -188,7 +192,9 @@ public class ServerDatabaseHandler  extends AsyncTask<String,Void,String> {
             generatePopupMessage("Please check login details and try again");
 
         }else if(accountAuthenticationString.equalsIgnoreCase("Registration Success")){
-            generatePopupMessage("Failed to register. Please try again with correct inputs");
+            setSharedPreferences(Constants.SHARED_PREFERENCE_USERNAME,userName);
+            generatePopupMessage("Successfully Registered. Welcome to EazyLivings. You will be redirected to HOme page.");
+
 
         }else if(accountAuthenticationString.equalsIgnoreCase("Registration Failed")){
             generatePopupMessage("Failed to register. Please try again with correct inputs");
@@ -234,7 +240,17 @@ public class ServerDatabaseHandler  extends AsyncTask<String,Void,String> {
         alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
+
+                        if(currentAction.equalsIgnoreCase(Constants.REGISTER) && result.equalsIgnoreCase("Registration Success")) {
+                            dialog.dismiss();
+                            Intent intent = new Intent(context, WelcomeScreen.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            context.startActivity(intent);
+                            activity.finish();
+
+                        }else {
+                            dialog.dismiss();
+                        }
                     }
                 });
         alertDialog.show();

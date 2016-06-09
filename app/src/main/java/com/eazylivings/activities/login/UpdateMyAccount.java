@@ -1,4 +1,4 @@
-package com.eazylivings;
+package com.eazylivings.activities.login;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import com.eazylivings.R;
 import com.eazylivings.VO.UserDetails;
 import com.eazylivings.activities.MyAccount;
 import com.eazylivings.constant.Constants;

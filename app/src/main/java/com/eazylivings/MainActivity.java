@@ -34,6 +34,6 @@ public class MainActivity extends Activity {
                 MainActivity.this.startActivity(mainIntent);
                 MainActivity.this.finish();
             }
-        }, 1000);
+        }, 2000);
     }
 }

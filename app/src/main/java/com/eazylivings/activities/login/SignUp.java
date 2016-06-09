@@ -37,27 +37,27 @@ public class SignUp extends AppCompatActivity {
         final EditText emailAddress = (EditText) findViewById(R.id.SignUpPage_editText_email);
         final EditText contactNumber = (EditText) findViewById(R.id.SignUpPage_editText_PhoneNo);
 
-        if(userName==null){
+        if(userName==null || userName.getText().toString().equalsIgnoreCase("")){
             generatePopupMessages(Constants.ENTER_USERNAME);
 
-        }else if(password==null){
-            generatePopupMessages(Constants.ENTER_PASSWORD);
+        }else if(contactNumber==null || contactNumber.getText().toString().equalsIgnoreCase("")){
+            generatePopupMessages(Constants.ENTER_CONTACT_NUMBER);
 
-        }else if(emailAddress==null){
+        }else if(emailAddress==null ||emailAddress.getText().toString().equalsIgnoreCase("")){
             generatePopupMessages(Constants.ENTER_EMAIL_ADDRESS);
 
-        }else if(contactNumber==null){
-            generatePopupMessages(Constants.ENTER_CONTACT_NUMBER);
+        }else if(password==null || password.getText().toString().equalsIgnoreCase("")){
+            generatePopupMessages(Constants.ENTER_PASSWORD);
 
         }else {
 
             boolean isEmailFormatCorrect = Validator.checkEmailFormat(emailAddress);
-            boolean isUserAlreadyPresent = Validator.checkExistingUser(userName);
+            boolean isUserAlreadyPresent=false;
+            //boolean isUserAlreadyPresent = Validator.checkExistingUser(userName);
             boolean isUserNameFormatCorrect = Validator.checkUsernameFormat(userName);
             boolean isPasswordFormatCorrect = Validator.checkPasswordFormat(password);
-            boolean isContactNumberCorrect = Validator.checkContactNumber(contactNumber);
 
-            if (isUserNameFormatCorrect && isEmailFormatCorrect && !isUserAlreadyPresent && isPasswordFormatCorrect && isContactNumberCorrect) {
+            if (isUserNameFormatCorrect && isEmailFormatCorrect && !isUserAlreadyPresent && isPasswordFormatCorrect) {
 
 
                 UserDetails userDetails = new UserDetails();

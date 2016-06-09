@@ -7,15 +7,14 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/serviceImageShortDescription_textView_serviceName" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/choiceOfCookingOptions_testView_header" />
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/serviceImageShortDescription_imageView_serviceImage"
+        android:id="@+id/choiceOfCookingOptions_imageButton_poster"
         android:adjustViewBounds="true"
-        android:background="@drawable/background" />
-
+        android:background="@drawable/cookingprocessone" />
 </LinearLayout>

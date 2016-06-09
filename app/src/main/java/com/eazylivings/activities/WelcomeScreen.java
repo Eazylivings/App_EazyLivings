@@ -48,6 +48,7 @@ implements NavigationView.OnNavigationItemSelectedListener {
     public ViewPager pager;
     public int coverUrl[];
     public static int count;
+    Toolbar toolbar;
 
     public static WelcomeScreen mainActivityCtx;
 
@@ -56,18 +57,17 @@ implements NavigationView.OnNavigationItemSelectedListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_screen);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.appBarWelcomeScreen_toolBar);
 
-
-        coverUrl = new int[] { R.drawable.one, R.drawable.two,
-                R.drawable.three, R.drawable.four, R.drawable.five };
+        coverUrl = new int[] { R.drawable.background, R.drawable.background,
+                R.drawable.background, R.drawable.background, R.drawable.background };
 
         mainActivityCtx = this;
         pager = (ViewPager) findViewById(R.id.myviewpager);
         count = coverUrl.length;
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        int pageMargin = ((metrics.widthPixels / 4) *2);
+        int pageMargin = ((metrics.widthPixels/2));
         pager.setPageMargin(-pageMargin);
 
         try {
@@ -92,7 +92,7 @@ implements NavigationView.OnNavigationItemSelectedListener {
         }
 
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         if (fab != null){
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -101,7 +101,7 @@ implements NavigationView.OnNavigationItemSelectedListener {
                             .setAction("Action", null).show();
                 }
             });
-    }
+    }*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -132,13 +132,18 @@ implements NavigationView.OnNavigationItemSelectedListener {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         boolean isUserLoggedIn=prefs.getBoolean(Constants.SHARED_PREFERENCE_LOGIN_STATUS,false);
 
+
         if(isUserLoggedIn){
 
             userName = prefs.getString(Constants.SHARED_PREFERENCE_USERNAME,Constants.SHARED_PREFERENCE_DEFAULT_USERNAME);
-            setTitle("Welcome "+ userName + "!!");
+            if(toolbar!=null) {
+                toolbar.setTitle("Welcome " + userName + "!!");
+            }
         }
         else{
-            setTitle("Welcome Newbie!!");
+            if(toolbar!=null) {
+                toolbar.setTitle("Welcome Newbie!!");
+            }
         }
     }
 
@@ -188,12 +193,13 @@ implements NavigationView.OnNavigationItemSelectedListener {
         Intent intent;
         super.onOptionsItemSelected(item);
         sharedPreference=new SharedPreference();
-        TextView textView=(TextView)findViewById(R.id.nav_bar_username);
-        if(sharedPreference!=null &&  sharedPreference.getStringValueFromSharedPreference(mainActivityCtx,"userName")!=null) {
-            textView.setText(sharedPreference.getStringValueFromSharedPreference(mainActivityCtx, "userName"));
-        }
-        if(sharedPreference!=null &&  sharedPreference.getStringValueFromSharedPreference(mainActivityCtx,"email")!=null) {
-            textView.setText(sharedPreference.getStringValueFromSharedPreference(mainActivityCtx, "email"));
+        TextView drawerUserName=(TextView)findViewById(R.id.navHeaderWelcomeScreen_largeText_userName);
+        TextView drawerEmailAddress=(TextView)findViewById(R.id.navHeaderWelcomeScreen_mediumText_emailAddress);
+
+        if(drawerUserName!=null && drawerEmailAddress!=null){
+            drawerUserName.setText(sharedPreference.getStringValueFromSharedPreference(getApplicationContext(),Constants.SHARED_PREFERENCE_USERNAME));
+            drawerEmailAddress.setText(sharedPreference.getStringValueFromSharedPreference(getApplicationContext(),Constants.SHARED_PREFERENCE_EMAIL_ADDRESS));
+
         }
         switch(item.getItemId()){
             case R.id.drawer_userProfile:

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.eazylivings.activities.services.cooking.CookSelection">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Select one of the following cooking options as per your need."
+        android:id="@+id/textView"
+        android:textAlignment="center"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/radioGroup"
+        android:layout_marginTop="19dp"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cookSelection_radioButton_veg"
+            android:layout_gravity="center_horizontal"
+            android:checked="true"
+            android:onClick="onClickRadioButton"
+            android:layout_marginLeft="60dp"
+            android:buttonTint="#31B404" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cookSelection_radioButton_nonVeg"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="70dp"
+            android:buttonTint="#DF0101"
+            android:onClick="onClickRadioButton" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cookSelection_radioButton_both"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="70dp"
+            android:buttonTint="#000000"
+            android:onClick="onClickRadioButton" />
+
+    </RadioGroup>
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:id="@+id/gridLayout"
+        android:layout_below="@+id/radioGroup"
+        android:layout_centerHorizontal="true">
+
+
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="300dp"
+            android:id="@+id/cookSelection_imageView_veg"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:src="@drawable/cook_vegetarian"
+            android:layout_gravity="center_horizontal" />
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="300dp"
+            android:id="@+id/cookSelection_imageView_nonVeg"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:src="@drawable/cook_non_vegetarian"
+            android:layout_gravity="center_horizontal" />
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="300dp"
+            android:id="@+id/cookSelection_imageView_both"
+            android:layout_row="0"
+            android:layout_column="2"
+            android:src="@drawable/cook_both"
+            android:layout_gravity="center_horizontal" />
+    </GridLayout>
+
+    <Button
+        android:layout_height="50dp"
+        android:layout_width="360dp"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/cookSelection_button_selectCook"
+        android:background="#2E9AFE"
+        android:textColor="@drawable/button_text_color"
+        android:text="Select Cook"
+        android:textSize="18dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="onClickSelectCook" />
+
+</RelativeLayout>

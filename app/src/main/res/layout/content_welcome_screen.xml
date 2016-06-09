@@ -30,14 +30,15 @@
 <RelativeLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginTop="80dp">
+    android:layout_marginTop="140dp">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/moving_to_a_new_flat"
+        android:layout_alignTop="@+id/horizontalScrollView"
         android:id="@+id/welcomeScreen_textView_movingToFlat"
-        android:layout_marginTop="201dp"
+        android:layout_marginTop="118dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -66,24 +67,17 @@
         android:onClick="onClickExplore" />
 
 
-    <Button
-        android:layout_height="50dp"
-        android:layout_width="360dp"
-        android:layout_gravity="center_horizontal"
-        android:id="@+id/welcomeScreen_button_letsGetStarted"
-        android:onClick="onClickStart"
-        android:background="#2E9AFE"
-        android:textColor="@drawable/button_text_color"
-        android:text="@string/let_apos_s_get_started"
-        android:textSize="18sp"
-        android:layout_alignParentBottom="true"
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/horizontalScrollView"
+        android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true">
 
     <GridLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/welcomeScreen_textView_movingToFlat"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:id="@+id/welcomeScreen__gridLayout"
@@ -95,7 +89,6 @@
             android:layout_height="wrap_content"
             android:id="@+id/welcomeScreen_imageButton_bathroom"
             android:src="@drawable/bathroom"
-            android:layout_below="@+id/welcomeScreen_textView_movingToFlat"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_row="0"
@@ -119,38 +112,54 @@
             android:layout_column="2"
             android:src="@drawable/bedroom"
             android:onClick="onClickExplore" />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/welcomeScreen_imageButton_bedroom_test"
+            android:layout_row="0"
+            android:layout_column="3"
+            android:src="@drawable/bedroom"
+            android:onClick="onClickExplore" />
 
     </GridLayout>
+    </HorizontalScrollView>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/we_are_not_packers_or_movers"
-        android:id="@+id/textView2"
-        android:layout_below="@+id/welcomeScreen__gridLayout"/>
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/neither_we_are_service_providers"
-        android:id="@+id/textView3"
-        android:layout_below="@+id/textView2"
-        />
+        android:text="We are neither service providers"
+        android:id="@+id/contentWelcomeScreen_mediumText_messageTwo"
+        android:layout_above="@+id/contentWelcomeScreen_mediumText_messageThree"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/we_are_solution_to_your_chaotic_yet_essential_daily_tasks"
-        android:id="@+id/textView4"
+        android:text="We are solution to your menial yet essential daily chores"
+        android:id="@+id/contentWelcomeScreen_mediumText_messageThree"
         android:textAlignment="center"
-        android:layout_below="@+id/textView3"
+        android:layout_above="@+id/welcomeScreen_button_letsGetStarted"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="26dp" />
+        android:layout_margin="10dp" />
+
+    <Button
+        android:layout_height="50dp"
+        android:layout_width="360dp"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/welcomeScreen_button_letsGetStarted"
+        android:onClick="onClickStart"
+        android:background="#2E9AFE"
+        android:textColor="@drawable/button_text_color"
+        android:text="@string/let_apos_s_get_started"
+        android:textSize="18sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
 
 </RelativeLayout>
 </RelativeLayout>

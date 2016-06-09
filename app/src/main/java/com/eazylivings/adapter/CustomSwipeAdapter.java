@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 import com.eazylivings.R;
 
 public class CustomSwipeAdapter extends PagerAdapter {
-    private int[] imageResources={R.drawable.one,R.drawable.two,R.drawable.three,R.drawable.four,R.drawable.five};
+    private int[] imageResources={R.drawable.background,R.drawable.background,R.drawable.background,R.drawable.background,R.drawable.background};
     private Context ctx;
     LayoutInflater layoutInflater;
 
