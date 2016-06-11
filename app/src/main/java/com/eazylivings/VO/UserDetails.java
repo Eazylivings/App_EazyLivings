@@ -9,11 +9,6 @@ public class UserDetails {
     String residential_address;
     String contact_number;
 
-
-    public int getUserId() {
-        return userId;
-    }
-
     public void setUserId(int userId) {
         this.userId = userId;
     }
@@ -32,10 +27,6 @@ public class UserDetails {
 
     public void setEmail_address(String email_address) {
         this.email_address = email_address;
-    }
-
-    public String getPassword() {
-        return password;
     }
 
     public void setPassword(String password) {

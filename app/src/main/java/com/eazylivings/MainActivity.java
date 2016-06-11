@@ -19,7 +19,7 @@ public class MainActivity extends Activity {
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         if(!prefs.getBoolean(Constants.SHARED_PREFERENCE_LOGIN_STATUS, false)){
-            prefs.edit().remove(Constants.SHARED_PREFERENCE_USERNAME);
+            prefs.edit().remove(Constants.SHARED_PREFERENCE_USERNAME).apply();
         }
 
         new Handler().postDelayed(new Runnable() {

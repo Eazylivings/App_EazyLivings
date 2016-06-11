@@ -1,10 +1,12 @@
 package com.eazylivings.validator;
 
+import android.app.Activity;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.widget.EditText;
 
 import com.eazylivings.constant.Constants;
+import com.eazylivings.databasehandler.ServerDatabaseHandler;
 
 public class Validator {
 
@@ -12,7 +14,7 @@ public class Validator {
 
         if(password!=null){
             String userPassword=password.getText().toString();
-            return userPassword.matches("^[a-zA-Z0-9@$_]{3,15}$");
+            return userPassword.matches(Constants.REGEX_PASSWORD);
         }else{
             return false;
         }
@@ -22,7 +24,7 @@ public class Validator {
 
         if(emailAddress!=null){
             String userEmailAddress=emailAddress.getText().toString();
-            return userEmailAddress.matches("^[a-zA-Z0-9@$_]+[@][a-zA-Z]{2,8}[.][a-zA-Z]{2,3}$");
+            return userEmailAddress.matches(Constants.REGEX_EMAIL);
         }else{
             return false;
         }
@@ -33,37 +35,25 @@ public class Validator {
         if(userName!=null ){
             String name=userName.getText().toString();
 
-           return name.matches("^[a-zA-Z]{3,15}$");
+           return name.matches(Constants.REGEX_USERNAME);
 
         }else{
             return false;
         }
     }
 
-    public static boolean checkExistingUser(EditText userName){
+    public static boolean checkExistingUser(EditText userName, Context context, Activity activity){
 
-        ServerSideValidationHandler serverSideValidationHandler=new ServerSideValidationHandler();
+        ServerDatabaseHandler serverSideValidationHandler=new ServerDatabaseHandler(context,activity);
 
         if(userName!=null && userName.getText()!=null){
-            String result= serverSideValidationHandler.checkUserExists(Constants.CHECK_EXISTING_USER,userName.getText().toString());
-            return result.equalsIgnoreCase("true");
+            serverSideValidationHandler.execute(Constants.CHECK_EXISTING_USER,userName.getText().toString());
+            return false;
         }else
         {
             return false;
         }
 
-    }
-
-    public static boolean checkContactNumber(EditText contactNumber){
-
-
-
-        if(contactNumber!=null){
-            String number= contactNumber.getText().toString();
-            return number.matches("^[789][0-9]{9}+$");
-        }else{
-            return false;
-        }
     }
 
     public static boolean isInternetAvailable(Context context) {

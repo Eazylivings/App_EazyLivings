@@ -1,10 +1,9 @@
 package com.eazylivings.databasehandler;
 
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 
 import com.eazylivings.VO.UserDetails;
+import com.eazylivings.constant.Constants;
 import com.eazylivings.sharedpreference.SharedPreference;
 
 public class DeviceSetup  {
@@ -21,11 +20,11 @@ public class DeviceSetup  {
     public void saveUserDetailsUsingSharedPreference(UserDetails userDetails,Context context){
 
         SharedPreference preference=new SharedPreference();
-        preference.setStringValueInSharedPreference(context,"user_name",userDetails.getUserName());
-        preference.setStringValueInSharedPreference(context,"email_address",userDetails.getEmail_address());
-        preference.setStringValueInSharedPreference(context,"contact_number",userDetails.getContact_number());
-        preference.setStringValueInSharedPreference(context,"address",userDetails.getResidential_address());
-        preference.setBooleanValueInSharedPreference(context,"isProfileAlreadyLoaded",true);
+        preference.setStringValueInSharedPreference(context, Constants.SHARED_PREFERENCE_USERNAME,userDetails.getUserName());
+        preference.setStringValueInSharedPreference(context,Constants.SHARED_PREFERENCE_EMAIL_ADDRESS,userDetails.getEmail_address());
+        preference.setStringValueInSharedPreference(context,Constants.SHARED_PREFERENCE_CONTACT_NUMBER,userDetails.getContact_number());
+        preference.setStringValueInSharedPreference(context,Constants.SHARED_PREFERENCE_ADDRESS,userDetails.getResidential_address());
+        preference.setBooleanValueInSharedPreference(context,Constants.SHARED_PREFERENCE_PROFILE_ALREADY_LOADED,true);
     }
 
     public UserDetails getUserDetailsUsingSharedPreferences(Context context){
@@ -33,10 +32,10 @@ public class DeviceSetup  {
         SharedPreference sharedPreference=new SharedPreference();
         UserDetails userDetails=new UserDetails();
 
-        userDetails.setUserName(sharedPreference.getStringValueFromSharedPreference(context,"user_name"));
-        userDetails.setEmail_address(sharedPreference.getStringValueFromSharedPreference(context,"email_address"));
-        userDetails.setContact_number(sharedPreference.getStringValueFromSharedPreference(context,"contact_number"));
-        userDetails.setResidential_address(sharedPreference.getStringValueFromSharedPreference(context,"address"));
+        userDetails.setUserName(sharedPreference.getStringValueFromSharedPreference(context,Constants.SHARED_PREFERENCE_USERNAME));
+        userDetails.setEmail_address(sharedPreference.getStringValueFromSharedPreference(context,Constants.SHARED_PREFERENCE_EMAIL_ADDRESS));
+        userDetails.setContact_number(sharedPreference.getStringValueFromSharedPreference(context,Constants.SHARED_PREFERENCE_CONTACT_NUMBER));
+        userDetails.setResidential_address(sharedPreference.getStringValueFromSharedPreference(context,Constants.SHARED_PREFERENCE_ADDRESS));
 
         return userDetails;
     }

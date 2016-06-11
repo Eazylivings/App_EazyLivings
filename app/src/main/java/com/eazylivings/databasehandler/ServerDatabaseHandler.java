@@ -61,16 +61,16 @@ public class ServerDatabaseHandler  extends AsyncTask<String,Void,String> {
 
             if(currentAction.equalsIgnoreCase(Constants.LOGIN)){
                 url = new URL(Constants.LOGIN_URL);
-                post_data = URLEncoder.encode("user_name", "UTF-8") + "=" + URLEncoder.encode(userName, "UTF-8") + "&"
-                        + URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode(params[2], "UTF-8");
+                post_data = URLEncoder.encode(Constants.SERVER_HANDLER_USERNAME, Constants.SERVER_HANDLER_UTF) + "=" + URLEncoder.encode(userName, Constants.SERVER_HANDLER_UTF) + "&"
+                        + URLEncoder.encode(Constants.SERVER_HANDLER_PASSWORD,Constants.SERVER_HANDLER_UTF) + "=" + URLEncoder.encode(params[2], Constants.SERVER_HANDLER_UTF);
 
             }else if(currentAction.equalsIgnoreCase(Constants.REGISTER)){
                 url = new URL(Constants.REGISTER_URL);
                 userDetails=new UserDetails();
-                post_data = URLEncoder.encode("user_name", "UTF-8") + "=" + URLEncoder.encode(userName, "UTF-8") + "&"
-                        + URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode(params[2], "UTF-8")+"&"
-                        + URLEncoder.encode("name", "UTF-8") + "=" + URLEncoder.encode(params[3], "UTF-8")+"&"
-                        + URLEncoder.encode("phoneNo", "UTF-8") + "=" + URLEncoder.encode(params[4], "UTF-8");
+                post_data = URLEncoder.encode(Constants.SERVER_HANDLER_USERNAME,Constants.SERVER_HANDLER_UTF) + "=" + URLEncoder.encode(userName, Constants.SERVER_HANDLER_UTF) + "&"
+                        + URLEncoder.encode(Constants.SERVER_HANDLER_PASSWORD, Constants.SERVER_HANDLER_UTF) + "=" + URLEncoder.encode(params[2], Constants.SERVER_HANDLER_UTF)+"&"
+                        + URLEncoder.encode("name",Constants.SERVER_HANDLER_UTF) + "=" + URLEncoder.encode(params[3], "UTF-8")+"&"
+                        + URLEncoder.encode(Constants.SERVER_HANDLER_PHONE_NUMBER, Constants.SERVER_HANDLER_UTF) + "=" + URLEncoder.encode(params[4], Constants.SERVER_HANDLER_UTF);
 
                 userDetails.setUserName(userName);
                 userDetails.setPassword(params[2]);
@@ -79,19 +79,19 @@ public class ServerDatabaseHandler  extends AsyncTask<String,Void,String> {
 
             }else if(currentAction.equalsIgnoreCase(Constants.USER_PROFILE_ACTION)){
                 url = new URL(Constants.USER_PROFILE_URL);
-                post_data = URLEncoder.encode("emailAddress", "UTF-8") + "=" + URLEncoder.encode(userName, "UTF-8");
+                post_data = URLEncoder.encode(Constants.SERVER_HANDLER_EMAIL_ADDRESS, Constants.SERVER_HANDLER_UTF) + "=" + URLEncoder.encode(userName,Constants.SERVER_HANDLER_UTF);
 
            }else if(currentAction.equalsIgnoreCase(Constants.SAVE_USER_UPDATE)){
                 url = new URL(Constants.USER_PROFILE_URL);
-                post_data = URLEncoder.encode("user_name", "UTF-8") + "=" + URLEncoder.encode(userName, "UTF-8") + "&"
-                        + URLEncoder.encode("name", "UTF-8") + "=" + URLEncoder.encode(params[2], "UTF-8")+"&"
-                        + URLEncoder.encode("phoneNo", "UTF-8") + "=" + URLEncoder.encode(params[3], "UTF-8");
+                post_data = URLEncoder.encode(Constants.SERVER_HANDLER_USERNAME, Constants.SERVER_HANDLER_UTF) + "=" + URLEncoder.encode(userName, Constants.SERVER_HANDLER_UTF) + "&"
+                        + URLEncoder.encode("name", Constants.SERVER_HANDLER_UTF) + "=" + URLEncoder.encode(params[2], Constants.SERVER_HANDLER_UTF)+"&"
+                        + URLEncoder.encode(Constants.SERVER_HANDLER_PHONE_NUMBER, Constants.SERVER_HANDLER_UTF) + "=" + URLEncoder.encode(params[3], Constants.SERVER_HANDLER_UTF);
             }else if(currentAction.equalsIgnoreCase(Constants.FORGOT_PASSWORD)){
                 url = new URL(Constants.FORGOT_PASSWORD_MAIL_URL);
-                post_data = URLEncoder.encode("emailAddress", "UTF-8") + "=" + URLEncoder.encode(params[1], "UTF-8");
+                post_data = URLEncoder.encode(Constants.SERVER_HANDLER_EMAIL_ADDRESS, Constants.SERVER_HANDLER_UTF) + "=" + URLEncoder.encode(params[1], Constants.SERVER_HANDLER_UTF);
             }else if(currentAction.equalsIgnoreCase(Constants.CHECK_EXISTING_USER)){
                 url = new URL(Constants.CHECK_EXISTING_USER_URL);
-                post_data = URLEncoder.encode("emailAddress", "UTF-8") + "=" + URLEncoder.encode(params[1], "UTF-8");
+                post_data = URLEncoder.encode(Constants.SERVER_HANDLER_EMAIL_ADDRESS, Constants.SERVER_HANDLER_UTF) + "=" + URLEncoder.encode(params[1], Constants.SERVER_HANDLER_UTF);
             }
 
             HttpURLConnection httpUrlConnection = (HttpURLConnection) url.openConnection();
@@ -99,7 +99,7 @@ public class ServerDatabaseHandler  extends AsyncTask<String,Void,String> {
             httpUrlConnection.setDoOutput(true);
             httpUrlConnection.setDoInput(true);
             OutputStream outputStream = httpUrlConnection.getOutputStream();
-            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, Constants.SERVER_HANDLER_UTF));
 
             bufferedWriter.write(post_data);
             bufferedWriter.flush();
@@ -149,13 +149,13 @@ public class ServerDatabaseHandler  extends AsyncTask<String,Void,String> {
             }
             return result;
         } catch (MalformedURLException e) {
-            result="Exception Occurred";
+            result=Constants.EXCEPTION_SERVER_HANDLER_CONNECTION_FAILED;
             return result;
         } catch (IOException e) {
-            result="Exception Occurred";
+            result=Constants.EXCEPTION_SERVER_HANDLER_CONNECTION_FAILED;
             return result;
         }catch(Exception e){
-            result="Exception Occurred";
+            result=Constants.EXCEPTION_SERVER_HANDLER_CONNECTION_FAILED;
             return result;
         }
     }
@@ -180,7 +180,7 @@ public class ServerDatabaseHandler  extends AsyncTask<String,Void,String> {
             progressBar.setVisibility(View.INVISIBLE);
         }
 
-        if (accountAuthenticationString.equalsIgnoreCase("Login Success")) {
+        if (accountAuthenticationString.equalsIgnoreCase(Constants.SERVER_HANDLER_LOGIN_SUCCESS)) {
 
             setSharedPreferences(Constants.SHARED_PREFERENCE_USERNAME,userName);
             Intent intent = new Intent(context,WelcomeScreen.class);
@@ -188,18 +188,18 @@ public class ServerDatabaseHandler  extends AsyncTask<String,Void,String> {
             context.startActivity(intent);
             activity.finish();
 
-        } else if(accountAuthenticationString.equalsIgnoreCase("Login Failed")) {
-            generatePopupMessage("Please check login details and try again");
+        } else if(accountAuthenticationString.equalsIgnoreCase(Constants.SERVER_HANDLER_LOGIN_FAIL)) {
+            generatePopupMessage(Constants.SERVER_HANDLER_LOGIN_FAIL_POPUP);
 
-        }else if(accountAuthenticationString.equalsIgnoreCase("Registration Success")){
+        }else if(accountAuthenticationString.equalsIgnoreCase(Constants.SERVER_HANDLER_REGISTRATION_SUCCESS)){
             setSharedPreferences(Constants.SHARED_PREFERENCE_USERNAME,userName);
-            generatePopupMessage("Successfully Registered. Welcome to EazyLivings. You will be redirected to HOme page.");
+            generatePopupMessage(Constants.REGISTRATION_SUCCESS_POPUP);
 
 
-        }else if(accountAuthenticationString.equalsIgnoreCase("Registration Failed")){
-            generatePopupMessage("Failed to register. Please try again with correct inputs");
+        }else if(accountAuthenticationString.equalsIgnoreCase(Constants.SERVER_HANDLER_REGISTRATION_FAIL)){
+            generatePopupMessage(Constants.SERVER_HANDLER_REGISTRATION_FAILED_POPUP);
 
-        }else if(accountAuthenticationString.equalsIgnoreCase("Email Sent successfully")){
+        }else if(accountAuthenticationString.equalsIgnoreCase(Constants.SERVER_HANDLER_EMAIL_SENT_SUCCESSFULLY)){
             TextView defaultMessage = (TextView) activity.findViewById(R.id.forgotPassword_button_defaultMessage);
             Button signInButton=(Button)activity.findViewById(R.id.forgotPassword_button_signIn);
             ImageView image = (ImageView) activity.findViewById(R.id.forgotPassword_button_image);
@@ -213,10 +213,10 @@ public class ServerDatabaseHandler  extends AsyncTask<String,Void,String> {
                 image.setBackgroundResource(R.drawable.failtosendpassword);
 
             }else{
-                generatePopupMessage("Some error occurred. Please try again after sometime");
+                generatePopupMessage(Constants.SERVER_HANDLER_FAILED_IN_POST_EXECUTE);
             }
         }else{
-            generatePopupMessage("Some error occurred. Please try again after sometime");
+            generatePopupMessage(Constants.SERVER_HANDLER_FAILED_IN_POST_EXECUTE);
         }
 
     }
@@ -235,13 +235,13 @@ public class ServerDatabaseHandler  extends AsyncTask<String,Void,String> {
 
     private void generatePopupMessage(String message){
         AlertDialog alertDialog = new AlertDialog.Builder(activity).create(); //Use context
-        alertDialog.setTitle("Warning");
+        alertDialog.setTitle(Constants.ALERT_WARNING);
         alertDialog.setMessage(message);
         alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
 
-                        if(currentAction.equalsIgnoreCase(Constants.REGISTER) && result.equalsIgnoreCase("Registration Success")) {
+                        if(currentAction.equalsIgnoreCase(Constants.REGISTER) && result.equalsIgnoreCase(Constants.SERVER_HANDLER_REGISTRATION_SUCCESS)) {
                             dialog.dismiss();
                             Intent intent = new Intent(context, WelcomeScreen.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
