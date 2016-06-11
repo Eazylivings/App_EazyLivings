@@ -21,5 +21,15 @@
             android:icon="@drawable/ic_folder_shared_black_24dp"
             android:title="User Preference" />
 
+        <item
+            android:id="@+id/drawer_aboutUs"
+            android:icon="@drawable/about_us"
+            android:title="About Us" />
+
+        <item
+            android:id="@+id/drawer_contactUs"
+            android:icon="@drawable/contact_us"
+            android:title="Contact Us" />
+
     </group>
 </menu>

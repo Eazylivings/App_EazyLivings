@@ -244,6 +244,18 @@ implements NavigationView.OnNavigationItemSelectedListener {
                     sharedPreference.setBooleanValueInSharedPreference(getApplicationContext(), Constants.SHARED_PREFERENCE_LOGIN_STATUS, false);
                     sharedPreference.setStringValueInSharedPreference(getApplicationContext(), Constants.SHARED_PREFERENCE_USERNAME, Constants.SHARED_PREFERENCE_DEFAULT_USERNAME);
                     break;
+
+                case R.id.drawer_aboutUs:
+                    finish();
+                    intent = new Intent(this, AboutUs.class);
+                    startActivity(intent);
+                    break;
+
+                case R.id.drawer_contactUs:
+                    finish();
+                    intent = new Intent(this, ContactUs.class);
+                    startActivity(intent);
+                    break;
             }
 
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
