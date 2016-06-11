@@ -4,6 +4,8 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -33,6 +35,7 @@ public class ForgotPassword extends Activity {
                 actionBar.setDisplayHomeAsUpEnabled(true);
                 actionBar.setIcon(android.R.color.transparent);
                 setTitle(Constants.FORGOT_PASSWORD_TITLE);
+                actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor(Constants.BLUE_COLOR)));
             }
             signInButton = (Button) findViewById(R.id.forgotPassword_button_signIn);
             if (signInButton != null) {

@@ -5,14 +5,14 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
 import com.eazylivings.R;
-import com.eazylivings.activities.login.SignIn;
 import com.eazylivings.activities.login.UpdateMyAccount;
 import com.eazylivings.VO.UserDetails;
 import com.eazylivings.constant.Constants;
@@ -34,7 +34,8 @@ public class MyAccount extends Activity {
             if (actionBar != null) {
                 actionBar.setDisplayHomeAsUpEnabled(true);
                 actionBar.setIcon(android.R.color.transparent);
-                setTitle(Constants.MY_ACCOUNT_TITLE);
+                setTitle(Constants.TITLE_MY_ACCOUNT);
+                actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor(Constants.BLUE_COLOR)));
             }
 
             SharedPreference preference = new SharedPreference();

@@ -4,6 +4,8 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -33,6 +35,7 @@ public class SignIn extends Activity {
                 actionBar.setDisplayHomeAsUpEnabled(true);
                 actionBar.setIcon(android.R.color.transparent);
                 setTitle(Constants.SIGN_IN_TITLE);
+                actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor(Constants.BLUE_COLOR)));
             }
         }catch(Exception e){
             generatePopupMessage(Constants.EXCEPTION_LOADING_PAGE);

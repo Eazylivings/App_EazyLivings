@@ -72,7 +72,7 @@ public class SignUp extends Activity {
                 } else {
 
                     boolean isEmailFormatCorrect = Validator.checkEmailFormat(emailAddress);
-                    boolean isUserAlreadyPresent = Validator.checkExistingUser(userName);
+                    boolean isUserAlreadyPresent = Validator.checkExistingUser(userName,getApplicationContext(),this);
                     boolean isUserNameFormatCorrect = Validator.checkUsernameFormat(userName);
                     boolean isPasswordFormatCorrect = Validator.checkPasswordFormat(password);
 

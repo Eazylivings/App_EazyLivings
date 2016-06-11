@@ -10,12 +10,16 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
         android:id="@+id/choiceOfCookingOptions_testView_header"
-        android:textColor="#000000" />
+        android:textColor="#000000"
+        android:clickable="false"
+        android:focusable="false"/>
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/choiceOfCookingOptions_imageButton_poster"
         android:adjustViewBounds="true"
+        android:clickable="false"
+        android:focusable="false"
         android:background="@drawable/cookingprocessone" />
 </LinearLayout>

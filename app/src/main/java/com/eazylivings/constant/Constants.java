@@ -73,7 +73,9 @@ public class Constants {
     public static final String COOK_SELECTION_TITLE="Select Type";
     public static final String FLAT_SETUP_TITLE="Flat Setup";
     public static final String SELECT_COOK_TITLE="Select Cook";
-    public static final String MY_ACCOUNT_TITLE="My Account";
+    public static final String TITLE_MY_ACCOUNT ="My Account";
+    public static final String TITLE_ABOUT_US="About Us";
+    public static final String TITLE_CONTACT_US="Contact Us";
 
 
 
@@ -121,6 +123,10 @@ public class Constants {
     public static final String SERVER_HANDLER_REGISTRATION_SUCCESS="Registration Success";
     public static final String SERVER_HANDLER_REGISTRATION_FAIL="Registration Failed";
     public static final String SERVER_HANDLER_EMAIL_SENT_SUCCESSFULLY="Email Sent successfully";
+
+    //Color Coding
+
+    public static final String BLUE_COLOR="#2E9AFE";
 
 
 
