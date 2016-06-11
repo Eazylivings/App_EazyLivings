@@ -7,7 +7,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.eazylivings.activities.login.SignIn">
+    tools:context="com.eazylivings.activities.login.SignIn"
+    android:background="#FFFFFF">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,7 +21,8 @@
         android:layout_centerHorizontal="true"
         android:gravity="center"
         android:layout_marginTop="10dp"
-        android:layout_alignBottom="@+id/loginPage_progressBar_progress" />
+        android:layout_alignBottom="@+id/loginPage_progressBar_progress"
+        android:textColor="#000000" />
 
     <EditText
         android:layout_width="360dp"

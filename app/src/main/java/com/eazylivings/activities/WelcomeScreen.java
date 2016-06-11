@@ -7,8 +7,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -18,6 +16,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.HorizontalScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -70,6 +69,9 @@ implements NavigationView.OnNavigationItemSelectedListener {
         int pageMargin = ((metrics.widthPixels/2));
         pager.setPageMargin(-pageMargin);
 
+        HorizontalScrollView horizontalScrollView=(HorizontalScrollView)findViewById(R.id.welcomeScreen_horizontalScrollView);
+        horizontalScrollView.setHorizontalScrollBarEnabled(false);
+
         try {
             adapter = new MyPagerAdapter(this,this.getSupportFragmentManager());
             pager.setAdapter(adapter);
@@ -86,10 +88,7 @@ implements NavigationView.OnNavigationItemSelectedListener {
             // Set margin for pages as a negative number, so a part of next and
             // previous pages will be showed
 
-        } catch (Exception e) {
-            // TODO: handle exception
-            e.printStackTrace();
-        }
+
 
 
         /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -125,6 +124,9 @@ implements NavigationView.OnNavigationItemSelectedListener {
         navigationView.setNavigationItemSelectedListener(this);
 
         setWelcomeScreen();
+        } catch (Exception e) {
+            generatePopupMessage(Constants.EXCEPTION_LOADING_PAGE);
+        }
     }
 
     public void setWelcomeScreen(){
@@ -137,12 +139,12 @@ implements NavigationView.OnNavigationItemSelectedListener {
 
             userName = prefs.getString(Constants.SHARED_PREFERENCE_USERNAME,Constants.SHARED_PREFERENCE_DEFAULT_USERNAME);
             if(toolbar!=null) {
-                toolbar.setTitle("Welcome " + userName + "!!");
+                toolbar.setTitle(Constants.WELCOME + userName + "!!");
             }
         }
         else{
             if(toolbar!=null) {
-                toolbar.setTitle("Welcome Newbie!!");
+                toolbar.setTitle(Constants.WELCOME+ Constants.NEWBIE);
             }
         }
     }
@@ -190,61 +192,66 @@ implements NavigationView.OnNavigationItemSelectedListener {
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
 
-        Intent intent;
-        super.onOptionsItemSelected(item);
-        sharedPreference=new SharedPreference();
-        TextView drawerUserName=(TextView)findViewById(R.id.navHeaderWelcomeScreen_largeText_userName);
-        TextView drawerEmailAddress=(TextView)findViewById(R.id.navHeaderWelcomeScreen_mediumText_emailAddress);
+        try {
 
-        if(drawerUserName!=null && drawerEmailAddress!=null){
-            drawerUserName.setText(sharedPreference.getStringValueFromSharedPreference(getApplicationContext(),Constants.SHARED_PREFERENCE_USERNAME));
-            drawerEmailAddress.setText(sharedPreference.getStringValueFromSharedPreference(getApplicationContext(),Constants.SHARED_PREFERENCE_EMAIL_ADDRESS));
+            Intent intent;
+            super.onOptionsItemSelected(item);
+            sharedPreference = new SharedPreference();
+            TextView drawerUserName = (TextView) findViewById(R.id.navHeaderWelcomeScreen_largeText_userName);
+            TextView drawerEmailAddress = (TextView) findViewById(R.id.navHeaderWelcomeScreen_mediumText_emailAddress);
 
-        }
-        switch(item.getItemId()){
-            case R.id.drawer_userProfile:
+            if (drawerUserName != null && drawerEmailAddress != null) {
+                drawerUserName.setText(sharedPreference.getStringValueFromSharedPreference(getApplicationContext(), Constants.SHARED_PREFERENCE_USERNAME));
+                drawerEmailAddress.setText(sharedPreference.getStringValueFromSharedPreference(getApplicationContext(), Constants.SHARED_PREFERENCE_EMAIL_ADDRESS));
 
-                if(sharedPreference.getBooleanValueFromSharedPreference(getApplicationContext(),Constants.SHARED_PREFERENCE_LOGIN_STATUS)){
-                    intent = new Intent(this, MyAccount.class);
-                    intent.putExtra(Constants.SHARED_PREFERENCE_USERNAME,userName);
+            }
+            switch (item.getItemId()) {
+                case R.id.drawer_userProfile:
+
+                    if (sharedPreference.getBooleanValueFromSharedPreference(getApplicationContext(), Constants.SHARED_PREFERENCE_LOGIN_STATUS)) {
+                        intent = new Intent(this, MyAccount.class);
+                        intent.putExtra(Constants.SHARED_PREFERENCE_USERNAME, userName);
+                        startActivity(intent);
+                    } else {
+                        generatePopupMessage(Constants.LOGIN_FOR_PROFILE);
+                    }
+
+                    break;
+
+                case R.id.drawer_logOut:
+
+                    intent = new Intent(this, SignIn.class);
                     startActivity(intent);
-                }else{
-                    generatePopupMessage(Constants.LOGIN_FOR_PROFILE);
-                }
+                    sharedPreference.removeValueFromSharedPreference(getApplicationContext(), Constants.SHARED_PREFERENCE_LOGIN_STATUS);
+                    sharedPreference.removeValueFromSharedPreference(getApplicationContext(), Constants.SHARED_PREFERENCE_USERNAME);
+                    sharedPreference.removeValueFromSharedPreference(getApplicationContext(), Constants.SHARED_PREFERENCE_PROFILE_ALREADY_LOADED);
+                    sharedPreference.clearSharedPreference(getApplicationContext());
+                    finish();
+                    break;
+                case R.id.drawer_logIn:
 
-                break;
+                    intent = new Intent(this, SignIn.class);
+                    startActivity(intent);
+                    sharedPreference.removeValueFromSharedPreference(getApplicationContext(), Constants.SHARED_PREFERENCE_LOGIN_STATUS);
+                    sharedPreference.removeValueFromSharedPreference(getApplicationContext(), Constants.SHARED_PREFERENCE_USERNAME);
+                    sharedPreference.removeValueFromSharedPreference(getApplicationContext(), Constants.SHARED_PREFERENCE_PROFILE_ALREADY_LOADED);
+                    finish();
+                    break;
+                case R.id.drawer_userPreference:
+                    finish();
+                    intent = new Intent(this, SignIn.class);
+                    startActivity(intent);
+                    sharedPreference.setBooleanValueInSharedPreference(getApplicationContext(), Constants.SHARED_PREFERENCE_LOGIN_STATUS, false);
+                    sharedPreference.setStringValueInSharedPreference(getApplicationContext(), Constants.SHARED_PREFERENCE_USERNAME, Constants.SHARED_PREFERENCE_DEFAULT_USERNAME);
+                    break;
+            }
 
-            case R.id.drawer_logOut:
-
-                intent = new Intent(this, SignIn.class);
-                startActivity(intent);
-                sharedPreference.removeValueFromSharedPreference(getApplicationContext(),Constants.SHARED_PREFERENCE_LOGIN_STATUS);
-                sharedPreference.removeValueFromSharedPreference(getApplicationContext(),Constants.SHARED_PREFERENCE_USERNAME);
-                sharedPreference.removeValueFromSharedPreference(getApplicationContext(),Constants.SHARED_PREFERENCE_PROFILE_ALREADY_LOADED);
-                sharedPreference.clearSharedPreference(getApplicationContext());
-                finish();
-                break;
-            case R.id.drawer_logIn:
-
-                intent = new Intent(this, SignIn.class);
-                startActivity(intent);
-                sharedPreference.removeValueFromSharedPreference(getApplicationContext(),Constants.SHARED_PREFERENCE_LOGIN_STATUS);
-                sharedPreference.removeValueFromSharedPreference(getApplicationContext(),Constants.SHARED_PREFERENCE_USERNAME);
-                sharedPreference.removeValueFromSharedPreference(getApplicationContext(),Constants.SHARED_PREFERENCE_PROFILE_ALREADY_LOADED);
-                finish();
-                break;
-            case R.id.drawer_userPreference:
-                finish();
-                intent = new Intent(this, SignIn.class);
-                startActivity(intent);
-                sharedPreference.setBooleanValueInSharedPreference(getApplicationContext(),Constants.SHARED_PREFERENCE_LOGIN_STATUS, false);
-                sharedPreference.setStringValueInSharedPreference(getApplicationContext(),Constants.SHARED_PREFERENCE_USERNAME,Constants.SHARED_PREFERENCE_DEFAULT_USERNAME);
-                break;
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if(drawer!=null) {
-            drawer.closeDrawer(GravityCompat.START);
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            if (drawer != null) {
+                drawer.closeDrawer(GravityCompat.START);
+            }
+        }catch(Exception e){
+            generatePopupMessage(Constants.EXCEPTION_LOADING_PAGE);
         }
         return true;
     }

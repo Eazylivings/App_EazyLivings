@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/moving_to_a_new_flat"
-        android:layout_alignTop="@+id/horizontalScrollView"
+        android:layout_alignTop="@+id/welcomeScreen_horizontalScrollView"
         android:id="@+id/welcomeScreen_textView_movingToFlat"
         android:layout_marginTop="118dp"
         android:layout_alignParentTop="true"
@@ -70,7 +70,7 @@
     <HorizontalScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/horizontalScrollView"
+        android:id="@+id/welcomeScreen_horizontalScrollView"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">

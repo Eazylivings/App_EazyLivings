@@ -7,7 +7,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.eazylivings.activities.MyAccount">
+    tools:context="com.eazylivings.activities.MyAccount"
+    android:background="#FFFFFF">
 
     <ImageView
         android:layout_width="100dp"
@@ -27,7 +28,8 @@
         android:layout_above="@+id/updateMyAccount_largeText_emailAddress"
         android:layout_toLeftOf="@+id/myAccount_imageView_profilePic"
         android:layout_toStartOf="@+id/myAccount_imageView_profilePic"
-        android:layout_marginBottom="30dp" />
+        android:layout_marginBottom="30dp"
+        android:textColor="#000000" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -38,7 +40,8 @@
         android:layout_above="@+id/updateMyAccount_largeText_contactNumber"
         android:layout_alignLeft="@+id/updateMyAccount_largeText_userName"
         android:layout_alignStart="@+id/updateMyAccount_largeText_userName"
-        android:layout_marginBottom="27dp" />
+        android:layout_marginBottom="27dp"
+        android:textColor="#000000" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -49,7 +52,8 @@
         android:layout_above="@+id/myAccount_largeText_residentialAddress"
         android:layout_alignLeft="@+id/updateMyAccount_largeText_emailAddress"
         android:layout_alignStart="@+id/updateMyAccount_largeText_emailAddress"
-        android:layout_marginBottom="32dp" />
+        android:layout_marginBottom="32dp"
+        android:textColor="#000000" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -60,7 +64,8 @@
         android:layout_above="@+id/myAccount_button_updateInformation"
         android:layout_alignLeft="@+id/updateMyAccount_largeText_contactNumber"
         android:layout_alignStart="@+id/updateMyAccount_largeText_contactNumber"
-        android:layout_marginBottom="38dp" />
+        android:layout_marginBottom="38dp"
+        android:textColor="#000000" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -71,7 +76,8 @@
         android:singleLine="true"
         android:layout_alignBottom="@+id/updateMyAccount_largeText_userName"
         android:layout_toRightOf="@+id/myAccount_imageView_profilePic"
-        android:layout_toEndOf="@+id/myAccount_imageView_profilePic" />
+        android:layout_toEndOf="@+id/myAccount_imageView_profilePic"
+        android:textColor="#000000" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -82,7 +88,8 @@
         android:singleLine="true"
         android:layout_alignBottom="@+id/updateMyAccount_largeText_emailAddress"
         android:layout_toRightOf="@+id/myAccount_imageView_profilePic"
-        android:layout_toEndOf="@+id/myAccount_imageView_profilePic" />
+        android:layout_toEndOf="@+id/myAccount_imageView_profilePic"
+        android:textColor="#000000" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -93,7 +100,8 @@
         android:singleLine="true"
         android:layout_alignBottom="@+id/updateMyAccount_largeText_contactNumber"
         android:layout_toRightOf="@+id/myAccount_imageView_profilePic"
-        android:layout_toEndOf="@+id/myAccount_imageView_profilePic" />
+        android:layout_toEndOf="@+id/myAccount_imageView_profilePic"
+        android:textColor="#000000" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -104,7 +112,8 @@
         android:singleLine="true"
         android:layout_alignBottom="@+id/myAccount_largeText_residentialAddress"
         android:layout_toRightOf="@+id/myAccount_imageView_profilePic"
-        android:layout_toEndOf="@+id/myAccount_imageView_profilePic" />
+        android:layout_toEndOf="@+id/myAccount_imageView_profilePic"
+        android:textColor="#000000" />
 
     <Button
         android:layout_height="50dp"

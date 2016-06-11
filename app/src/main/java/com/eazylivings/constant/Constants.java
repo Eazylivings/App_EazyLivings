@@ -61,6 +61,7 @@ public class Constants {
     public static final String USER_ALREADY_PRESENT="We think you are already part of EazyLivings. Please try to login with this email address";
     public static final String ERROR_MESSAGE="This should not happen. Anyways something went wrong.Come back again fella ";
     public static final String LOGIN_FOR_PROFILE="Please login to see your profile";
+    public static final String UPDATE_ACCOUNT="You made changes in your profile. Are you sure you want to leave without updating changes";
 
     //URLS
     public final static String LOGIN_URL="http://eazylivings.com/login.php";
@@ -73,6 +74,7 @@ public class Constants {
     //Alert Titles
     public static final String ALERT_TITLE="Message";
     public static final String ALERT_WARNING="Warning";
+    public static final String ALERT_CONFIRM="Confirm";
 
     //Action Bar Titles
     public static final String OFFERED_SERVICES_TITLE="EazyLivings's Offerings";
@@ -80,6 +82,16 @@ public class Constants {
     public static final String WALK_THROUGH_SERVICES_COOKING_TITLE="";
     public static final String WALK_THROUGH_SERVICES_CLEANING_TITLE="";
     public static final String WALK_THROUGH_SERVICES_WASHING_TITLE="";
+    public static final String FORGOT_PASSWORD_TITLE="Forgot Password";
+    public static final String SIGN_UP_TITLE ="Sign Up";
+    public static final String SIGN_IN_TITLE="Sign In";
+    public static final String CHOICE_OF_COOKING_TITLE="Preferred Choice";
+    public static final String CONFIGURE_GROCERY_LIST_TITLE="Configure Grocery";
+    public static final String COOK_SELECTION_TITLE="Select Type";
+    public static final String FLAT_SETUP_TITLE="Flat Setup";
+    public static final String SELECT_COOK_TITLE="Select Cook";
+    public static final String MY_ACCOUNT_TITLE="My Account";
+
 
 
     //Shared Preference Key
@@ -90,6 +102,18 @@ public class Constants {
     public static final String SHARED_PREFERENCE_DEFAULT_USERNAME="Newbie.";
     public static final String SHARED_PREFERENCE_DEFAULT_STRING="Empty";
     public static final String SHARED_PREFERENCE_EMAIL_ADDRESS="emailAddress";
+
+    //Exception messages
+    public static final String EXCEPTION_LOADING_PAGE="Unable to load the page. Please try again after sometime.";
+    public static final String EXCEPTION_FORGOT_PASSWORD_RETRIEVE="Unable to retrieve password. Please try again after sometime.";
+    public static final String EXCEPTION_SIGN_IN="Not able to signIn. Try again after sometime.";
+    public static final String EXCEPTION_UPDATE_INFORMATION="Failed to save information. Try again after sometime.";
+    public static final String EXCEPTION_COOK_SELECTION="Failed to select any selection. Please try again after sometime.";
+
+
+
+    public static final String WELCOME="Welcome ";
+    public static final String NEWBIE="Newbie!!";
 
 
 }
