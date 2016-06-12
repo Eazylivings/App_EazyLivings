@@ -12,16 +12,16 @@ import android.widget.TextView;
 import com.eazylivings.R;
 import com.eazylivings.constant.Constants;
 
-public class ServiceImageDescriptionAdaptor extends ArrayAdapter<String>{
+public class ServicesOfferedAdaptor extends ArrayAdapter<String>{
 
-    public ServiceImageDescriptionAdaptor(Context context, String[] services) {
-        super(context, R.layout.service_image_short_description, services);
+    public ServicesOfferedAdaptor(Context context, String[] services) {
+        super(context, R.layout.list_layout_services_offered, services);
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater=LayoutInflater.from(getContext());
-        View view=inflater.inflate(R.layout.service_image_short_description,parent,false);
+        View view=inflater.inflate(R.layout.list_layout_services_offered,parent,false);
 
 
         String clickedService=getItem(position);

@@ -49,7 +49,7 @@ public class MyAccount extends Activity {
             UserDetails userDetails = deviceSetup.getUserDetailsUsingSharedPreferences(getApplicationContext());
             setUserProfile(userDetails);
         }catch(Exception e){
-            generatePopupMessage("Exception Occurred");
+            generatePopupMessage(Constants.EXCEPTION_LOADING_PAGE);
         }
     }
     @Override
@@ -101,6 +101,7 @@ public class MyAccount extends Activity {
 
         Intent intent=new Intent(getApplicationContext(), UpdateMyAccount.class);
         startActivity(intent);
+        finish();
     }
 
     private void generatePopupMessage(String message){

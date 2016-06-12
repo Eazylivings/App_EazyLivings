@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.eazylivings.activities.services.cooking.CookSelection"
+    tools:context=".activities.services.cooking.CookForVegOrNonVeg"
     android:background="#FFFFFF"
     android:id="@+id/cookSelection_relativeLayout">
 
@@ -36,7 +36,7 @@
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/cookSelection_radioButton_veg"
+            android:id="@+id/cookForVegOrNonVeg_radioButton_veg"
             android:layout_gravity="center_horizontal"
             android:checked="true"
             android:onClick="onClickRadioButton"
@@ -46,7 +46,7 @@
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/cookSelection_radioButton_nonVeg"
+            android:id="@+id/cookForVegOrNonVeg_radioButton_nonVeg"
             android:layout_gravity="center_horizontal"
             android:layout_marginLeft="70dp"
             android:buttonTint="#DF0101"
@@ -55,7 +55,7 @@
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/cookSelection_radioButton_both"
+            android:id="@+id/cookForVegOrNonVeg_radioButton_both"
             android:layout_gravity="center_horizontal"
             android:layout_marginLeft="70dp"
             android:buttonTint="#000000"
@@ -76,29 +76,42 @@
         <ImageView
             android:layout_width="100dp"
             android:layout_height="300dp"
-            android:id="@+id/cookSelection_imageView_veg"
+            android:id="@+id/cookForVegOrNonVeg_imageView_veg"
             android:layout_row="0"
             android:layout_column="0"
             android:src="@drawable/cook_vegetarian"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:focusableInTouchMode="false"
+            android:onClick="onClickImage"
+            android:clickable="false"
+            android:contextClickable="false" />
 
         <ImageView
             android:layout_width="100dp"
             android:layout_height="300dp"
-            android:id="@+id/cookSelection_imageView_nonVeg"
+            android:id="@+id/cookForVegOrNonVeg_imageView_nonVeg"
             android:layout_row="0"
             android:layout_column="1"
             android:src="@drawable/cook_non_vegetarian"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:onClick="onClickImage"
+            android:focusableInTouchMode="false"
+            android:clickable="false"
+            android:focusable="false" />
 
         <ImageView
             android:layout_width="100dp"
             android:layout_height="300dp"
-            android:id="@+id/cookSelection_imageView_both"
+            android:id="@+id/cookForVegOrNonVeg_imageView_both"
             android:layout_row="0"
             android:layout_column="2"
             android:src="@drawable/cook_both"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:focusableInTouchMode="false"
+            android:onClick="onClickImage"
+            android:contextClickable="false"
+            android:clickable="false"
+            android:focusable="false" />
     </GridLayout>
 
     <Button

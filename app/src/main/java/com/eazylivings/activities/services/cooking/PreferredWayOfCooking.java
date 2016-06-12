@@ -17,27 +17,27 @@ import android.widget.ListView;
 import com.eazylivings.R;
 import com.eazylivings.activities.WelcomeScreen;
 import com.eazylivings.activities.services.WalkthroughServices;
-import com.eazylivings.adapter.CookingChoiceAdaptor;
+import com.eazylivings.adapter.PreferredWayOfCookingAdaptor;
 import com.eazylivings.constant.Constants;
 
-public class ChoiceOfCooking extends Activity {
+public class PreferredWayOfCooking extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_choice_of_cooking);
+        setContentView(R.layout.activity_preffered_way_of_cooking);
         try {
             ActionBar actionBar = getActionBar();
             if (actionBar != null) {
                 actionBar.setDisplayHomeAsUpEnabled(true);
                 actionBar.setIcon(android.R.color.transparent);
-                setTitle(Constants.CHOICE_OF_COOKING_TITLE);
+                setTitle(Constants.PREFERRED_WAY_OF_COOKING);
                 actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor(Constants.BLUE_COLOR)));
             }
 
             String services[] = {"0", "1", "2"};
-            ListAdapter listAdapter = new CookingChoiceAdaptor(this, services);
-            ListView listView = (ListView) findViewById(R.id.choiceOfCooking_listView);
+            ListAdapter listAdapter = new PreferredWayOfCookingAdaptor(this, services);
+            ListView listView = (ListView) findViewById(R.id.preferredWayOfCooking_listView);
             if (listView != null) {
                 listView.setAdapter(listAdapter);
 
@@ -49,13 +49,15 @@ public class ChoiceOfCooking extends Activity {
 
                                 if (position == 0) {
 
-                                    Intent intent = new Intent(getApplicationContext(), CookSelection.class);
+                                    Intent intent = new Intent(getApplicationContext(), CookForVegOrNonVeg.class);
                                     intent.putExtra(Constants.SHARED_PREFERENCE_CLICKED_SERVICE, position);
                                     startActivity(intent);
+                                    finish();
                                 } else {
                                     Intent intent = new Intent(getApplicationContext(), WelcomeScreen.class);
                                     intent.putExtra(Constants.SHARED_PREFERENCE_CLICKED_SERVICE, position);
                                     startActivity(intent);
+                                    finish();
                                 }
                             }
                         }

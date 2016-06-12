@@ -45,6 +45,7 @@ public class Constants {
     public static final String SERVER_HANDLER_REGISTRATION_FAILED_POPUP="Failed to register. Please try again.";
     public static final String SERVER_HANDLER_LOGIN_FAIL_POPUP="Failed to login. Please try again later.";
     public static final String REGISTRATION_SUCCESS_POPUP="Successfully Registered. Welcome to EazyLivings. You will be redirected to Home page.";
+    public static final String LOGIN_TO_PROCEED="Please login to proceed further";
 
     //URLS
     public final static String LOGIN_URL="http://eazylivings.com/login.php";
@@ -68,14 +69,16 @@ public class Constants {
     public static final String FORGOT_PASSWORD_TITLE="Forgot Password";
     public static final String SIGN_UP_TITLE ="Sign Up";
     public static final String SIGN_IN_TITLE="Sign In";
-    public static final String CHOICE_OF_COOKING_TITLE="Preferred Choice";
+    public static final String PREFERRED_WAY_OF_COOKING ="Preferred Choice";
     public static final String CONFIGURE_GROCERY_LIST_TITLE="Configure Grocery";
-    public static final String COOK_SELECTION_TITLE="Select Type";
-    public static final String FLAT_SETUP_TITLE="Flat Setup";
+    public static final String TITLE_COOK_FOR_VEG_OR_NON_VEG ="Select Type";
     public static final String SELECT_COOK_TITLE="Select Cook";
     public static final String TITLE_MY_ACCOUNT ="My Account";
     public static final String TITLE_ABOUT_US="About Us";
     public static final String TITLE_CONTACT_US="Contact Us";
+    public static final String TITLE_UPDATE_ACCOUNT="Update Information";
+    public static final String TITLE_FLAT_SUB_SERVICE="Flat Ares";
+    public static final String TITLE_SELECT_ITEMS_FOR_FLAT="Flat Areas";
 
 
 
@@ -90,13 +93,14 @@ public class Constants {
     public static final String SHARED_PREFERENCE_EMAIL_ADDRESS="emailAddress";
     public static final String SHARED_PREFERENCE_CONTACT_NUMBER="contactNumber";
     public static final String SHARED_PREFERENCE_ADDRESS="address";
+    public static final String SHARED_PREFERENCE_PREVIOUS_ACTIVITY ="previousActivity";
 
     //Exception messages
     public static final String EXCEPTION_LOADING_PAGE="Unable to load the page. Please try again after sometime.";
     public static final String EXCEPTION_FORGOT_PASSWORD_RETRIEVE="Unable to retrieve password. Please try again after sometime.";
     public static final String EXCEPTION_SIGN_IN="Not able to signIn. Try again after sometime.";
     public static final String EXCEPTION_UPDATE_INFORMATION="Failed to save information. Try again after sometime.";
-    public static final String EXCEPTION_COOK_SELECTION="Failed to select any selection. Please try again after sometime.";
+    public static final String EXCEPTION_COOK_FOR_VEG_OR_NON_VEG ="Failed to select any selection. Please try again after sometime.";
     public static final String EXCEPTION_SERVER_HANDLER_CONNECTION_FAILED="Failed ot connect with server.Please try again after sometime.";
 
 
@@ -118,7 +122,6 @@ public class Constants {
 
 
     //Server side status
-
     public static final String SERVER_HANDLER_LOGIN_SUCCESS="Login Success";
     public static final String SERVER_HANDLER_LOGIN_FAIL="Login Failed";
     public static final String SERVER_HANDLER_REGISTRATION_SUCCESS="Registration Success";
@@ -126,8 +129,24 @@ public class Constants {
     public static final String SERVER_HANDLER_EMAIL_SENT_SUCCESSFULLY="Email Sent successfully";
 
     //Color Coding
-
     public static final String BLUE_COLOR="#2E9AFE";
+
+    //Activities
+    public static final String ACTIVITY_WELCOME_SCREEN="WelcomeScreen";
+    public static final String ACTIVITY_CHOICE_OF_COOKING="PreferredWayOfCooking";
+    public static final String ACTIVITY_FLAT_SETUP="FlatSubServices";
+
+
+    //One liners
+    public static final String INTRODUCTION_FLAT_SUB_SERVICE_ENTRANCE="Buy essentials to make your entrance heart warming!!";
+    public static final String INTRODUCTION_FLAT_SUB_SERVICE_COMMON_AREA="Fill you common area with items of daily needs!!";
+    public static final String INTRODUCTION_FLAT_SUB_SERVICE_KITCHEN="Don't miss anything in your kitchen to prepare your first meal!!";
+    public static final String INTRODUCTION_FLAT_SUB_SERVICE_BEDROOM="Nothing should be missed here as this place will help you in relaxing yourself!!";
+    public static final String INTRODUCTION_FLAT_SUB_SERVICE_WASHROOM="Keep your place full with all the essentials!!";
+    public static final String INTRODUCTION_PREFERRED_WAY_OF_COOKING_COOK="Automate grocery list. Cook will come and cook for you";
+    public static final String INTRODUCTION_PREFERRED_WAY_OF_COOKING_MESS="Don't want cook or cook yourself No worry. Find a mess nearby your place";
+    public static final String INTRODUCTION_PREFERRED_WAY_OF_COOKING_GROCERY="Automate grocery list and cook yourself";
+
 
 
 

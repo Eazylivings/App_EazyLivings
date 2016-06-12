@@ -4,6 +4,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.eazylivings.activities.WelcomeScreen;
+import com.eazylivings.activities.services.cooking.PreferredWayOfCooking;
+import com.eazylivings.activities.services.flatsetup.FlatSubServices;
 import com.eazylivings.constant.Constants;
 
 
@@ -73,6 +76,20 @@ public class SharedPreference {
         SharedPreferences.Editor editor = preferences.edit();
         editor.clear();
         editor.apply();
+
+    }
+
+    public Class getPreviousActivity(String activity){
+
+       if(activity.equalsIgnoreCase(Constants.ACTIVITY_WELCOME_SCREEN)){
+           return WelcomeScreen.class;
+       }else if(activity.equalsIgnoreCase(Constants.ACTIVITY_CHOICE_OF_COOKING)){
+           return PreferredWayOfCooking.class;
+       }else if(activity.equalsIgnoreCase(Constants.ACTIVITY_FLAT_SETUP)){
+           return FlatSubServices.class;
+       }else{
+           return null;
+       }
 
     }
 }

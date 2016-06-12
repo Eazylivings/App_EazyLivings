@@ -26,32 +26,49 @@
             android:name=".activities.WelcomeScreen"
             android:label="@string/title_activity_welcome_screen"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activities.login.SignIn"
+        <activity
+            android:name=".activities.login.SignIn"
             android:theme="@android:style/Theme.WithActionBar" />
-        <activity android:name=".activities.login.ForgotPassword"
+        <activity
+            android:name=".activities.login.ForgotPassword"
             android:theme="@android:style/Theme.WithActionBar" />
-        <activity android:name=".activities.login.SignUp"
+        <activity
+            android:name=".activities.login.SignUp"
             android:theme="@android:style/Theme.WithActionBar" />
-        <activity android:name=".activities.MyAccount"
+        <activity
+            android:name=".activities.MyAccount"
             android:theme="@android:style/Theme.WithActionBar" />
-        <activity android:name=".activities.services.WalkthroughServices"
+        <activity
+            android:name=".activities.services.WalkthroughServices"
             android:theme="@android:style/Theme.WithActionBar" />
-        <activity android:name=".activities.services.OfferedServices"
+        <activity
+            android:name=".activities.services.OfferedServices"
             android:theme="@android:style/Theme.WithActionBar" />
-        <activity android:name=".activities.services.flatsetup.FlatSetup"
+        <activity
+            android:name=".activities.services.flatsetup.FlatSubServices"
             android:theme="@android:style/Theme.WithActionBar" />
-        <activity android:name=".activities.services.cooking.ChoiceOfCooking"
+        <activity
+            android:name=".activities.services.cooking.PreferredWayOfCooking"
             android:theme="@android:style/Theme.WithActionBar" />
-        <activity android:name=".activities.login.UpdateMyAccount" />
-        <activity android:name=".activities.services.cooking.CookSelection"
+        <activity
+            android:name=".activities.login.UpdateMyAccount"
             android:theme="@android:style/Theme.WithActionBar" />
-        <activity android:name=".activities.services.cooking.SelectCook"
+        <activity
+            android:name=".activities.services.cooking.CookForVegOrNonVeg"
             android:theme="@android:style/Theme.WithActionBar" />
-        <activity android:name=".activities.services.cooking.ConfigureGroceryList"
+        <activity
+            android:name=".activities.services.cooking.SelectCook"
             android:theme="@android:style/Theme.WithActionBar" />
-        <activity android:name=".activities.AboutUs"
-            android:theme="@android:style/Theme.WithActionBar"/>
-        <activity android:name=".activities.ContactUs"
+        <activity
+            android:name=".activities.services.cooking.ConfigureGroceryList"
+            android:theme="@android:style/Theme.WithActionBar" />
+        <activity
+            android:name=".activities.AboutUs"
+            android:theme="@android:style/Theme.WithActionBar" />
+        <activity
+            android:name=".activities.ContactUs"
+            android:theme="@android:style/Theme.WithActionBar" />
+        <activity android:name=".activities.services.flatsetup.SelectItemsForFlat"
             android:theme="@android:style/Theme.WithActionBar"></activity>
     </application>
 

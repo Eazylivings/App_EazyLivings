@@ -17,8 +17,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.eazylivings.R;
-import com.eazylivings.activities.services.cooking.ChoiceOfCooking;
+import com.eazylivings.activities.login.SignIn;
+import com.eazylivings.activities.services.cooking.PreferredWayOfCooking;
+import com.eazylivings.activities.services.flatsetup.FlatSubServices;
 import com.eazylivings.constant.Constants;
+import com.eazylivings.sharedpreference.SharedPreference;
 
 public class WalkthroughServices extends Activity {
 
@@ -68,10 +71,12 @@ public class WalkthroughServices extends Activity {
         switch (clickedService){
 
             case 0:
+                intent=new Intent(getApplicationContext(), FlatSubServices.class);
+                startActivity(intent);
                 break;
 
             case 1:
-                intent=new Intent(getApplicationContext(), ChoiceOfCooking.class);
+                intent=new Intent(getApplicationContext(), PreferredWayOfCooking.class);
                 startActivity(intent);
                 break;
 
@@ -83,8 +88,7 @@ public class WalkthroughServices extends Activity {
 
             default:
                 break;
-        }
-
+            }
     }
 
     private void setServiceBasedContent(int serviceSelected){
@@ -166,5 +170,42 @@ public class WalkthroughServices extends Activity {
                     }
                 });
         alertDialog.show();
+    }
+
+    private void generateLoginPopupMessage(String message){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle(Constants.ALERT_CONFIRM);
+        builder.setMessage(message);
+
+        builder.setPositiveButton("Login Now", new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int which) {
+                SharedPreference sharedPreference=new SharedPreference(getApplicationContext());
+                if(clickedService==0) {
+                    sharedPreference.setStringValueInSharedPreference(Constants.SHARED_PREFERENCE_PREVIOUS_ACTIVITY, Constants.ACTIVITY_FLAT_SETUP);
+                }else if(clickedService==1){
+                    sharedPreference.setStringValueInSharedPreference(Constants.SHARED_PREFERENCE_PREVIOUS_ACTIVITY, Constants.ACTIVITY_CHOICE_OF_COOKING);
+                }else if(clickedService==2){
+
+                }else if(clickedService==3){
+
+                }
+                Intent intent=new Intent(getApplicationContext(), SignIn.class);
+                startActivity(intent);
+                finish();
+                dialog.dismiss();
+            }
+        });
+
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 }

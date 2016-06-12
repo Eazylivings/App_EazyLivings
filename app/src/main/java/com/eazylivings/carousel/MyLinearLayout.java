@@ -7,9 +7,6 @@ import android.widget.LinearLayout;
 
 import com.eazylivings.activities.WelcomeScreen;
 
-/**
- * Created by Vibek on 6/4/2016.
- */
 public class MyLinearLayout extends LinearLayout {
 
     private float scale = WelcomeScreen.BIG_SCALE;

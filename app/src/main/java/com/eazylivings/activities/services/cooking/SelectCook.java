@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -38,14 +37,14 @@ public class SelectCook extends Activity {
     @Override
     public void onBackPressed(){
 
-        Intent intent = new Intent(getApplicationContext(),CookSelection.class);
+        Intent intent = new Intent(getApplicationContext(),CookForVegOrNonVeg.class);
         startActivity(intent);
         finish();
     }
 
     //Back button control on Title bar
     public boolean onOptionsItemSelected(MenuItem item){
-        Intent myIntent = new Intent(getApplicationContext(), CookSelection.class);
+        Intent myIntent = new Intent(getApplicationContext(), CookForVegOrNonVeg.class);
         startActivityForResult(myIntent, 0);
         finish();
         return true;
