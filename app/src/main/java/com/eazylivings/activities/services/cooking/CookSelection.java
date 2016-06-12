@@ -8,18 +8,13 @@ import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.RadioButton;
-import android.widget.RelativeLayout;
-
 import com.eazylivings.R;
-import com.eazylivings.activities.login.SignIn;
 import com.eazylivings.constant.Constants;
 
 public class CookSelection extends Activity {

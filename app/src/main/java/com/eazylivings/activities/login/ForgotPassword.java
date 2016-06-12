@@ -7,16 +7,13 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import com.eazylivings.R;
-import com.eazylivings.activities.WelcomeScreen;
 import com.eazylivings.constant.Constants;
 import com.eazylivings.databasehandler.ServerDatabaseHandler;
 import com.eazylivings.validator.Validator;

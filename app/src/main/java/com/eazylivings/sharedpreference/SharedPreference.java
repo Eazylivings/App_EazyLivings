@@ -9,7 +9,13 @@ import com.eazylivings.constant.Constants;
 
 public class SharedPreference {
 
-    public void setStringValueInSharedPreference(Context context,String key,String value){
+    Context context;
+
+    public SharedPreference(Context applicationContext){
+        this.context=applicationContext;
+    }
+
+    public void setStringValueInSharedPreference(String key,String value){
 
         SharedPreferences preferences =  PreferenceManager.getDefaultSharedPreferences(context);
         if(preferences!=null) {
@@ -19,16 +25,24 @@ public class SharedPreference {
         }
     }
 
-    public String getStringValueFromSharedPreference(Context context,String key){
-        SharedPreferences preferences =  PreferenceManager.getDefaultSharedPreferences(context);
-        if(preferences!=null) {
-            return preferences.getString(key, Constants.SHARED_PREFERENCE_DEFAULT_STRING);
-        }else{
+    public String getStringValueFromSharedPreference(String key){
+        try {
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+            if (preferences != null && key.equalsIgnoreCase(Constants.SHARED_PREFERENCE_EMAIL_ADDRESS)) {
+                return preferences.getString(key, Constants.SHARED_PREFERENCE_DEFAULT_EMAIL);
+            } else if (preferences != null &&  key.equalsIgnoreCase(Constants.SHARED_PREFERENCE_USERNAME)) {
+                return preferences.getString(key, Constants.SHARED_PREFERENCE_DEFAULT_USERNAME);
+            }else if (preferences != null) {
+                return preferences.getString(key, Constants.SHARED_PREFERENCE_DEFAULT_STRING);
+            } else {
+                return "";
+            }
+        }catch(Exception e){
             return "";
         }
     }
 
-    public void setBooleanValueInSharedPreference(Context context,String key,boolean value){
+    public void setBooleanValueInSharedPreference(String key,boolean value){
 
         SharedPreferences preferences =  PreferenceManager.getDefaultSharedPreferences(context);
         if(preferences!=null) {
@@ -38,7 +52,7 @@ public class SharedPreference {
         }
     }
 
-    public boolean getBooleanValueFromSharedPreference(Context context,String key){
+    public boolean getBooleanValueFromSharedPreference(String key){
         SharedPreferences preferences =  PreferenceManager.getDefaultSharedPreferences(context);
         return preferences.getBoolean(key, false);
 
@@ -46,7 +60,7 @@ public class SharedPreference {
 
 
 
-    public void removeValueFromSharedPreference(Context context,String valueToBeDeleted){
+    public void removeValueFromSharedPreference(String valueToBeDeleted){
         SharedPreferences preferences =  PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = preferences.edit();
         editor.remove(valueToBeDeleted);
@@ -54,7 +68,7 @@ public class SharedPreference {
 
 
     }
-    public void clearSharedPreference(Context context){
+    public void clearSharedPreference(){
         SharedPreferences preferences =  PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = preferences.edit();
         editor.clear();

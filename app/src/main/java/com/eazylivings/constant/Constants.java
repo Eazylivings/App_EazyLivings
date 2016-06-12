@@ -86,6 +86,7 @@ public class Constants {
     public static final String SHARED_PREFERENCE_PROFILE_ALREADY_LOADED="isProfileAlreadyLoaded";
     public static final String SHARED_PREFERENCE_DEFAULT_USERNAME="Newbie.";
     public static final String SHARED_PREFERENCE_DEFAULT_STRING="Empty";
+    public static final String SHARED_PREFERENCE_DEFAULT_EMAIL="newbie@eazylivings.com";
     public static final String SHARED_PREFERENCE_EMAIL_ADDRESS="emailAddress";
     public static final String SHARED_PREFERENCE_CONTACT_NUMBER="contactNumber";
     public static final String SHARED_PREFERENCE_ADDRESS="address";

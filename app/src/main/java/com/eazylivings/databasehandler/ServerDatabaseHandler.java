@@ -35,15 +35,15 @@ import java.net.URLEncoder;
 
 public class ServerDatabaseHandler  extends AsyncTask<String,Void,String> {
 
-    Context context;
+    Context applicationContext;
     static String currentAction="";
     String userName="";
     UserDetails userDetails;
     Activity activity;
     String result="";
 
-    public ServerDatabaseHandler(Context ctx,Activity baseActivity){
-        context=ctx;
+    public ServerDatabaseHandler(Context context,Activity baseActivity){
+        this.applicationContext=context;
         this.activity=baseActivity;
     }
 
@@ -135,8 +135,8 @@ public class ServerDatabaseHandler  extends AsyncTask<String,Void,String> {
 
                     if (userDetails!=null) {
                         DeviceSetup deviceSetup;
-                        deviceSetup=new DeviceSetup(context);
-                        deviceSetup.saveUserDetailsUsingSharedPreference(userDetails,context);
+                        deviceSetup=new DeviceSetup(applicationContext);
+                        deviceSetup.saveUserDetailsUsingSharedPreference(userDetails,applicationContext);
                     }else {
                         generatePopupMessage("Some error occurred. Please try again after sometime");
                     }
@@ -183,9 +183,9 @@ public class ServerDatabaseHandler  extends AsyncTask<String,Void,String> {
         if (accountAuthenticationString.equalsIgnoreCase(Constants.SERVER_HANDLER_LOGIN_SUCCESS)) {
 
             setSharedPreferences(Constants.SHARED_PREFERENCE_USERNAME,userName);
-            Intent intent = new Intent(context,WelcomeScreen.class);
+            Intent intent = new Intent(applicationContext,WelcomeScreen.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(intent);
+            applicationContext.startActivity(intent);
             activity.finish();
 
         } else if(accountAuthenticationString.equalsIgnoreCase(Constants.SERVER_HANDLER_LOGIN_FAIL)) {
@@ -228,9 +228,9 @@ public class ServerDatabaseHandler  extends AsyncTask<String,Void,String> {
     private void setSharedPreferences(String key,String value){
 
 
-        SharedPreference sharedPreference=new SharedPreference();
-        sharedPreference.setStringValueInSharedPreference(context,key,value);
-        sharedPreference.setBooleanValueInSharedPreference(context,Constants.SHARED_PREFERENCE_LOGIN_STATUS,true);
+        SharedPreference sharedPreference=new SharedPreference(applicationContext);
+        sharedPreference.setStringValueInSharedPreference(key,value);
+        sharedPreference.setBooleanValueInSharedPreference(Constants.SHARED_PREFERENCE_LOGIN_STATUS,true);
     }
 
     private void generatePopupMessage(String message){
@@ -243,9 +243,9 @@ public class ServerDatabaseHandler  extends AsyncTask<String,Void,String> {
 
                         if(currentAction.equalsIgnoreCase(Constants.REGISTER) && result.equalsIgnoreCase(Constants.SERVER_HANDLER_REGISTRATION_SUCCESS)) {
                             dialog.dismiss();
-                            Intent intent = new Intent(context, WelcomeScreen.class);
+                            Intent intent = new Intent(applicationContext, WelcomeScreen.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            context.startActivity(intent);
+                            applicationContext.startActivity(intent);
                             activity.finish();
 
                         }else {

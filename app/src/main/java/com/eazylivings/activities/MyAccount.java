@@ -38,8 +38,8 @@ public class MyAccount extends Activity {
                 actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor(Constants.BLUE_COLOR)));
             }
 
-            SharedPreference preference = new SharedPreference();
-            String userName = preference.getStringValueFromSharedPreference(getApplicationContext(), Constants.SHARED_PREFERENCE_USERNAME);
+            SharedPreference preference = new SharedPreference(getApplicationContext());
+            String userName = preference.getStringValueFromSharedPreference(Constants.SHARED_PREFERENCE_USERNAME);
 
             UserProfileSetup userProfileSetup = new UserProfileSetup(getApplicationContext(), this);
             userProfileSetup.setupUserProfile(userName);

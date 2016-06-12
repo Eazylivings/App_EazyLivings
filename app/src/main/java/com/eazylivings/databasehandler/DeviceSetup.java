@@ -19,23 +19,23 @@ public class DeviceSetup  {
 
     public void saveUserDetailsUsingSharedPreference(UserDetails userDetails,Context context){
 
-        SharedPreference preference=new SharedPreference();
-        preference.setStringValueInSharedPreference(context, Constants.SHARED_PREFERENCE_USERNAME,userDetails.getUserName());
-        preference.setStringValueInSharedPreference(context,Constants.SHARED_PREFERENCE_EMAIL_ADDRESS,userDetails.getEmail_address());
-        preference.setStringValueInSharedPreference(context,Constants.SHARED_PREFERENCE_CONTACT_NUMBER,userDetails.getContact_number());
-        preference.setStringValueInSharedPreference(context,Constants.SHARED_PREFERENCE_ADDRESS,userDetails.getResidential_address());
-        preference.setBooleanValueInSharedPreference(context,Constants.SHARED_PREFERENCE_PROFILE_ALREADY_LOADED,true);
+        SharedPreference preference=new SharedPreference(applicationContext);
+        preference.setStringValueInSharedPreference(Constants.SHARED_PREFERENCE_USERNAME,userDetails.getUserName());
+        preference.setStringValueInSharedPreference(Constants.SHARED_PREFERENCE_EMAIL_ADDRESS,userDetails.getEmail_address());
+        preference.setStringValueInSharedPreference(Constants.SHARED_PREFERENCE_CONTACT_NUMBER,userDetails.getContact_number());
+        preference.setStringValueInSharedPreference(Constants.SHARED_PREFERENCE_ADDRESS,userDetails.getResidential_address());
+        preference.setBooleanValueInSharedPreference(Constants.SHARED_PREFERENCE_PROFILE_ALREADY_LOADED,true);
     }
 
     public UserDetails getUserDetailsUsingSharedPreferences(Context context){
 
-        SharedPreference sharedPreference=new SharedPreference();
+        SharedPreference sharedPreference=new SharedPreference(applicationContext);
         UserDetails userDetails=new UserDetails();
 
-        userDetails.setUserName(sharedPreference.getStringValueFromSharedPreference(context,Constants.SHARED_PREFERENCE_USERNAME));
-        userDetails.setEmail_address(sharedPreference.getStringValueFromSharedPreference(context,Constants.SHARED_PREFERENCE_EMAIL_ADDRESS));
-        userDetails.setContact_number(sharedPreference.getStringValueFromSharedPreference(context,Constants.SHARED_PREFERENCE_CONTACT_NUMBER));
-        userDetails.setResidential_address(sharedPreference.getStringValueFromSharedPreference(context,Constants.SHARED_PREFERENCE_ADDRESS));
+        userDetails.setUserName(sharedPreference.getStringValueFromSharedPreference(Constants.SHARED_PREFERENCE_USERNAME));
+        userDetails.setEmail_address(sharedPreference.getStringValueFromSharedPreference(Constants.SHARED_PREFERENCE_EMAIL_ADDRESS));
+        userDetails.setContact_number(sharedPreference.getStringValueFromSharedPreference(Constants.SHARED_PREFERENCE_CONTACT_NUMBER));
+        userDetails.setResidential_address(sharedPreference.getStringValueFromSharedPreference(Constants.SHARED_PREFERENCE_ADDRESS));
 
         return userDetails;
     }

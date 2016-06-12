@@ -31,7 +31,7 @@ public class UpdateMyAccount extends AppCompatActivity {
 
         try {
 
-            SharedPreference sharedPreference = new SharedPreference();
+            SharedPreference sharedPreference = new SharedPreference(getApplicationContext());
 
 
             EditText userName = (EditText) findViewById(R.id.updateMyAccount_editText_userName);
@@ -46,10 +46,10 @@ public class UpdateMyAccount extends AppCompatActivity {
                 previousContactNumber = contactNumber.getText().toString();
                 previousResidentialAddress = residentialAddress.getText().toString();
 
-                userName.setText(sharedPreference.getStringValueFromSharedPreference(getApplicationContext(), "userName"));
-                emailAddress.setText(sharedPreference.getStringValueFromSharedPreference(getApplicationContext(), "emailAddress"));
-                contactNumber.setText(sharedPreference.getStringValueFromSharedPreference(getApplicationContext(), "contactNumber"));
-                residentialAddress.setText(sharedPreference.getStringValueFromSharedPreference(getApplicationContext(), "residentialAddress"));
+                userName.setText(sharedPreference.getStringValueFromSharedPreference(Constants.SHARED_PREFERENCE_USERNAME));
+                emailAddress.setText(sharedPreference.getStringValueFromSharedPreference(Constants.SHARED_PREFERENCE_EMAIL_ADDRESS));
+                contactNumber.setText(sharedPreference.getStringValueFromSharedPreference(Constants.SERVER_HANDLER_PHONE_NUMBER));
+                residentialAddress.setText(sharedPreference.getStringValueFromSharedPreference(Constants.SHARED_PREFERENCE_ADDRESS));
             }
         }catch(Exception e){
             generatePopupMessage(Constants.EXCEPTION_LOADING_PAGE);
@@ -81,7 +81,7 @@ public class UpdateMyAccount extends AppCompatActivity {
 
         try {
 
-            SharedPreference preference = new SharedPreference();
+            SharedPreference preference = new SharedPreference(getApplicationContext());
 
             UserDetails details = new UserDetails();
             EditText userName = (EditText) findViewById(R.id.updateMyAccount_editText_userName);
@@ -96,10 +96,10 @@ public class UpdateMyAccount extends AppCompatActivity {
                 details.setContact_number(contactNumber.getText().toString());
                 details.setResidential_address(residentialAddress.getText().toString());
 
-                preference.setStringValueInSharedPreference(getApplicationContext(), "userName", userName.getText().toString());
-                preference.setStringValueInSharedPreference(getApplicationContext(), "emailAddress", emailAddress.getText().toString());
-                preference.setStringValueInSharedPreference(getApplicationContext(), "contactNumber", contactNumber.getText().toString());
-                preference.setStringValueInSharedPreference(getApplicationContext(), "residentialAddress", residentialAddress.getText().toString());
+                preference.setStringValueInSharedPreference(Constants.SHARED_PREFERENCE_USERNAME, userName.getText().toString());
+                preference.setStringValueInSharedPreference(Constants.SHARED_PREFERENCE_EMAIL_ADDRESS, emailAddress.getText().toString());
+                preference.setStringValueInSharedPreference(Constants.SERVER_HANDLER_PHONE_NUMBER, contactNumber.getText().toString());
+                preference.setStringValueInSharedPreference(Constants.SHARED_PREFERENCE_ADDRESS, residentialAddress.getText().toString());
 
                 ServerDatabaseHandler handler = new ServerDatabaseHandler(getApplicationContext(), this);
                 handler.execute(Constants.SAVE_USER_UPDATE, userName.getText().toString(), emailAddress.getText().toString(), contactNumber.getText().toString(), residentialAddress.getText().toString());

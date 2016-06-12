@@ -27,7 +27,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="User Name"
         android:id="@+id/navHeaderWelcomeScreen_largeText_userName"
-        android:layout_alignBottom="@+id/navHeaderWelcomeScreen_mediumText_emailAddress"
+        android:layout_above="@+id/navHeaderWelcomeScreen_mediumText_emailAddress"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 

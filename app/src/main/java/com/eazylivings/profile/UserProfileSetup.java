@@ -9,22 +9,22 @@ import com.eazylivings.sharedpreference.SharedPreference;
 
 public class UserProfileSetup {
 
-    Context context;
+    Context applicationContext;
     Activity baseActivity;
 
-    public UserProfileSetup(Context applicationContext, Activity activity){
-        this.context=applicationContext;
+    public UserProfileSetup(Context context, Activity activity){
+        this.applicationContext=context;
         this.baseActivity=activity;
     }
 
     public void setupUserProfile(String userName) {
 
-        SharedPreference preference=new SharedPreference();
+        SharedPreference preference=new SharedPreference(applicationContext);
 
-        boolean isProfileAlreadyLoaded=preference.getBooleanValueFromSharedPreference(context,Constants.SHARED_PREFERENCE_PROFILE_ALREADY_LOADED);
+        boolean isProfileAlreadyLoaded=preference.getBooleanValueFromSharedPreference(Constants.SHARED_PREFERENCE_PROFILE_ALREADY_LOADED);
 
         if(!isProfileAlreadyLoaded){
-            ServerDatabaseHandler serverDatabaseHandler=new ServerDatabaseHandler(context,baseActivity);
+            ServerDatabaseHandler serverDatabaseHandler=new ServerDatabaseHandler(applicationContext,baseActivity);
             serverDatabaseHandler.execute(Constants.USER_PROFILE_ACTION,userName);
         }
     }
