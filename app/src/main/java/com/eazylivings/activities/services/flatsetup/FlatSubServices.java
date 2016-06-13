@@ -6,6 +6,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -13,12 +15,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-
 import com.eazylivings.R;
+import com.eazylivings.activities.WelcomeScreen;
 import com.eazylivings.activities.services.OfferedServices;
-import com.eazylivings.activities.services.WalkthroughServices;
 import com.eazylivings.adapter.OptionFlatSubServiceAdaptor;
-import com.eazylivings.adapter.ServicesOfferedAdaptor;
 import com.eazylivings.constant.Constants;
 
 public class FlatSubServices extends Activity {
@@ -29,6 +29,7 @@ public class FlatSubServices extends Activity {
         setContentView(R.layout.activity_flat_sub_services);
 
         try {
+
             ActionBar actionBar = getActionBar();
             if (actionBar != null) {
                 actionBar.setDisplayHomeAsUpEnabled(true);
@@ -52,6 +53,7 @@ public class FlatSubServices extends Activity {
                                 Intent intent = new Intent(getApplicationContext(), SelectItemsForFlat.class);
                                 intent.putExtra(Constants.SHARED_PREFERENCE_CLICKED_SERVICE, position);
                                 startActivity(intent);
+                                finish();
                             }
                         }
                 );
@@ -72,10 +74,19 @@ public class FlatSubServices extends Activity {
 
     //Back button control on Title bar
     public boolean onOptionsItemSelected(MenuItem item){
+
+
         Intent myIntent = new Intent(getApplicationContext(), OfferedServices.class);
         startActivityForResult(myIntent, 0);
         finish();
         return true;
+    }
+
+    public void onClickHomeButton(View view){
+
+        Intent intent=new Intent(getApplicationContext(),WelcomeScreen.class);
+        startActivity(intent);
+        finish();
     }
 
     private void generatePopupMessage(String message){

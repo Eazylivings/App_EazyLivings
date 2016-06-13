@@ -57,7 +57,7 @@
             android:name=".activities.services.cooking.CookForVegOrNonVeg"
             android:theme="@android:style/Theme.WithActionBar" />
         <activity
-            android:name=".activities.services.cooking.SelectCook"
+            android:name=".activities.services.cooking.CookSelection"
             android:theme="@android:style/Theme.WithActionBar" />
         <activity
             android:name=".activities.services.cooking.ConfigureGroceryList"

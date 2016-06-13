@@ -7,7 +7,18 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.eazylivings.activities.services.cooking.SelectCook"
+    tools:context=".activities.services.cooking.CookSelection"
     android:background="#FFFFFF">
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/cookSelection_homeButton"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="top|end"
+        android:src="@drawable/home_icon"
+        android:clickable="false"
+        android:onClick="onClickHomeButton" />
 
 </RelativeLayout>

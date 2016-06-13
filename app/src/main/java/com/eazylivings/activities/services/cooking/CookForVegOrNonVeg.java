@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import com.eazylivings.R;
+import com.eazylivings.activities.WelcomeScreen;
 import com.eazylivings.constant.Constants;
 
 public class CookForVegOrNonVeg extends Activity {
@@ -55,10 +56,12 @@ public class CookForVegOrNonVeg extends Activity {
 
     //Back button control on Title bar
     public boolean onOptionsItemSelected(MenuItem item){
+
         Intent myIntent = new Intent(getApplicationContext(), PreferredWayOfCooking.class);
         startActivityForResult(myIntent, 0);
         finish();
         return true;
+
     }
 
     public void onClickRadioButton(View view) {
@@ -118,12 +121,18 @@ public class CookForVegOrNonVeg extends Activity {
 
     }
 
-    public void onClickSelectCook(View view){
+    public void onClickHomeButton(View view){
 
-        Intent intent=new Intent(getApplicationContext(),SelectCook.class);
+        Intent intent=new Intent(getApplicationContext(),WelcomeScreen.class);
         startActivity(intent);
         finish();
+    }
 
+    public void onClickSelectCook(View view){
+
+        Intent intent=new Intent(getApplicationContext(),CookSelection.class);
+        startActivity(intent);
+        finish();
     }
 
     private void setHeightAndWidth(){

@@ -127,4 +127,15 @@
         android:layout_centerHorizontal="true"
         android:onClick="onClickSelectCook" />
 
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/cookForVegOrNonVeg_homeButton"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="top|end"
+        android:src="@drawable/home_icon"
+        android:clickable="false"
+        android:onClick="onClickHomeButton" />
+
 </RelativeLayout>

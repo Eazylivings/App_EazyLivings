@@ -158,7 +158,7 @@ implements NavigationView.OnNavigationItemSelectedListener {
     public void onClickStart(View view){
         Intent intent=new Intent(getApplicationContext(), OfferedServices.class);
         startActivity(intent);
-
+        finish();
     }
 
     public void onClickExplore(View view){
@@ -247,15 +247,15 @@ implements NavigationView.OnNavigationItemSelectedListener {
                     break;
 
                 case R.id.drawer_aboutUs:
-                    finish();
                     intent = new Intent(this, AboutUs.class);
                     startActivity(intent);
+                    finish();
                     break;
 
                 case R.id.drawer_contactUs:
-                    finish();
                     intent = new Intent(this, ContactUs.class);
                     startActivity(intent);
+                    finish();
                     break;
             }
 

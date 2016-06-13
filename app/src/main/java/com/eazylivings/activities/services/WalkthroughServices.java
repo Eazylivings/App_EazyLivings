@@ -17,6 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.eazylivings.R;
+import com.eazylivings.activities.WelcomeScreen;
 import com.eazylivings.activities.login.SignIn;
 import com.eazylivings.activities.services.cooking.PreferredWayOfCooking;
 import com.eazylivings.activities.services.flatsetup.FlatSubServices;
@@ -58,6 +59,14 @@ public class WalkthroughServices extends Activity {
         }
     }
 
+    @Override
+    public void onBackPressed(){
+
+        Intent intent = new Intent(getApplicationContext(),OfferedServices.class);
+        startActivity(intent);
+        finish();
+    }
+
     public boolean onOptionsItemSelected(MenuItem item){
         Intent myIntent = new Intent(getApplicationContext(), OfferedServices.class);
         startActivityForResult(myIntent, 0);
@@ -73,11 +82,13 @@ public class WalkthroughServices extends Activity {
             case 0:
                 intent=new Intent(getApplicationContext(), FlatSubServices.class);
                 startActivity(intent);
+                finish();
                 break;
 
             case 1:
                 intent=new Intent(getApplicationContext(), PreferredWayOfCooking.class);
                 startActivity(intent);
+                finish();
                 break;
 
             case 2:

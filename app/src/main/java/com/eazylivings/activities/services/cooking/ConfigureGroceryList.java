@@ -8,9 +8,13 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
+
 import android.view.MenuItem;
+import android.view.View;
 
 import com.eazylivings.R;
+
+import com.eazylivings.activities.WelcomeScreen;
 import com.eazylivings.constant.Constants;
 
 public class ConfigureGroceryList extends Activity {
@@ -36,17 +40,27 @@ public class ConfigureGroceryList extends Activity {
     @Override
     public void onBackPressed(){
 
-        Intent intent = new Intent(getApplicationContext(),SelectCook.class);
+        Intent intent = new Intent(getApplicationContext(),CookSelection.class);
         startActivity(intent);
         finish();
     }
 
     //Back button control on Title bar
     public boolean onOptionsItemSelected(MenuItem item){
-        Intent myIntent = new Intent(getApplicationContext(), SelectCook.class);
+
+        Intent myIntent = new Intent(getApplicationContext(), CookSelection.class);
+
         startActivityForResult(myIntent, 0);
         finish();
         return true;
+
+    }
+
+    public void onClickHomeButton(View view){
+
+        Intent intent=new Intent(getApplicationContext(),WelcomeScreen.class);
+        startActivity(intent);
+        finish();
     }
 
     private void generatePopupMessage(String message){

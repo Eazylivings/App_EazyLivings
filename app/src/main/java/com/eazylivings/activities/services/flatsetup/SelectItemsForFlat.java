@@ -7,12 +7,12 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.eazylivings.R;
-import com.eazylivings.activities.login.SignIn;
+import com.eazylivings.activities.WelcomeScreen;
 import com.eazylivings.constant.Constants;
 
 public class SelectItemsForFlat extends Activity {
@@ -55,10 +55,19 @@ public class SelectItemsForFlat extends Activity {
 
     //Back button control on Title bar
     public boolean onOptionsItemSelected(MenuItem item){
+
         Intent myIntent = new Intent(getApplicationContext(), FlatSubServices.class);
         startActivityForResult(myIntent, 0);
         finish();
         return true;
+
+    }
+
+    public void onClickHomeButton(View view){
+
+        Intent intent=new Intent(getApplicationContext(),WelcomeScreen.class);
+        startActivity(intent);
+        finish();
     }
 
     private void generatePopupMessage(String message){

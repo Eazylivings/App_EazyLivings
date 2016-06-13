@@ -72,13 +72,13 @@ public class Constants {
     public static final String PREFERRED_WAY_OF_COOKING ="Preferred Choice";
     public static final String CONFIGURE_GROCERY_LIST_TITLE="Configure Grocery";
     public static final String TITLE_COOK_FOR_VEG_OR_NON_VEG ="Select Type";
-    public static final String SELECT_COOK_TITLE="Select Cook";
+    public static final String TITLE_COOK_SELECTION ="Select Cook";
     public static final String TITLE_MY_ACCOUNT ="My Account";
     public static final String TITLE_ABOUT_US="About Us";
     public static final String TITLE_CONTACT_US="Contact Us";
     public static final String TITLE_UPDATE_ACCOUNT="Update Information";
-    public static final String TITLE_FLAT_SUB_SERVICE="Flat Ares";
-    public static final String TITLE_SELECT_ITEMS_FOR_FLAT="Flat Areas";
+    public static final String TITLE_FLAT_SUB_SERVICE="Flat Areas";
+    public static final String TITLE_SELECT_ITEMS_FOR_FLAT="Select Items";
 
 
 

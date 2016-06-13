@@ -9,16 +9,18 @@ import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.eazylivings.R;
+import com.eazylivings.activities.WelcomeScreen;
 import com.eazylivings.constant.Constants;
 
-public class SelectCook extends Activity {
+public class CookSelection extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_select_cook);
+        setContentView(R.layout.activity_cook_selection);
 
         try {
 
@@ -26,7 +28,7 @@ public class SelectCook extends Activity {
             if (actionBar != null) {
                 actionBar.setDisplayHomeAsUpEnabled(true);
                 actionBar.setIcon(android.R.color.transparent);
-                setTitle(Constants.SELECT_COOK_TITLE);
+                setTitle(Constants.TITLE_COOK_SELECTION);
                 actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor(Constants.BLUE_COLOR)));
             }
         }catch(Exception e){
@@ -44,10 +46,19 @@ public class SelectCook extends Activity {
 
     //Back button control on Title bar
     public boolean onOptionsItemSelected(MenuItem item){
+
         Intent myIntent = new Intent(getApplicationContext(), CookForVegOrNonVeg.class);
         startActivityForResult(myIntent, 0);
         finish();
         return true;
+
+    }
+
+    public void onClickHomeButton(View view){
+
+        Intent intent=new Intent(getApplicationContext(),WelcomeScreen.class);
+        startActivity(intent);
+        finish();
     }
 
     private void generatePopupMessage(String message){

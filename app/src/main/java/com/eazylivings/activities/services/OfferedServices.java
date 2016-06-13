@@ -13,7 +13,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-
 import com.eazylivings.activities.WelcomeScreen;
 import com.eazylivings.adapter.ServicesOfferedAdaptor;
 
@@ -54,6 +53,7 @@ public class OfferedServices extends Activity {
                                 Intent intent = new Intent(getApplicationContext(), WalkthroughServices.class);
                                 intent.putExtra(Constants.SHARED_PREFERENCE_CLICKED_SERVICE, position);
                                 startActivity(intent);
+                                finish();
                             }
                         }
                 );
@@ -63,11 +63,22 @@ public class OfferedServices extends Activity {
         }
 
     }
+
+    @Override
+    public void onBackPressed(){
+
+        Intent intent = new Intent(getApplicationContext(),WelcomeScreen.class);
+        startActivity(intent);
+        finish();
+    }
+    //Back button control on Title bar
     public boolean onOptionsItemSelected(MenuItem item){
+
         Intent myIntent = new Intent(getApplicationContext(), WelcomeScreen.class);
         startActivityForResult(myIntent, 0);
         finish();
         return true;
+
     }
 
     private void generatePopupMessage(String message){

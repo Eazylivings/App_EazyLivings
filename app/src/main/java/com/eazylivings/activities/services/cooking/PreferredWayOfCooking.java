@@ -13,7 +13,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-
 import com.eazylivings.R;
 import com.eazylivings.activities.WelcomeScreen;
 import com.eazylivings.activities.services.WalkthroughServices;
@@ -25,7 +24,7 @@ public class PreferredWayOfCooking extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_preffered_way_of_cooking);
+        setContentView(R.layout.activity_preferred_way_of_cooking);
         try {
             ActionBar actionBar = getActionBar();
             if (actionBar != null) {
@@ -54,7 +53,7 @@ public class PreferredWayOfCooking extends Activity {
                                     startActivity(intent);
                                     finish();
                                 } else {
-                                    Intent intent = new Intent(getApplicationContext(), WelcomeScreen.class);
+                                    Intent intent = new Intent(getApplicationContext(), CookForVegOrNonVeg.class);
                                     intent.putExtra(Constants.SHARED_PREFERENCE_CLICKED_SERVICE, position);
                                     startActivity(intent);
                                     finish();
@@ -68,10 +67,19 @@ public class PreferredWayOfCooking extends Activity {
         }
     }
     public boolean onOptionsItemSelected(MenuItem item){
-        Intent myIntent = new Intent(getApplicationContext(), WalkthroughServices.class);
+
+        Intent  myIntent = new Intent(getApplicationContext(), WalkthroughServices.class);
         startActivityForResult(myIntent, 0);
         finish();
         return true;
+
+    }
+
+    public void onClickHomeButton(View view){
+
+        Intent intent=new Intent(getApplicationContext(),WelcomeScreen.class);
+        startActivity(intent);
+        finish();
     }
 
     private void generatePopupMessage(String message){
