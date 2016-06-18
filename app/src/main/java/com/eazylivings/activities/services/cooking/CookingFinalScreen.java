@@ -3,8 +3,8 @@ package com.eazylivings.activities.services.cooking;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.View;
 
 import com.eazylivings.R;
@@ -12,18 +12,17 @@ import com.eazylivings.activities.WelcomeScreen;
 import com.eazylivings.commonfuntionality.CommonFunctionality;
 import com.eazylivings.constant.Constants;
 
-public class ConfigureGroceryList extends AppCompatActivity {
+public class CookingFinalScreen extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_configure_grocery_list);
+        setContentView(R.layout.activity_cooking_final_screen);
 
         try {
 
-            CommonFunctionality commonFunctionality=new CommonFunctionality(this);
-            commonFunctionality.setTitleBar(R.id.configureGroceryList_backButton,R.id.configureGroceryList_titleBar,R.id.configureGroceryList_homeButton,Constants.TITLE_CONFIGURE_GROCERY_LIST);
-
+            CommonFunctionality commonFunctionality = new CommonFunctionality(this);
+            commonFunctionality.setTitleBar(R.id.cookSelection_backButton, R.id.cookSelection_titleBar, R.id.cookSelection_homeButton, Constants.TITLE_COOK_SELECTION);
         }catch(Exception e){
             generatePopupMessage(Constants.EXCEPTION_LOADING_PAGE);
         }
@@ -52,18 +51,15 @@ public class ConfigureGroceryList extends AppCompatActivity {
     }
 
     private void generatePopupMessage(String message){
-
-        {
-            AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-            alertDialog.setTitle(Constants.ALERT_TITLE);
-            alertDialog.setMessage(message);
-            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
-            alertDialog.show();
-        }
+        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+        alertDialog.setTitle(Constants.ALERT_TITLE);
+        alertDialog.setMessage(message);
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        alertDialog.show();
     }
 }

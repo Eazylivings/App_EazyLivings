@@ -1,26 +1,23 @@
 package com.eazylivings.activities;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.view.MenuItem;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
 import com.eazylivings.R;
 import com.eazylivings.activities.login.UpdateMyAccount;
 import com.eazylivings.VO.UserDetails;
+import com.eazylivings.commonfuntionality.CommonFunctionality;
 import com.eazylivings.constant.Constants;
 import com.eazylivings.databasehandler.DeviceSetup;
 import com.eazylivings.profile.UserProfileSetup;
 import com.eazylivings.sharedpreference.SharedPreference;
 
-public class MyAccount extends Activity {
+public class MyAccount extends AppCompatActivity {
 
 
 
@@ -30,13 +27,9 @@ public class MyAccount extends Activity {
         setContentView(R.layout.activity_my_account);
 
         try {
-            ActionBar actionBar = getActionBar();
-            if (actionBar != null) {
-                actionBar.setDisplayHomeAsUpEnabled(true);
-                actionBar.setIcon(android.R.color.transparent);
-                setTitle(Constants.TITLE_MY_ACCOUNT);
-                actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor(Constants.BLUE_COLOR)));
-            }
+            CommonFunctionality commonFunctionality=new CommonFunctionality(this);
+            commonFunctionality.setTitleBar(R.id.myAccount_backButton,R.id.myAccount_titleBar,R.id.myAccount_homeButton,Constants.TITLE_MY_ACCOUNT);
+
 
             SharedPreference preference = new SharedPreference(getApplicationContext());
             String userName = preference.getStringValueFromSharedPreference(Constants.SHARED_PREFERENCE_USERNAME);
@@ -60,13 +53,20 @@ public class MyAccount extends Activity {
         finish();
     }
 
-    //Back button control on Title bar
-    public boolean onOptionsItemSelected(MenuItem item){
-        Intent myIntent = new Intent(getApplicationContext(), WelcomeScreen.class);
-        startActivityForResult(myIntent, 0);
+    public void onClickBackButton(View view){
+
+        Intent intent=new Intent(getApplicationContext(),WelcomeScreen.class);
+        startActivity(intent);
         finish();
-        return true;
     }
+
+    public void onClickHomeButton(View view){
+
+        Intent intent=new Intent(getApplicationContext(),WelcomeScreen.class);
+        startActivity(intent);
+        finish();
+    }
+
 
     private void setUserProfile(UserDetails userDetails){
 

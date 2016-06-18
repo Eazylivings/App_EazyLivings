@@ -1,26 +1,25 @@
 package com.eazylivings.activities.services.cooking;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Point;
-import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Display;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import com.eazylivings.R;
 import com.eazylivings.activities.WelcomeScreen;
+import com.eazylivings.commonfuntionality.CommonFunctionality;
 import com.eazylivings.constant.Constants;
+import com.eazylivings.sharedpreference.SharedPreference;
 
-public class CookForVegOrNonVeg extends Activity {
+public class CookForVegOrNonVeg extends AppCompatActivity {
 
     int clickedSelection;
+    String selectedVegOrNonVeg="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,13 +27,9 @@ public class CookForVegOrNonVeg extends Activity {
         setContentView(R.layout.activity_cook_for_veg_or_non_veg);
         try {
 
-            ActionBar actionBar = getActionBar();
-            if (actionBar != null) {
-                actionBar.setDisplayHomeAsUpEnabled(true);
-                actionBar.setIcon(android.R.color.transparent);
-                setTitle(Constants.TITLE_COOK_FOR_VEG_OR_NON_VEG);
-                actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor(Constants.BLUE_COLOR)));
-            }
+            CommonFunctionality commonFunctionality=new CommonFunctionality(this);
+            commonFunctionality.setTitleBar(R.id.cookForVegOrNonVeg_backButton,R.id.cookForVegOrNonVeg_titleBar,R.id.cookForVegOrNonVeg_homeButton,Constants.TITLE_COOK_FOR_VEG_OR_NON_VEG);
+
             setHeightAndWidth();
 
             Bundle bundle = getIntent().getExtras();
@@ -54,14 +49,11 @@ public class CookForVegOrNonVeg extends Activity {
         finish();
     }
 
-    //Back button control on Title bar
-    public boolean onOptionsItemSelected(MenuItem item){
+    public void onClickBackButton(View view){
 
-        Intent myIntent = new Intent(getApplicationContext(), PreferredWayOfCooking.class);
-        startActivityForResult(myIntent, 0);
+        Intent intent=new Intent(getApplicationContext(),PreferredWayOfCooking.class);
+        startActivity(intent);
         finish();
-        return true;
-
     }
 
     public void onClickRadioButton(View view) {
@@ -76,15 +68,18 @@ public class CookForVegOrNonVeg extends Activity {
             switch (view.getId()) {
                 case R.id.cookForVegOrNonVeg_radioButton_veg:
                     if (vegRadio != null && checked) {
+                        selectedVegOrNonVeg="veg";
                     }
                     break;
                 case R.id.cookForVegOrNonVeg_radioButton_nonVeg:
                     if (nonVegRadio != null && checked) {
+                        selectedVegOrNonVeg="nonVeg";
                     }
                     break;
 
                 case R.id.cookForVegOrNonVeg_radioButton_both:
                     if (bothRadio != null && checked) {
+                        selectedVegOrNonVeg="both";
                     }
                     break;
             }
@@ -105,20 +100,22 @@ public class CookForVegOrNonVeg extends Activity {
                     vegRadio.setChecked(true);
                     nonVegRadio.setChecked(false);
                     bothRadio.setChecked(false);
+                    selectedVegOrNonVeg="veg";
                     break;
                 case R.id.cookForVegOrNonVeg_imageView_nonVeg:
                     nonVegRadio.setChecked(true);
                     vegRadio.setChecked(false);
                     bothRadio.setChecked(false);
+                    selectedVegOrNonVeg="nonVeg";
                     break;
 
                 case R.id.cookForVegOrNonVeg_imageView_both:
                     bothRadio.setChecked(true);
                     vegRadio.setChecked(false);
                     nonVegRadio.setChecked(false);
+                    selectedVegOrNonVeg="both";
                     break;
             }
-
     }
 
     public void onClickHomeButton(View view){
@@ -130,29 +127,46 @@ public class CookForVegOrNonVeg extends Activity {
 
     public void onClickSelectCook(View view){
 
-        Intent intent=new Intent(getApplicationContext(),CookSelection.class);
-        startActivity(intent);
-        finish();
+        if(selectedVegOrNonVeg.equalsIgnoreCase("")){
+            generatePopupMessage(Constants.COOK_FOR_VEG_NON_VEG_SELECT_CHOICE);
+        }else {
+            SharedPreference preference=new SharedPreference(getApplicationContext());
+            preference.setStringValueInSharedPreference(Constants.SHARED_PREFERENCE_SELECTED_VEG_NON_VEG,selectedVegOrNonVeg);
+
+            Intent intent = new Intent(getApplicationContext(), CookSelection.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
     private void setHeightAndWidth(){
 
-        Display display = getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-        int width = size.x;
-        int height = size.y;
+        try {
 
-        ImageView vegCook=(ImageView)findViewById(R.id.cookForVegOrNonVeg_imageView_veg);
-        vegCook.getLayoutParams().width = width/4;
-        ImageView nonVegCook=(ImageView)findViewById(R.id.cookForVegOrNonVeg_imageView_nonVeg);
-        nonVegCook.getLayoutParams().width = width/4;
-        ImageView bothCook=(ImageView)findViewById(R.id.cookForVegOrNonVeg_imageView_both);
-        bothCook.getLayoutParams().width = width/4;
+            Display display = getWindowManager().getDefaultDisplay();
+            Point size = new Point();
+            display.getSize(size);
+            int width = size.x;
+            int height = size.y;
 
-        vegCook.requestLayout();
-        nonVegCook.requestLayout();
-        bothCook.requestLayout();
+            //Set Cook images Height and Width
+            ImageView vegCook = (ImageView) findViewById(R.id.cookForVegOrNonVeg_imageView_veg);
+            vegCook.getLayoutParams().width = width / 4;
+            vegCook.getLayoutParams().height = height / 2;
+            ImageView nonVegCook = (ImageView) findViewById(R.id.cookForVegOrNonVeg_imageView_nonVeg);
+            nonVegCook.getLayoutParams().width = width / 4;
+            nonVegCook.getLayoutParams().height = height / 2;
+            ImageView bothCook = (ImageView) findViewById(R.id.cookForVegOrNonVeg_imageView_both);
+            bothCook.getLayoutParams().width = width / 4;
+            bothCook.getLayoutParams().height = height / 2;
+
+
+            vegCook.requestLayout();
+            nonVegCook.requestLayout();
+            bothCook.requestLayout();
+        }catch(Exception e){
+            generatePopupMessage(Constants.EXCEPTION_SETTING_WIDTH_HEIGHT);
+        }
 
     }
 

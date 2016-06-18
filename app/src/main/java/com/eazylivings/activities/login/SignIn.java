@@ -1,25 +1,22 @@
 package com.eazylivings.activities.login;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
-import android.view.MenuItem;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import com.eazylivings.R;
 import com.eazylivings.activities.WelcomeScreen;
+import com.eazylivings.commonfuntionality.CommonFunctionality;
 import com.eazylivings.databasehandler.ServerDatabaseHandler;
 import com.eazylivings.constant.Constants;
 import com.eazylivings.validator.Validator;
 
-public class SignIn extends Activity {
+public class SignIn extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,13 +27,9 @@ public class SignIn extends Activity {
             if (progressBar != null) {
                 progressBar.setVisibility(View.INVISIBLE);
             }
-            ActionBar actionBar = getActionBar();
-            if (actionBar != null) {
-                actionBar.setDisplayHomeAsUpEnabled(true);
-                actionBar.setIcon(android.R.color.transparent);
-                setTitle(Constants.SIGN_IN_TITLE);
-                actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor(Constants.BLUE_COLOR)));
-            }
+            CommonFunctionality commonFunctionality=new CommonFunctionality(this);
+            commonFunctionality.setTitleBar(R.id.signIn_backButton,R.id.signIn_titleBar,R.id.signIn_homeButton,Constants.TITLE_SIGN_IN);
+
         }catch(Exception e){
             generatePopupMessage(Constants.EXCEPTION_LOADING_PAGE);
         }
@@ -49,13 +42,20 @@ public class SignIn extends Activity {
         finish();
     }
 
-    //Back button control on Title bar
-    public boolean onOptionsItemSelected(MenuItem item){
-        Intent myIntent = new Intent(getApplicationContext(), WelcomeScreen.class);
-        startActivityForResult(myIntent, 0);
+    public void onClickHomeButton(View view){
+
+        Intent intent=new Intent(getApplicationContext(),WelcomeScreen.class);
+        startActivity(intent);
         finish();
-        return true;
     }
+
+    public void onClickBackButton(View view){
+
+        Intent intent=new Intent(getApplicationContext(),WelcomeScreen.class);
+        startActivity(intent);
+        finish();
+    }
+
 
     public void onClickLoginButton(View view) {
         try {

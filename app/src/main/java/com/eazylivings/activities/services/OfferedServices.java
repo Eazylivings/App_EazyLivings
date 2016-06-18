@@ -1,14 +1,10 @@
 package com.eazylivings.activities.services;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.view.MenuItem;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
@@ -17,9 +13,10 @@ import com.eazylivings.activities.WelcomeScreen;
 import com.eazylivings.adapter.ServicesOfferedAdaptor;
 
 import com.eazylivings.R;
+import com.eazylivings.commonfuntionality.CommonFunctionality;
 import com.eazylivings.constant.Constants;
 
-public class OfferedServices extends Activity {
+public class OfferedServices extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,15 +25,8 @@ public class OfferedServices extends Activity {
 
         try {
 
-
-            ActionBar actionBar = getActionBar();
-            if (actionBar != null) {
-                actionBar.setDisplayHomeAsUpEnabled(true);
-                actionBar.setIcon(android.R.color.transparent);
-                setTitle(Constants.OFFERED_SERVICES_TITLE);
-                actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor(Constants.BLUE_COLOR)));
-            }
-
+            CommonFunctionality commonFunctionality=new CommonFunctionality(this);
+            commonFunctionality.setTitleBar(R.id.offeredServices_backButton,R.id.offeredServices_titleBar,R.id.offeredServices_homeButton,Constants.TITLE_OFFERED_SERVICES);
 
             String services[] = {"0", "1", "2", "3"};
             ListAdapter listAdapter = new ServicesOfferedAdaptor(this, services);
@@ -71,14 +61,11 @@ public class OfferedServices extends Activity {
         startActivity(intent);
         finish();
     }
-    //Back button control on Title bar
-    public boolean onOptionsItemSelected(MenuItem item){
+    public void onClickBackButton(View view){
 
-        Intent myIntent = new Intent(getApplicationContext(), WelcomeScreen.class);
-        startActivityForResult(myIntent, 0);
+        Intent intent=new Intent(getApplicationContext(),WelcomeScreen.class);
+        startActivity(intent);
         finish();
-        return true;
-
     }
 
     private void generatePopupMessage(String message){

@@ -1,21 +1,19 @@
 package com.eazylivings.activities.services.flatsetup;
 
-import android.app.ActionBar;
-import android.app.Activity;
+
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
-import android.view.MenuItem;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.eazylivings.R;
 import com.eazylivings.activities.WelcomeScreen;
+import com.eazylivings.commonfuntionality.CommonFunctionality;
 import com.eazylivings.constant.Constants;
 
-public class SelectItemsForFlat extends Activity {
+public class SelectItemsForFlat extends AppCompatActivity {
 
     int clickedSubService;
 
@@ -26,14 +24,9 @@ public class SelectItemsForFlat extends Activity {
 
         try {
 
+            CommonFunctionality commonFunctionality=new CommonFunctionality(this);
+            commonFunctionality.setTitleBar(R.id.selectItemsForFlat_backButton,R.id.selectItemsForFlat_titleBar,R.id.selectItemsForFlat_homeButton,Constants.TITLE_SELECT_ITEMS_FOR_FLAT);
 
-            ActionBar actionBar = getActionBar();
-            if (actionBar != null) {
-                actionBar.setDisplayHomeAsUpEnabled(true);
-                actionBar.setIcon(android.R.color.transparent);
-                setTitle(Constants.TITLE_SELECT_ITEMS_FOR_FLAT);
-                actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor(Constants.BLUE_COLOR)));
-            }
 
             Bundle bundle = getIntent().getExtras();
             if (bundle != null) {
@@ -53,14 +46,11 @@ public class SelectItemsForFlat extends Activity {
         finish();
     }
 
-    //Back button control on Title bar
-    public boolean onOptionsItemSelected(MenuItem item){
+    public void onClickBackButton(View view){
 
-        Intent myIntent = new Intent(getApplicationContext(), FlatSubServices.class);
-        startActivityForResult(myIntent, 0);
+        Intent intent=new Intent(getApplicationContext(),FlatSubServices.class);
+        startActivity(intent);
         finish();
-        return true;
-
     }
 
     public void onClickHomeButton(View view){

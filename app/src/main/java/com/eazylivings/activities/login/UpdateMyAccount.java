@@ -1,25 +1,22 @@
 package com.eazylivings.activities.login;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.view.MenuItem;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
-
 import com.eazylivings.R;
 import com.eazylivings.VO.UserDetails;
 import com.eazylivings.activities.MyAccount;
+import com.eazylivings.activities.WelcomeScreen;
+import com.eazylivings.commonfuntionality.CommonFunctionality;
 import com.eazylivings.constant.Constants;
 import com.eazylivings.databasehandler.ServerDatabaseHandler;
 import com.eazylivings.sharedpreference.SharedPreference;
 
-public class UpdateMyAccount extends Activity {
+public class UpdateMyAccount extends AppCompatActivity {
 
     String previousUserName="";
     String previousEmailAddress="";
@@ -35,13 +32,9 @@ public class UpdateMyAccount extends Activity {
 
         try {
 
-            ActionBar actionBar = getActionBar();
-            if (actionBar != null) {
-                actionBar.setDisplayHomeAsUpEnabled(true);
-                actionBar.setIcon(android.R.color.transparent);
-                setTitle(Constants.TITLE_UPDATE_ACCOUNT);
-                actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor(Constants.BLUE_COLOR)));
-            }
+            CommonFunctionality commonFunctionality=new CommonFunctionality(this);
+            commonFunctionality.setTitleBar(R.id.updateMyAccount_backButton,R.id.updateMyAccount_titleBar,R.id.updateMyAccount_homeButton,Constants.TITLE_UPDATE_ACCOUNT);
+
 
             SharedPreference sharedPreference = new SharedPreference(getApplicationContext());
 
@@ -97,7 +90,7 @@ public class UpdateMyAccount extends Activity {
     }
 
     //Back button control on Title bar
-    public boolean onOptionsItemSelected(MenuItem item){
+    public boolean onClickBackButton(View view){
 
         SharedPreference sharedPreference = new SharedPreference(getApplicationContext());
 
@@ -126,6 +119,35 @@ public class UpdateMyAccount extends Activity {
         }else{
             generatePopupMessage(Constants.UPDATE_ACCOUNT);
             return true;
+        }
+    }
+
+    public void onClickHomeButton(View view){
+
+        SharedPreference sharedPreference = new SharedPreference(getApplicationContext());
+
+        previousUserName = sharedPreference.getStringValueFromSharedPreference(Constants.SHARED_PREFERENCE_USERNAME);
+        previousEmailAddress = sharedPreference.getStringValueFromSharedPreference(Constants.SHARED_PREFERENCE_EMAIL_ADDRESS);
+        previousContactNumber = sharedPreference.getStringValueFromSharedPreference(Constants.SERVER_HANDLER_PHONE_NUMBER);
+        previousResidentialAddress = sharedPreference.getStringValueFromSharedPreference(Constants.SHARED_PREFERENCE_ADDRESS);
+
+
+        EditText userName=(EditText)findViewById(R.id.updateMyAccount_editText_userName);
+        EditText emailAddress=(EditText)findViewById(R.id.updateMyAccount_editText_emailAddress);
+        EditText contactNumber=(EditText)findViewById(R.id.updateMyAccount_editText_contactNumber);
+        EditText residentialAddress=(EditText)findViewById(R.id.updateMyAccount_editText_residentialAddress);
+
+        if(userName!=null && emailAddress!=null && contactNumber!=null && residentialAddress!=null) {
+
+            if (userName.getText().toString().equalsIgnoreCase(previousUserName) || emailAddress.getText().toString().equalsIgnoreCase(previousEmailAddress) || contactNumber.getText().toString().equalsIgnoreCase(previousContactNumber) || residentialAddress.getText().toString().equalsIgnoreCase(previousResidentialAddress)) {
+                Intent myIntent = new Intent(getApplicationContext(), WelcomeScreen.class);
+                startActivityForResult(myIntent, 0);
+                finish();
+            } else {
+                generatePopupMessage(Constants.UPDATE_ACCOUNT);
+            }
+        }else{
+            generatePopupMessage(Constants.UPDATE_ACCOUNT);
         }
     }
 

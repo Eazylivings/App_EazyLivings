@@ -1,16 +1,10 @@
 package com.eazylivings.activities.services.flatsetup;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
-import android.view.MenuItem;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
@@ -19,9 +13,10 @@ import com.eazylivings.R;
 import com.eazylivings.activities.WelcomeScreen;
 import com.eazylivings.activities.services.OfferedServices;
 import com.eazylivings.adapter.OptionFlatSubServiceAdaptor;
+import com.eazylivings.commonfuntionality.CommonFunctionality;
 import com.eazylivings.constant.Constants;
 
-public class FlatSubServices extends Activity {
+public class FlatSubServices extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,14 +24,9 @@ public class FlatSubServices extends Activity {
         setContentView(R.layout.activity_flat_sub_services);
 
         try {
+            CommonFunctionality commonFunctionality=new CommonFunctionality(this);
+            commonFunctionality.setTitleBar(R.id.flatSubServices_backButton,R.id.flatSubServices_titleBar,R.id.flatSubServices_homeButton,Constants.TITLE_FLAT_SUB_SERVICE);
 
-            ActionBar actionBar = getActionBar();
-            if (actionBar != null) {
-                actionBar.setDisplayHomeAsUpEnabled(true);
-                actionBar.setIcon(android.R.color.transparent);
-                actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor(Constants.BLUE_COLOR)));
-                setTitle(Constants.TITLE_FLAT_SUB_SERVICE);
-            }
 
             String services[] = {"0", "1", "2", "3","4"};
             ListAdapter listAdapter = new OptionFlatSubServiceAdaptor(this, services);
@@ -72,14 +62,11 @@ public class FlatSubServices extends Activity {
         finish();
     }
 
-    //Back button control on Title bar
-    public boolean onOptionsItemSelected(MenuItem item){
+    public void onClickBackButton(View view){
 
-
-        Intent myIntent = new Intent(getApplicationContext(), OfferedServices.class);
-        startActivityForResult(myIntent, 0);
+        Intent intent=new Intent(getApplicationContext(),OfferedServices.class);
+        startActivity(intent);
         finish();
-        return true;
     }
 
     public void onClickHomeButton(View view){

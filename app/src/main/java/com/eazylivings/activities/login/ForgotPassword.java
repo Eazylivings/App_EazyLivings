@@ -1,24 +1,23 @@
 package com.eazylivings.activities.login;
 
-import android.app.ActionBar;
-import android.app.Activity;
+
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
-import android.view.MenuItem;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import com.eazylivings.R;
+import com.eazylivings.activities.WelcomeScreen;
+import com.eazylivings.commonfuntionality.CommonFunctionality;
 import com.eazylivings.constant.Constants;
 import com.eazylivings.databasehandler.ServerDatabaseHandler;
 import com.eazylivings.validator.Validator;
 
-public class ForgotPassword extends Activity {
+public class ForgotPassword extends AppCompatActivity {
 
     Button signInButton;
 
@@ -27,13 +26,11 @@ public class ForgotPassword extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
         try {
-            ActionBar actionBar = getActionBar();
-            if (actionBar != null) {
-                actionBar.setDisplayHomeAsUpEnabled(true);
-                actionBar.setIcon(android.R.color.transparent);
-                setTitle(Constants.FORGOT_PASSWORD_TITLE);
-                actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor(Constants.BLUE_COLOR)));
-            }
+
+            CommonFunctionality commonFunctionality=new CommonFunctionality(this);
+            commonFunctionality.setTitleBar(R.id.forgotPassword_backButton,R.id.forgotPassword_titleBar,R.id.forgotPassword_homeButton,Constants.TITLE_FORGOT_PASSWORD);
+
+
             signInButton = (Button) findViewById(R.id.forgotPassword_button_signIn);
             if (signInButton != null) {
                 signInButton.setVisibility(View.INVISIBLE);
@@ -50,14 +47,20 @@ public class ForgotPassword extends Activity {
         startActivity(intent);
         finish();
     }
+    public void onClickHomeButton(View view){
 
-    //Back button control on Title bar
-    public boolean onOptionsItemSelected(MenuItem item){
-        Intent myIntent = new Intent(getApplicationContext(), SignIn.class);
-        startActivityForResult(myIntent, 0);
+        Intent intent=new Intent(getApplicationContext(),WelcomeScreen.class);
+        startActivity(intent);
         finish();
-        return true;
     }
+
+    public void onClickBackButton(View view){
+
+        Intent intent=new Intent(getApplicationContext(),SignIn.class);
+        startActivity(intent);
+        finish();
+    }
+
     public void onClickSignUp(View view){
 
         Intent intent=new Intent(getApplicationContext(),SignUp.class);

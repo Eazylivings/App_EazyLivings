@@ -28,48 +28,58 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activities.login.SignIn"
-            android:theme="@android:style/Theme.WithActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
         <activity
             android:name=".activities.login.ForgotPassword"
-            android:theme="@android:style/Theme.WithActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
         <activity
             android:name=".activities.login.SignUp"
-            android:theme="@android:style/Theme.WithActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
         <activity
             android:name=".activities.MyAccount"
-            android:theme="@android:style/Theme.WithActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
         <activity
             android:name=".activities.services.WalkthroughServices"
-            android:theme="@android:style/Theme.WithActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
         <activity
             android:name=".activities.services.OfferedServices"
-            android:theme="@android:style/Theme.WithActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
         <activity
             android:name=".activities.services.flatsetup.FlatSubServices"
-            android:theme="@android:style/Theme.WithActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
         <activity
             android:name=".activities.services.cooking.PreferredWayOfCooking"
-            android:theme="@android:style/Theme.WithActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
         <activity
             android:name=".activities.login.UpdateMyAccount"
-            android:theme="@android:style/Theme.WithActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
         <activity
             android:name=".activities.services.cooking.CookForVegOrNonVeg"
-            android:theme="@android:style/Theme.WithActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
         <activity
             android:name=".activities.services.cooking.CookSelection"
-            android:theme="@android:style/Theme.WithActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
         <activity
             android:name=".activities.services.cooking.ConfigureGroceryList"
-            android:theme="@android:style/Theme.WithActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
         <activity
             android:name=".activities.AboutUs"
-            android:theme="@android:style/Theme.WithActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
         <activity
             android:name=".activities.ContactUs"
-            android:theme="@android:style/Theme.WithActionBar" />
-        <activity android:name=".activities.services.flatsetup.SelectItemsForFlat"
-            android:theme="@android:style/Theme.WithActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
+        <activity
+            android:name=".activities.services.flatsetup.SelectItemsForFlat"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
+        <activity
+            android:name=".activities.services.cooking.CookingFinalScreen"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"/>
+        <activity
+            android:name=".activities.services.cooking.SelectGrocery"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"/>
+        <activity
+            android:name=".Template"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"></activity>
     </application>
 
 </manifest>

@@ -1,17 +1,13 @@
 package com.eazylivings.activities.services;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Point;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.method.ScrollingMovementMethod;
 import android.view.Display;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -21,38 +17,23 @@ import com.eazylivings.activities.WelcomeScreen;
 import com.eazylivings.activities.login.SignIn;
 import com.eazylivings.activities.services.cooking.PreferredWayOfCooking;
 import com.eazylivings.activities.services.flatsetup.FlatSubServices;
+import com.eazylivings.commonfuntionality.CommonFunctionality;
 import com.eazylivings.constant.Constants;
 import com.eazylivings.sharedpreference.SharedPreference;
 
-public class WalkthroughServices extends Activity {
+public class WalkthroughServices extends AppCompatActivity {
 
     int clickedService;
-    int displayScreenHeight;
-    int displayScreenWidth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_walkthrough_services);
 
         try {
-
-            Display display = getWindowManager().getDefaultDisplay();
-            Point size = new Point();
-            display.getSize(size);
-            displayScreenHeight = size.x;
-            displayScreenWidth = size.y;
-
             Bundle bundle = getIntent().getExtras();
             if (bundle != null) {
                 clickedService = bundle.getInt(Constants.SHARED_PREFERENCE_CLICKED_SERVICE);
             }
-            ActionBar actionBar = getActionBar();
-            if (actionBar != null) {
-                actionBar.setDisplayHomeAsUpEnabled(true);
-                actionBar.setIcon(android.R.color.transparent);
-                actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor(Constants.BLUE_COLOR)));
-            }
-
             setServiceBasedContent(clickedService);
         }catch(Exception e){
             generatePopupMessage(Constants.EXCEPTION_LOADING_PAGE);
@@ -67,11 +48,18 @@ public class WalkthroughServices extends Activity {
         finish();
     }
 
-    public boolean onOptionsItemSelected(MenuItem item){
-        Intent myIntent = new Intent(getApplicationContext(), OfferedServices.class);
-        startActivityForResult(myIntent, 0);
+    public void onClickBackButton(View view){
+
+        Intent intent=new Intent(getApplicationContext(),OfferedServices.class);
+        startActivity(intent);
         finish();
-        return true;
+    }
+
+    public void onClickHomeButton(View view){
+
+        Intent intent=new Intent(getApplicationContext(),WelcomeScreen.class);
+        startActivity(intent);
+        finish();
     }
 
     public void onClickLetMeChoose(View view){
@@ -105,7 +93,12 @@ public class WalkthroughServices extends Activity {
     private void setServiceBasedContent(int serviceSelected){
 
         try {
+            CommonFunctionality commonFunctionality=new CommonFunctionality(this);
 
+            Display display = getWindowManager().getDefaultDisplay();
+            Point size = new Point();
+            display.getSize(size);
+            int displayScreenHeight = size.x;
 
             RelativeLayout layout = (RelativeLayout) findViewById(R.id.walkthroughServices_relativelayout);
             TextView textView = (TextView) findViewById(R.id.walkthroughService_textView_steps);
@@ -120,7 +113,7 @@ public class WalkthroughServices extends Activity {
                 switch (serviceSelected) {
 
                     case 0:
-                        setTitle(Constants.WALK_THROUGH_SERVICES_FLAT_TITLE);
+                        commonFunctionality.setTitleBar(R.id.walkThroughServices_backButton,R.id.walkThroughServices_titleBar,R.id.walkThroughServices_homeButton,Constants.TITLE_WALK_THROUGH_SERVICES_FLAT);
                         layout.setBackgroundResource(R.drawable.blur_background_services_description);
                         textViewText = "1. Choose all the amenities you want in your flat.\n\n" +
                                 "2. Select other services if required and configure them.\n\n" +
@@ -132,7 +125,7 @@ public class WalkthroughServices extends Activity {
                         break;
 
                     case 1:
-                        setTitle(Constants.WALK_THROUGH_SERVICES_COOKING_TITLE);
+                        commonFunctionality.setTitleBar(R.id.walkThroughServices_backButton,R.id.walkThroughServices_titleBar,R.id.walkThroughServices_homeButton,Constants.TITLE_WALK_THROUGH_SERVICES_COOKING);
                         layout.setBackgroundResource(R.drawable.blur_background_services_description);
                         textViewText = "1. Select the preferred way of cooking which can be either cook or a mess.\n\n" +
                                 "2. If it is cook or self cooking, configure your weekly and monthly grocery list in our planner. We will provide those items on weekly and monthly basis.\n\n" +
@@ -142,7 +135,8 @@ public class WalkthroughServices extends Activity {
                         break;
 
                     case 2:
-                        setTitle(Constants.WALK_THROUGH_SERVICES_CLEANING_TITLE);
+
+                        commonFunctionality.setTitleBar(R.id.walkThroughServices_backButton,R.id.walkThroughServices_titleBar,R.id.walkThroughServices_homeButton,Constants.TITLE_WALK_THROUGH_SERVICES_CLEANING);
                         layout.setBackgroundResource(R.drawable.blur_background_services_description);
                         textViewText = "1. Select the preferred choice of cleaner you want.\n\n" +
                                 "2.Configure the areas and type of cleaning you want on daily, weekly and monthly basis.\n\n" +
@@ -152,7 +146,7 @@ public class WalkthroughServices extends Activity {
                         break;
 
                     case 3:
-                        setTitle(Constants.WALK_THROUGH_SERVICES_WASHING_TITLE);
+                        commonFunctionality.setTitleBar(R.id.walkThroughServices_backButton,R.id.walkThroughServices_titleBar,R.id.walkThroughServices_homeButton,Constants.TITLE_WALK_THROUGH_SERVICES_WASHING);
                         layout.setBackgroundResource(R.drawable.blur_background_services_description);
                         textViewText = "1. Select the type of washing you want.\n\n" +
                                 "2. Configure the washing preferences along with numbers of clothes on average and whether it is weekly once or twice.\n\n" +

@@ -7,29 +7,58 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingTop="5dp"
     tools:context=".activities.services.cooking.PreferredWayOfCooking"
     android:id="@+id/choiceOfCooking_relativeLayout"
     android:background="#FFFFFF">
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/preferredWayOfCooking_backButton"
+        android:onClick="onClickBackButton"
+        android:layout_gravity="top|start"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/preferredWayOfCooking_titleBar"
+        android:layout_toStartOf="@+id/preferredWayOfCooking_titleBar"
+        android:src="@drawable/arrow_back"
+        android:layout_marginRight="2dp" />
+
+    <TextView
+        android:layout_height="50dp"
+        android:layout_width="200dp"
+        android:id="@+id/preferredWayOfCooking_titleBar"
+        android:background="#2E9AFE"
+        android:textColor="#FFFFFF"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:layout_gravity="top"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp" />
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/preferredWayOfCooking_homeButton"
+        android:src="@drawable/home_icon"
+        android:onClick="onClickHomeButton"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="top|end"
+        android:layout_toRightOf="@+id/preferredWayOfCooking_titleBar"
+        android:layout_toEndOf="@+id/preferredWayOfCooking_titleBar"
+        android:layout_marginLeft="2dp" />
+
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/preferredWayOfCooking_listView"
         android:layout_centerVertical="true"
+        android:layout_below="@+id/preferredWayOfCooking_titleBar"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        />
-
-    <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:id="@+id/preferredWayOfCooking_homeButton"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_gravity="top|end"
-        android:src="@drawable/home_icon"
-        android:clickable="false"
-        android:onClick="onClickHomeButton" />
+        android:layout_marginTop="20dp" />
 
 </RelativeLayout>

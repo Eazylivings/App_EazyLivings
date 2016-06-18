@@ -6,24 +6,61 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:layout_marginTop="25dp"
+    android:paddingTop="5dp"
     tools:context="com.eazylivings.activities.login.SignIn"
     android:background="#FFFFFF">
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/signIn_backButton"
+        android:onClick="onClickBackButton"
+        android:layout_gravity="top|start"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/signIn_titleBar"
+        android:layout_toStartOf="@+id/signIn_titleBar"
+        android:src="@drawable/arrow_back"
+        android:layout_marginRight="2dp" />
+
+    <TextView
+        android:layout_height="50dp"
+        android:layout_width="200dp"
+        android:id="@+id/signIn_titleBar"
+        android:background="#2E9AFE"
+        android:textColor="#FFFFFF"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:layout_gravity="top"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp" />
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/signIn_homeButton"
+        android:src="@drawable/home_icon"
+        android:onClick="onClickHomeButton"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="top|end"
+        android:layout_toRightOf="@+id/signIn_titleBar"
+        android:layout_toEndOf="@+id/signIn_titleBar"
+        android:layout_marginLeft="2dp" />
+
+
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/loginpagedesc"
         android:id="@+id/loginPage_text_view_details_desc"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/signIn_titleBar"
         android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:layout_marginTop="1dp"
-        android:layout_alignBottom="@+id/loginPage_progressBar_progress"
-        android:textColor="#000000" />
+        android:textColor="#000000"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp" />
 
     <EditText
         android:layout_width="360dp"
@@ -33,12 +70,12 @@
         android:ems="10"
         android:id="@+id/loginPage_editText_userName"
         android:gravity="center"
-        android:layout_marginTop="80dp"
         android:textColor="#000000"
         android:hint="@string/user_name"
         android:background="@drawable/rounded_edittext"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/loginPage_text_view_details_desc"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp" />
 
     <EditText
         android:layout_width="360dp"
@@ -51,10 +88,9 @@
         android:hint="@string/password"
         android:background="@drawable/rounded_edittext"
         android:textColor="#000000"
-        android:layout_marginTop="15dp"
         android:layout_below="@+id/loginPage_editText_userName"
         android:layout_centerHorizontal="true"
-       />
+        android:layout_marginTop="15dp" />
 
     <Button
         android:layout_height="50dp"

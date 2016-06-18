@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/cookDescription_linearLayout_child">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Description"
+        android:id="@+id/cookDescription_textView_description"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="15dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Small Text"
+        android:id="@+id/cookDescription_textView_cookDescription"
+        android:layout_below="@+id/cookDescription_textView_description"
+        android:layout_marginBottom="15dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Specialization"
+        android:id="@+id/cookDescription_textView_specialization"
+        android:layout_below="@+id/cookDescription_textView_cookDescription"
+        android:layout_marginBottom="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Small Text"
+        android:id="@+id/cookDescription_textView_cookSpecialization"
+        android:layout_below="@+id/cookDescription_textView_specialization"  />
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/cookDescription_textView_cookSpecialization"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/gridLayout">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/cookSelection_imageView_breakfast"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:src="@drawable/breakfast_image"
+            android:layout_gravity="center_horizontal" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/cookSelection_imageView_lunch"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:src="@drawable/lunch_image"
+            android:layout_gravity="right" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/cookSelection_imageView_dinner"
+            android:layout_row="0"
+            android:layout_column="2"
+            android:src="@drawable/dinner_image"
+            android:layout_gravity="right" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Breakfast"
+            android:id="@+id/cookSelection_checkBox_breakfast"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:layout_marginLeft="10dp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lunch"
+            android:id="@+id/cookSelection_checkBox_lunch"
+            android:layout_row="1"
+            android:layout_column="1"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dinner"
+            android:id="@+id/cookSelection_checkBox_dinner"
+            android:layout_row="1"
+            android:layout_column="2"
+            android:layout_marginLeft="10dp" />
+    </GridLayout>
+
+    <Button
+        android:layout_height="50dp"
+        android:layout_width="150dp"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/button2"
+        android:onClick="onClickContinue"
+        android:background="#2E9AFE"
+        android:textColor="@drawable/button_text_color"
+        android:text="Continue"
+        android:textSize="18dp"
+        android:layout_below="@+id/gridLayout"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

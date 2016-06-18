@@ -1,34 +1,30 @@
 package com.eazylivings.activities.login;
 
-import android.app.ActionBar;
-import android.app.Activity;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
-import android.view.MenuItem;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
-
 import com.eazylivings.R;
 import com.eazylivings.VO.UserDetails;
+import com.eazylivings.activities.WelcomeScreen;
+import com.eazylivings.commonfuntionality.CommonFunctionality;
 import com.eazylivings.constant.Constants;
 import com.eazylivings.databasehandler.ServerDatabaseHandler;
 import com.eazylivings.validator.Validator;
 
-public class SignUp extends Activity {
+public class SignUp extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        ActionBar actionBar = getActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setIcon(android.R.color.transparent);
-            setTitle(Constants.SIGN_UP_TITLE);
-        }
+        CommonFunctionality commonFunctionality=new CommonFunctionality(this);
+        commonFunctionality.setTitleBar(R.id.signUp_backButton,R.id.signUp_titleBar,R.id.signUp_homeButton,Constants.TITLE_SIGN_UP);
     }
 
 
@@ -39,12 +35,18 @@ public class SignUp extends Activity {
         finish();
     }
 
-    //Back button control on Title bar
-    public boolean onOptionsItemSelected(MenuItem item){
-        Intent myIntent = new Intent(getApplicationContext(), SignIn.class);
-        startActivityForResult(myIntent, 0);
+    public void onClickBackButton(View view){
+
+        Intent intent=new Intent(getApplicationContext(),SignIn.class);
+        startActivity(intent);
         finish();
-        return true;
+    }
+
+    public void onClickHomeButton(View view){
+
+        Intent intent=new Intent(getApplicationContext(),WelcomeScreen.class);
+        startActivity(intent);
+        finish();
     }
 
     public void onClickSignUpButton(View view) {

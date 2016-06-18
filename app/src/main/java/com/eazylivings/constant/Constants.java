@@ -46,6 +46,8 @@ public class Constants {
     public static final String SERVER_HANDLER_LOGIN_FAIL_POPUP="Failed to login. Please try again later.";
     public static final String REGISTRATION_SUCCESS_POPUP="Successfully Registered. Welcome to EazyLivings. You will be redirected to Home page.";
     public static final String LOGIN_TO_PROCEED="Please login to proceed further";
+    public static final String COOK_FOR_VEG_NON_VEG_SELECT_CHOICE="Please select one of the options.";
+    public static final String CHECK_BOX_SELECTION="Please choose alteast two options.";
 
     //URLS
     public final static String LOGIN_URL="http://eazylivings.com/login.php";
@@ -61,18 +63,18 @@ public class Constants {
     public static final String ALERT_CONFIRM="Confirm";
 
     //Action Bar Titles
-    public static final String OFFERED_SERVICES_TITLE="EazyLivings's Offerings";
-    public static final String WALK_THROUGH_SERVICES_FLAT_TITLE="";
-    public static final String WALK_THROUGH_SERVICES_COOKING_TITLE="";
-    public static final String WALK_THROUGH_SERVICES_CLEANING_TITLE="";
-    public static final String WALK_THROUGH_SERVICES_WASHING_TITLE="";
-    public static final String FORGOT_PASSWORD_TITLE="Forgot Password";
-    public static final String SIGN_UP_TITLE ="Sign Up";
-    public static final String SIGN_IN_TITLE="Sign In";
-    public static final String PREFERRED_WAY_OF_COOKING ="Preferred Choice";
-    public static final String CONFIGURE_GROCERY_LIST_TITLE="Configure Grocery";
-    public static final String TITLE_COOK_FOR_VEG_OR_NON_VEG ="Select Type";
-    public static final String TITLE_COOK_SELECTION ="Select Cook";
+    public static final String TITLE_OFFERED_SERVICES="EazyLivings's Offerings";
+    public static final String TITLE_WALK_THROUGH_SERVICES_FLAT ="FLAT SETUP";
+    public static final String TITLE_WALK_THROUGH_SERVICES_COOKING ="COOKING";
+    public static final String TITLE_WALK_THROUGH_SERVICES_CLEANING ="CLEANING";
+    public static final String TITLE_WALK_THROUGH_SERVICES_WASHING ="WASHING";
+    public static final String TITLE_FORGOT_PASSWORD ="Forgot Password";
+    public static final String TITLE_SIGN_UP ="Sign Up";
+    public static final String TITLE_SIGN_IN ="Sign In";
+    public static final String TITLE_PREFERRED_WAY_OF_COOKING ="Preferred Choice";
+    public static final String TITLE_CONFIGURE_GROCERY_LIST="Configure Grocery";
+    public static final String TITLE_COOK_FOR_VEG_OR_NON_VEG ="SELECT TYPE";
+    public static final String TITLE_COOK_SELECTION ="SELECT COOK";
     public static final String TITLE_MY_ACCOUNT ="My Account";
     public static final String TITLE_ABOUT_US="About Us";
     public static final String TITLE_CONTACT_US="Contact Us";
@@ -94,6 +96,11 @@ public class Constants {
     public static final String SHARED_PREFERENCE_CONTACT_NUMBER="contactNumber";
     public static final String SHARED_PREFERENCE_ADDRESS="address";
     public static final String SHARED_PREFERENCE_PREVIOUS_ACTIVITY ="previousActivity";
+    public static final String SHARED_PREFERENCE_SELECTED_VEG_NON_VEG="selectedVegOrNonVeg";
+    public static final String SHARED_PREFERENCE_MEALS_CHOICE="mealChoice";
+    public static final String SHARED_PREFERENCE_COOK_CHOICE="cookCohice";
+    public static final String SHARED_PREFERENCE_PREFERRED_WAY_OF_COOKING="preferredWayOfCooking";
+
 
     //Exception messages
     public static final String EXCEPTION_LOADING_PAGE="Unable to load the page. Please try again after sometime.";
@@ -102,6 +109,7 @@ public class Constants {
     public static final String EXCEPTION_UPDATE_INFORMATION="Failed to save information. Try again after sometime.";
     public static final String EXCEPTION_COOK_FOR_VEG_OR_NON_VEG ="Failed to select any selection. Please try again after sometime.";
     public static final String EXCEPTION_SERVER_HANDLER_CONNECTION_FAILED="Failed ot connect with server.Please try again after sometime.";
+    public static final String EXCEPTION_SETTING_WIDTH_HEIGHT="Failed to personalize the view. Try again later";
 
 
 
@@ -146,6 +154,12 @@ public class Constants {
     public static final String INTRODUCTION_PREFERRED_WAY_OF_COOKING_COOK="Automate grocery list. Cook will come and cook for you";
     public static final String INTRODUCTION_PREFERRED_WAY_OF_COOKING_MESS="Don't want cook or cook yourself No worry. Find a mess nearby your place";
     public static final String INTRODUCTION_PREFERRED_WAY_OF_COOKING_GROCERY="Automate grocery list and cook yourself";
+
+
+    public static final String COOK_SELECTION_BREAKFAST_LUNCH="breakfast_lunch";
+    public static final String COOK_SELECTION_BREAKFAST_DINNER="breakfast_dinner";
+    public static final String COOK_SELECTION_LUNCH_DINNER="lunch_dinner";
+    public static final String COOK_SELECTION_BREAKFAST_LUNCH_DINNER="breakfast_lunch_dinner";
 
 
 
