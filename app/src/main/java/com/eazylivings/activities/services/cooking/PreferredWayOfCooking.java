@@ -3,10 +3,13 @@ package com.eazylivings.activities.services.cooking;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import com.eazylivings.R;
@@ -33,7 +36,6 @@ public class PreferredWayOfCooking extends AppCompatActivity {
             ListView listView = (ListView) findViewById(R.id.preferredWayOfCooking_listView);
             if (listView != null) {
                 listView.setAdapter(listAdapter);
-
                 listView.setOnItemClickListener(
 
                         new AdapterView.OnItemClickListener() {
@@ -51,12 +53,13 @@ public class PreferredWayOfCooking extends AppCompatActivity {
                                     finish();
                                 }else if (position == 1) {
 
-                                    Intent intent = new Intent(getApplicationContext(), CookForVegOrNonVeg.class);
+                                    Intent intent = new Intent(getApplicationContext(), ConfigureGroceryList.class);
                                     intent.putExtra(Constants.SHARED_PREFERENCE_CLICKED_SERVICE, position);
                                     startActivity(intent);
                                     finish();
                                 } else {
-                                    Intent intent = new Intent(getApplicationContext(), SelectGrocery.class);
+                                    preference.setStringValueInSharedPreference(Constants.SHARED_PREFERENCE_PREVIOUS_ACTIVITY,Constants.ACTIVITY_PREFERRED_WAY_OF_COOKING);
+                                    Intent intent = new Intent(getApplicationContext(), ConfigureGroceryList.class);
                                     intent.putExtra(Constants.SHARED_PREFERENCE_CLICKED_SERVICE, position);
                                     startActivity(intent);
                                     finish();
@@ -104,5 +107,4 @@ public class PreferredWayOfCooking extends AppCompatActivity {
                 });
         alertDialog.show();
     }
-
 }

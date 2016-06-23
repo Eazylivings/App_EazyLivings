@@ -31,17 +31,17 @@ public class PreferredWayOfCookingAdaptor extends ArrayAdapter<String>{
 
             case 0:
                 cookingHeader.setText(Constants.INTRODUCTION_PREFERRED_WAY_OF_COOKING_COOK);
-                cookingPoster.setImageResource(R.drawable.cookingprocessone);
+                cookingPoster.setImageResource(R.drawable.cooking_cook);
                 break;
 
             case 1:
                 cookingHeader.setText(Constants.INTRODUCTION_PREFERRED_WAY_OF_COOKING_MESS);
-                cookingPoster.setImageResource(R.drawable.cookingprocesstwo);
+                cookingPoster.setImageResource(R.drawable.cooking_mess);
                 break;
 
             case 2:
                 cookingHeader.setText(Constants.INTRODUCTION_PREFERRED_WAY_OF_COOKING_GROCERY);
-                cookingPoster.setImageResource(R.drawable.cookingprocessthree);
+                cookingPoster.setImageResource(R.drawable.cooking_own);
                 break;
 
             default:
@@ -50,9 +50,6 @@ public class PreferredWayOfCookingAdaptor extends ArrayAdapter<String>{
                 break;
 
         }
-
-
-
         return view;
     }
 }

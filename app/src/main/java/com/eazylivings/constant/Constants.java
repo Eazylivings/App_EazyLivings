@@ -81,6 +81,8 @@ public class Constants {
     public static final String TITLE_UPDATE_ACCOUNT="Update Information";
     public static final String TITLE_FLAT_SUB_SERVICE="Flat Areas";
     public static final String TITLE_SELECT_ITEMS_FOR_FLAT="Select Items";
+    public static final String TITLE_COOK_FINAL_SCREEN="Short Summary";
+    public static final String TITLE_SELECT_GROCERY_ITEMS="Select Items";
 
 
 
@@ -141,8 +143,10 @@ public class Constants {
 
     //Activities
     public static final String ACTIVITY_WELCOME_SCREEN="WelcomeScreen";
-    public static final String ACTIVITY_CHOICE_OF_COOKING="PreferredWayOfCooking";
+    public static final String ACTIVITY_PREFERRED_WAY_OF_COOKING ="PreferredWayOfCooking";
     public static final String ACTIVITY_FLAT_SETUP="FlatSubServices";
+    public static final String ACTIVITY_COOK_SELECTION="cookSelection";
+    public static final String ACTIVITY_CONFIGURE_GROCERY_LIST="configureGroceryList";
 
 
     //One liners
@@ -161,6 +165,20 @@ public class Constants {
     public static final String COOK_SELECTION_LUNCH_DINNER="lunch_dinner";
     public static final String COOK_SELECTION_BREAKFAST_LUNCH_DINNER="breakfast_lunch_dinner";
 
+
+    //GroceryList Mapping Keys
+
+    public static final String GROCERY_LIST_SUBHEADING="subHeading";
+    public static final String GROCERY_LIST_ITEM_IMAGE="itemImage";
+    public static final String GROCERY_LIST_ITEM_INDEX="itemIndex";
+    public static final String GROCERY_LIST_ITEM_PRICE="itemPrice";
+
+    public static final String GROCERY_LIST_MAIN_CATEGORY="mainCategory";
+
+    public static final String GROCERY_LIST_VEGETABLES="vegetables";
+    public static final String GROCERY_LIST_MAIN_FRUITS="fruits";
+    public static final String GROCERY_LIST_MAIN_WHEAT_AND_FLOUR="wheatAndFlour";
+    public static final String GROCERY_LIST_MAIN_MASALAE="masalae";
 
 
 

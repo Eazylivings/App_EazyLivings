@@ -7,24 +7,24 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.eazylivings.activities.services.cooking.SelectGrocery">
+    tools:context="com.eazylivings.activities.services.cooking.SelectGroceryItems">
 
     <ImageView
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:id="@+id/selectGrocery_backButton"
+        android:id="@+id/selectGroceryItems_backButton"
         android:onClick="onClickBackButton"
         android:layout_gravity="top|start"
         android:layout_alignParentLeft="true"
-        android:layout_toLeftOf="@+id/selectGrocery_titleBar"
-        android:layout_toStartOf="@+id/selectGrocery_titleBar"
+        android:layout_toLeftOf="@+id/selectGroceryItems_titleBar"
+        android:layout_toStartOf="@+id/selectGroceryItems_titleBar"
         android:src="@drawable/arrow_back"
         android:layout_marginRight="2dp" />
 
     <TextView
         android:layout_height="50dp"
         android:layout_width="200dp"
-        android:id="@+id/selectGrocery_titleBar"
+        android:id="@+id/selectGroceryItems_titleBar"
         android:background="#2E9AFE"
         android:textColor="#FFFFFF"
         android:textAlignment="center"
@@ -38,14 +38,23 @@
     <ImageView
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:id="@+id/selectGrocery_homeButton"
+        android:id="@+id/selectGroceryItems_homeButton"
         android:src="@drawable/home_icon"
         android:onClick="onClickHomeButton"
         android:layout_alignParentRight="true"
         android:layout_gravity="top|end"
-        android:layout_toRightOf="@+id/selectGrocery_titleBar"
-        android:layout_toEndOf="@+id/selectGrocery_titleBar"
+        android:layout_toRightOf="@+id/selectGroceryItems_titleBar"
+        android:layout_toEndOf="@+id/selectGroceryItems_titleBar"
         android:layout_marginLeft="2dp" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/selectGroceryItems_listView"
+        android:layout_below="@+id/selectGroceryItems_backButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="37dp" />
 
 
 </RelativeLayout>

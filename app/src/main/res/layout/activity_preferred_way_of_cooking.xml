@@ -59,6 +59,7 @@
         android:layout_below="@+id/preferredWayOfCooking_titleBar"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="20dp"
+        android:drawSelectorOnTop="true"/>
 
 </RelativeLayout>

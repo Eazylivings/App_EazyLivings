@@ -73,13 +73,13 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
         <activity
             android:name=".activities.services.cooking.CookingFinalScreen"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"/>
-        <activity
-            android:name=".activities.services.cooking.SelectGrocery"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
         <activity
             android:name=".Template"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
+        <activity
+            android:name=".activities.services.cooking.SelectGroceryItems"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"/>
     </application>
 
 </manifest>

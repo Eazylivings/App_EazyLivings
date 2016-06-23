@@ -68,6 +68,13 @@ public class OfferedServices extends AppCompatActivity {
         finish();
     }
 
+    public void onClickHomeButton(View view){
+
+        Intent intent=new Intent(getApplicationContext(),WelcomeScreen.class);
+        startActivity(intent);
+        finish();
+    }
+
     private void generatePopupMessage(String message){
         AlertDialog alertDialog = new AlertDialog.Builder(this).create(); //Use context
         alertDialog.setTitle(Constants.ALERT_WARNING);

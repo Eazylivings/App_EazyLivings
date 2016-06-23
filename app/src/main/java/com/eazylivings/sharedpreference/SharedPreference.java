@@ -83,7 +83,7 @@ public class SharedPreference {
 
        if(activity.equalsIgnoreCase(Constants.ACTIVITY_WELCOME_SCREEN)){
            return WelcomeScreen.class;
-       }else if(activity.equalsIgnoreCase(Constants.ACTIVITY_CHOICE_OF_COOKING)){
+       }else if(activity.equalsIgnoreCase(Constants.ACTIVITY_PREFERRED_WAY_OF_COOKING)){
            return PreferredWayOfCooking.class;
        }else if(activity.equalsIgnoreCase(Constants.ACTIVITY_FLAT_SETUP)){
            return FlatSubServices.class;

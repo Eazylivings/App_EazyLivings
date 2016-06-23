@@ -129,21 +129,24 @@ public class CookSelection extends AppCompatActivity {
                SharedPreference preference = new SharedPreference(getApplicationContext());
                preference.setStringValueInSharedPreference(Constants.SHARED_PREFERENCE_COOK_CHOICE, String.valueOf(selectedCook));
                preference.setStringValueInSharedPreference(Constants.SHARED_PREFERENCE_MEALS_CHOICE,Constants.COOK_SELECTION_BREAKFAST_LUNCH);
-               Intent intent = new Intent(getApplicationContext(), CookingFinalScreen.class);
+               preference.setStringValueInSharedPreference(Constants.SHARED_PREFERENCE_PREVIOUS_ACTIVITY,Constants.ACTIVITY_COOK_SELECTION);
+               Intent intent = new Intent(getApplicationContext(), ConfigureGroceryList.class);
                startActivity(intent);
                finish();
            } else if (breakfast.isChecked() && dinner.isChecked()) {
                SharedPreference preference = new SharedPreference(getApplicationContext());
                preference.setStringValueInSharedPreference(Constants.SHARED_PREFERENCE_COOK_CHOICE, String.valueOf(selectedCook));
                preference.setStringValueInSharedPreference(Constants.SHARED_PREFERENCE_MEALS_CHOICE,Constants.COOK_SELECTION_BREAKFAST_DINNER);
-               Intent intent = new Intent(getApplicationContext(), CookingFinalScreen.class);
+               preference.setStringValueInSharedPreference(Constants.SHARED_PREFERENCE_PREVIOUS_ACTIVITY,Constants.ACTIVITY_COOK_SELECTION);
+               Intent intent = new Intent(getApplicationContext(), ConfigureGroceryList.class);
                startActivity(intent);
                finish();
            } else if (lunch.isChecked() && dinner.isChecked()) {
                SharedPreference preference = new SharedPreference(getApplicationContext());
                preference.setStringValueInSharedPreference(Constants.SHARED_PREFERENCE_COOK_CHOICE, String.valueOf(selectedCook));
                preference.setStringValueInSharedPreference(Constants.SHARED_PREFERENCE_MEALS_CHOICE,Constants.COOK_SELECTION_LUNCH_DINNER);
-               Intent intent = new Intent(getApplicationContext(), CookingFinalScreen.class);
+               preference.setStringValueInSharedPreference(Constants.SHARED_PREFERENCE_PREVIOUS_ACTIVITY,Constants.ACTIVITY_COOK_SELECTION);
+               Intent intent = new Intent(getApplicationContext(), ConfigureGroceryList.class);
                startActivity(intent);
                finish();
 
@@ -151,7 +154,8 @@ public class CookSelection extends AppCompatActivity {
                SharedPreference preference = new SharedPreference(getApplicationContext());
                preference.setStringValueInSharedPreference(Constants.SHARED_PREFERENCE_COOK_CHOICE, String.valueOf(selectedCook));
                preference.setStringValueInSharedPreference(Constants.SHARED_PREFERENCE_MEALS_CHOICE,Constants.COOK_SELECTION_BREAKFAST_LUNCH_DINNER);
-               Intent intent = new Intent(getApplicationContext(), CookingFinalScreen.class);
+               preference.setStringValueInSharedPreference(Constants.SHARED_PREFERENCE_PREVIOUS_ACTIVITY,Constants.ACTIVITY_COOK_SELECTION);
+               Intent intent = new Intent(getApplicationContext(), ConfigureGroceryList.class);
                startActivity(intent);
                finish();
 

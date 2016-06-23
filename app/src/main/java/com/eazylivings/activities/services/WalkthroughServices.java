@@ -190,7 +190,7 @@ public class WalkthroughServices extends AppCompatActivity {
                 if(clickedService==0) {
                     sharedPreference.setStringValueInSharedPreference(Constants.SHARED_PREFERENCE_PREVIOUS_ACTIVITY, Constants.ACTIVITY_FLAT_SETUP);
                 }else if(clickedService==1){
-                    sharedPreference.setStringValueInSharedPreference(Constants.SHARED_PREFERENCE_PREVIOUS_ACTIVITY, Constants.ACTIVITY_CHOICE_OF_COOKING);
+                    sharedPreference.setStringValueInSharedPreference(Constants.SHARED_PREFERENCE_PREVIOUS_ACTIVITY, Constants.ACTIVITY_PREFERRED_WAY_OF_COOKING);
                 }else if(clickedService==2){
 
                 }else if(clickedService==3){
