@@ -1,50 +1,60 @@
 package com.eazylivings.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.eazylivings.R;
 
 public class CustomSwipeAdapter extends PagerAdapter {
-    private int[] imageResources={R.drawable.background,R.drawable.background,R.drawable.background,R.drawable.background,R.drawable.background};
-    private Context ctx;
-    LayoutInflater layoutInflater;
+    Context context;
+    int[] imageId = { R.drawable.background, R.drawable.background,
+            R.drawable.background, R.drawable.background, R.drawable.background };
 
-    public CustomSwipeAdapter(Context ctx){
-        this.ctx=ctx;
+    public CustomSwipeAdapter(Context context){
+        this.context = context;
+
+    }
+
+
+    @Override
+    public Object instantiateItem(ViewGroup container, int position) {
+        // TODO Auto-generated method stub
+
+        LayoutInflater inflater = ((Activity)context).getLayoutInflater();
+
+        View viewItem = inflater.inflate(R.layout.swipe_layout, container, false);
+        ImageView imageView = (ImageView) viewItem.findViewById(R.id.welcomeScreen_textView_background);
+        imageView.setImageResource(imageId[position]);
+        ((ViewPager)container).addView(viewItem);
+
+        return viewItem;
     }
 
     @Override
     public int getCount() {
-        return imageResources.length;
+        // TODO Auto-generated method stub
+        return imageId.length;
     }
 
     @Override
-    public boolean isViewFromObject(View view, Object ob) {
-        return(view==(LinearLayout)ob);
+    public boolean isViewFromObject(View view, Object object) {
+        // TODO Auto-generated method stub
+
+        return view == ((View)object);
     }
 
-    @Override
-    public Object instantiateItem(ViewGroup container, int position) {
-        layoutInflater=(LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View itemView=layoutInflater.inflate(R.layout.swipe_layout,container,false);
-        ImageView imageView=(ImageView)itemView.findViewById(R.id.welcomeScreen_textView_background);
-        if(imageView!=null) {
-            imageView.setImageResource(imageResources[position]);
-        }
-        if(container!=null) {
-            container.addView(itemView);
-        }
-        return itemView;
-    }
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        container.removeView((LinearLayout)object);
+        // TODO Auto-generated method stub
+        ((ViewPager) container).removeView((View) object);
     }
 }
