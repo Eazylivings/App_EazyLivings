@@ -21,7 +21,7 @@ public class Template extends AppCompatActivity {
 
         try {
 
-            CommonFunctionality commonFunctionality = new CommonFunctionality(this);
+            CommonFunctionality commonFunctionality = new CommonFunctionality(getApplicationContext(),this);
             commonFunctionality.setTitleBar(R.id.cookSelection_backButton, R.id.cookSelection_titleBar, R.id.cookSelection_homeButton, Constants.TITLE_COOK_SELECTION);
         }catch(Exception e){
             generatePopupMessage(Constants.EXCEPTION_LOADING_PAGE);

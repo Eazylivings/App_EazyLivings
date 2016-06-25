@@ -18,12 +18,14 @@ import com.eazylivings.validator.Validator;
 
 public class SignUp extends AppCompatActivity {
 
+    CommonFunctionality commonFunctionality;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        CommonFunctionality commonFunctionality=new CommonFunctionality(this);
+        commonFunctionality=new CommonFunctionality(getApplicationContext(),this);
         commonFunctionality.setTitleBar(R.id.signUp_backButton,R.id.signUp_titleBar,R.id.signUp_homeButton,Constants.TITLE_SIGN_UP);
         commonFunctionality.onClickListenerForImage(R.id.signUp_backButton);
         commonFunctionality.onClickListenerForImage(R.id.signUp_homeButton);
@@ -32,23 +34,18 @@ public class SignUp extends AppCompatActivity {
 
     @Override
     public void onBackPressed(){
-        Intent intent = new Intent(getApplicationContext(),SignIn.class);
-        startActivity(intent);
-        finish();
+
+        commonFunctionality.onBackPressed(Constants.ACTIVITY_SIGH_IN);
     }
 
     public void onClickBackButton(View view){
 
-        Intent intent=new Intent(getApplicationContext(),SignIn.class);
-        startActivity(intent);
-        finish();
+        commonFunctionality.onBackPressed(Constants.ACTIVITY_SIGH_IN);
     }
 
     public void onClickHomeButton(View view){
 
-        Intent intent=new Intent(getApplicationContext(),WelcomeScreen.class);
-        startActivity(intent);
-        finish();
+        commonFunctionality.onClickHomeButton();
     }
 
     public void onClickSignUpButton(View view) {
@@ -62,16 +59,16 @@ public class SignUp extends AppCompatActivity {
                 final EditText contactNumber = (EditText) findViewById(R.id.SignUpPage_editText_PhoneNo);
 
                 if (userName == null || userName.getText().toString().equalsIgnoreCase("")) {
-                    generatePopupMessage(Constants.ENTER_USERNAME);
+                    commonFunctionality.generatePopupMessage(Constants.ENTER_USERNAME);
 
                 } else if (contactNumber == null || contactNumber.getText().toString().equalsIgnoreCase("")) {
-                    generatePopupMessage(Constants.ENTER_CONTACT_NUMBER);
+                    commonFunctionality.generatePopupMessage(Constants.ENTER_CONTACT_NUMBER);
 
                 } else if (emailAddress == null || emailAddress.getText().toString().equalsIgnoreCase("")) {
-                    generatePopupMessage(Constants.ENTER_EMAIL_ADDRESS);
+                    commonFunctionality.generatePopupMessage(Constants.ENTER_EMAIL_ADDRESS);
 
                 } else if (password == null || password.getText().toString().equalsIgnoreCase("")) {
-                    generatePopupMessage(Constants.ENTER_PASSWORD);
+                    commonFunctionality.generatePopupMessage(Constants.ENTER_PASSWORD);
 
                 } else {
 
@@ -94,22 +91,22 @@ public class SignUp extends AppCompatActivity {
 
 
                     } else if (isUserAlreadyPresent) {
-                        generatePopupMessage(Constants.USER_ALREADY_PRESENT);
+                        commonFunctionality.generatePopupMessage(Constants.USER_ALREADY_PRESENT);
                     } else if (!isUserNameFormatCorrect) {
-                        generatePopupMessage(Constants.ENTER_CORRECT_USERNAME);
+                        commonFunctionality.generatePopupMessage(Constants.ENTER_CORRECT_USERNAME);
                     } else if (!isEmailFormatCorrect) {
-                        generatePopupMessage(Constants.ENTER_CORRECT_EMAIL_ADDRESS);
+                        commonFunctionality.generatePopupMessage(Constants.ENTER_CORRECT_EMAIL_ADDRESS);
                     } else if (!isPasswordFormatCorrect) {
-                        generatePopupMessage(Constants.ENTER_CORRECT_PASSWORD);
+                        commonFunctionality.generatePopupMessage(Constants.ENTER_CORRECT_PASSWORD);
                     } else {
-                        generatePopupMessage(Constants.ERROR_MESSAGE);
+                        commonFunctionality.generatePopupMessage(Constants.ERROR_MESSAGE);
                     }
                 }
             } else {
-                generatePopupMessage(Constants.NOT_ONLINE);
+                commonFunctionality.generatePopupMessage(Constants.NOT_ONLINE);
             }
         }catch(Exception e){
-            generatePopupMessage(Constants.EXCEPTION_LOADING_PAGE);
+            commonFunctionality.generatePopupMessage(Constants.EXCEPTION_LOADING_PAGE);
         }
     }
 
@@ -118,20 +115,5 @@ public class SignUp extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(),SignIn.class);
         startActivity(intent);
         finish();
-    }
-
-    private void generatePopupMessage(String message){
-        {
-            AlertDialog alertDialog = new AlertDialog.Builder(SignUp.this).create();
-            alertDialog.setTitle(Constants.ALERT_TITLE);
-            alertDialog.setMessage(message);
-            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
-            alertDialog.show();
-        }
     }
 }

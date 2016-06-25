@@ -1,7 +1,5 @@
 package com.eazylivings.activities;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -19,7 +17,8 @@ import com.eazylivings.sharedpreference.SharedPreference;
 
 public class MyAccount extends AppCompatActivity {
 
-
+    CommonFunctionality commonFunctionality;
+    SharedPreference preference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,46 +26,39 @@ public class MyAccount extends AppCompatActivity {
         setContentView(R.layout.activity_my_account);
 
         try {
-            CommonFunctionality commonFunctionality=new CommonFunctionality(this);
+            commonFunctionality=new CommonFunctionality(getApplicationContext(),this);
             commonFunctionality.setTitleBar(R.id.myAccount_backButton,R.id.myAccount_titleBar,R.id.myAccount_homeButton,Constants.TITLE_MY_ACCOUNT);
             commonFunctionality.onClickListenerForImage(R.id.myAccount_backButton);
             commonFunctionality.onClickListenerForImage(R.id.myAccount_homeButton);
 
-
-            SharedPreference preference = new SharedPreference(getApplicationContext());
-            String userName = preference.getStringValueFromSharedPreference(Constants.SHARED_PREFERENCE_USERNAME);
+            preference = new SharedPreference(getApplicationContext());
+            String emailAddress = preference.getStringValueFromSharedPreference(Constants.SHARED_PREFERENCE_USERNAME);
 
             UserProfileSetup userProfileSetup = new UserProfileSetup(getApplicationContext(), this);
-            userProfileSetup.setupUserProfile(userName);
+            userProfileSetup.setupUserProfile(emailAddress);
 
             DeviceSetup deviceSetup = new DeviceSetup(getApplicationContext());
 
-            UserDetails userDetails = deviceSetup.getUserDetailsUsingSharedPreferences(getApplicationContext());
+            UserDetails userDetails = deviceSetup.getUserDetailsUsingSharedPreferences();
             setUserProfile(userDetails);
         }catch(Exception e){
-            generatePopupMessage(Constants.EXCEPTION_LOADING_PAGE);
+            commonFunctionality.generatePopupMessage(Constants.EXCEPTION_LOADING_PAGE);
         }
     }
     @Override
     public void onBackPressed(){
 
-        Intent intent = new Intent(getApplicationContext(),WelcomeScreen.class);
-        startActivity(intent);
-        finish();
+        commonFunctionality.onBackPressed(Constants.ACTIVITY_WELCOME_SCREEN);
     }
 
     public void onClickBackButton(View view){
 
-        Intent intent=new Intent(getApplicationContext(),WelcomeScreen.class);
-        startActivity(intent);
-        finish();
+        commonFunctionality.onBackPressed(Constants.ACTIVITY_WELCOME_SCREEN);
     }
 
     public void onClickHomeButton(View view){
 
-        Intent intent=new Intent(getApplicationContext(),WelcomeScreen.class);
-        startActivity(intent);
-        finish();
+        commonFunctionality.onClickHomeButton();
     }
 
 
@@ -95,30 +87,16 @@ public class MyAccount extends AppCompatActivity {
                 }
             }
         }catch(Exception e){
-            generatePopupMessage("Exception Occurred");
+            commonFunctionality.generatePopupMessage("Exception Occurred");
         }
         }
 
     public void onClickUpdateInformation(View view){
 
+        preference.setStringValueInSharedPreference(Constants.SHARED_PREFERENCE_PREVIOUS_ACTIVITY,Constants.ACTIVITY_MY_ACCOUNT);
+
         Intent intent=new Intent(getApplicationContext(), UpdateMyAccount.class);
         startActivity(intent);
         finish();
     }
-
-    private void generatePopupMessage(String message){
-        AlertDialog alertDialog = new AlertDialog.Builder(this).create(); //Use context
-        alertDialog.setTitle("Warning");
-        alertDialog.setMessage(message);
-        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-        alertDialog.show();
-    }
-
-
-
 }

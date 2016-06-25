@@ -14,9 +14,14 @@ import com.eazylivings.activities.WelcomeScreen;
 import com.eazylivings.commonfuntionality.CommonFunctionality;
 import com.eazylivings.databasehandler.ServerDatabaseHandler;
 import com.eazylivings.constant.Constants;
+import com.eazylivings.sharedpreference.SharedPreference;
 import com.eazylivings.validator.Validator;
 
 public class SignIn extends AppCompatActivity {
+
+
+    SharedPreference preference;
+    CommonFunctionality commonFunctionality;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,35 +32,33 @@ public class SignIn extends AppCompatActivity {
             if (progressBar != null) {
                 progressBar.setVisibility(View.INVISIBLE);
             }
-            CommonFunctionality commonFunctionality=new CommonFunctionality(this);
+
+            preference=new SharedPreference(getApplicationContext());
+
+            commonFunctionality=new CommonFunctionality(getApplicationContext(),this);
             commonFunctionality.setTitleBar(R.id.signIn_backButton,R.id.signIn_titleBar,R.id.signIn_homeButton,Constants.TITLE_SIGN_IN);
             commonFunctionality.onClickListenerForImage(R.id.signIn_backButton);
             commonFunctionality.onClickListenerForImage(R.id.signIn_homeButton);
 
         }catch(Exception e){
-            generatePopupMessage(Constants.EXCEPTION_LOADING_PAGE);
+            commonFunctionality.generatePopupMessage(Constants.EXCEPTION_LOADING_PAGE);
         }
     }
 
     @Override
     public void onBackPressed(){
-        Intent intent = new Intent(getApplicationContext(),WelcomeScreen.class);
-        startActivity(intent);
-        finish();
+
+        commonFunctionality.onBackPressed(Constants.ACTIVITY_WELCOME_SCREEN);
     }
 
     public void onClickHomeButton(View view){
 
-        Intent intent=new Intent(getApplicationContext(),WelcomeScreen.class);
-        startActivity(intent);
-        finish();
+        commonFunctionality.onClickHomeButton();
     }
 
     public void onClickBackButton(View view){
 
-        Intent intent=new Intent(getApplicationContext(),WelcomeScreen.class);
-        startActivity(intent);
-        finish();
+        commonFunctionality.onBackPressed(Constants.ACTIVITY_WELCOME_SCREEN);
     }
 
 
@@ -66,9 +69,9 @@ public class SignIn extends AppCompatActivity {
 
             if (editText_userName != null && editText_password != null) {
                 if (editText_userName.getText().toString().equalsIgnoreCase("")) {
-                    generatePopupMessage(Constants.ENTER_USERNAME);
+                    commonFunctionality.generatePopupMessage(Constants.ENTER_USERNAME);
                 } else if (editText_password.getText().toString().equalsIgnoreCase("")) {
-                    generatePopupMessage(Constants.ENTER_PASSWORD);
+                    commonFunctionality.generatePopupMessage(Constants.ENTER_PASSWORD);
                 } else {
 
                     boolean isUserOnline = Validator.isInternetAvailable(getApplicationContext());
@@ -76,12 +79,12 @@ public class SignIn extends AppCompatActivity {
                         ServerDatabaseHandler serverDatabaseHandler = new ServerDatabaseHandler(getApplicationContext(), this);
                         serverDatabaseHandler.execute(Constants.LOGIN, editText_userName.getText().toString(), editText_password.getText().toString());
                     } else {
-                        generatePopupMessage(Constants.NOT_ONLINE);
+                        commonFunctionality.generatePopupMessage(Constants.NOT_ONLINE);
                     }
                 }
             }
         }catch(Exception e){
-            generatePopupMessage(Constants.EXCEPTION_SIGN_IN);
+            commonFunctionality.generatePopupMessage(Constants.EXCEPTION_SIGN_IN);
         }
     }
 
@@ -96,18 +99,5 @@ public class SignIn extends AppCompatActivity {
         Intent intent = new Intent(this, ForgotPassword.class);
         startActivity(intent);
         finish();
-    }
-
-    private void generatePopupMessage(String message){
-        AlertDialog alertDialog = new AlertDialog.Builder(SignIn.this).create();
-        alertDialog.setTitle(Constants.ALERT_TITLE);
-        alertDialog.setMessage(message);
-        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-        alertDialog.show();
     }
 }

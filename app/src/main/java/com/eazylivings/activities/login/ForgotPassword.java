@@ -20,6 +20,7 @@ import com.eazylivings.validator.Validator;
 public class ForgotPassword extends AppCompatActivity {
 
     Button signInButton;
+    CommonFunctionality commonFunctionality;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +28,7 @@ public class ForgotPassword extends AppCompatActivity {
         setContentView(R.layout.activity_forgot_password);
         try {
 
-            CommonFunctionality commonFunctionality=new CommonFunctionality(this);
+            commonFunctionality=new CommonFunctionality(getApplicationContext(),this);
             commonFunctionality.setTitleBar(R.id.forgotPassword_backButton,R.id.forgotPassword_titleBar,R.id.forgotPassword_homeButton,Constants.TITLE_FORGOT_PASSWORD);
             commonFunctionality.onClickListenerForImage(R.id.forgotPassword_backButton);
             commonFunctionality.onClickListenerForImage(R.id.forgotPassword_homeButton);
@@ -38,29 +39,23 @@ public class ForgotPassword extends AppCompatActivity {
                 signInButton.setVisibility(View.INVISIBLE);
             }
         }catch(Exception e){
-            generatePopupMessage(Constants.EXCEPTION_LOADING_PAGE);
+            commonFunctionality.generatePopupMessage(Constants.EXCEPTION_LOADING_PAGE);
         }
     }
 
     @Override
     public void onBackPressed(){
 
-        Intent intent = new Intent(getApplicationContext(),SignIn.class);
-        startActivity(intent);
-        finish();
+        commonFunctionality.onBackPressed(Constants.ACTIVITY_WELCOME_SCREEN);
     }
     public void onClickHomeButton(View view){
 
-        Intent intent=new Intent(getApplicationContext(),WelcomeScreen.class);
-        startActivity(intent);
-        finish();
+        commonFunctionality.onClickHomeButton();
     }
 
     public void onClickBackButton(View view){
 
-        Intent intent=new Intent(getApplicationContext(),SignIn.class);
-        startActivity(intent);
-        finish();
+        commonFunctionality.onBackPressed(Constants.ACTIVITY_WELCOME_SCREEN);
     }
 
     public void onClickSignUp(View view){
@@ -86,7 +81,7 @@ public class ForgotPassword extends AppCompatActivity {
                 EditText emailAddress = (EditText) findViewById(R.id.forgotPassword_button_emailAddress);
 
                 if (emailAddress == null || emailAddress.getText().toString().equalsIgnoreCase("") || !Validator.checkEmailFormat(emailAddress)) {
-                    generatePopupMessage(Constants.CHECK_EMAIL_ADDRESS);
+                    commonFunctionality.generatePopupMessage(Constants.CHECK_EMAIL_ADDRESS);
                 } else {
 
                     Button retrievePassword = (Button) findViewById(R.id.forgotPassword_button_retrievePassword);
@@ -105,26 +100,12 @@ public class ForgotPassword extends AppCompatActivity {
                     handler.execute(Constants.FORGOT_PASSWORD, emailAddress.getText().toString());
                 }
             } else {
-                generatePopupMessage(Constants.NOT_ONLINE);
+                commonFunctionality.generatePopupMessage(Constants.NOT_ONLINE);
             }
         }catch(Exception e){
-            generatePopupMessage(Constants.EXCEPTION_FORGOT_PASSWORD_RETRIEVE);
+            commonFunctionality.generatePopupMessage(Constants.EXCEPTION_FORGOT_PASSWORD_RETRIEVE);
         }
     }
 
-    private void generatePopupMessage(String message){
 
-        {
-            AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-            alertDialog.setTitle(Constants.ALERT_TITLE);
-            alertDialog.setMessage(message);
-            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
-            alertDialog.show();
-        }
-    }
 }

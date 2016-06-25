@@ -140,17 +140,21 @@ public class Constants {
     public static final String SERVER_HANDLER_REGISTRATION_FAIL="Registration Failed";
     public static final String SERVER_HANDLER_EMAIL_SENT_SUCCESSFULLY="Email Sent successfully";
 
-    //Color Coding
-    public static final String BLUE_COLOR="#2E9AFE";
-
     //Activities
     public static final String ACTIVITY_WELCOME_SCREEN="WelcomeScreen";
     public static final String ACTIVITY_PREFERRED_WAY_OF_COOKING ="PreferredWayOfCooking";
-    public static final String ACTIVITY_FLAT_SETUP="FlatSubServices";
-    public static final String ACTIVITY_COOK_SELECTION="cookSelection";
     public static final String ACTIVITY_CONFIGURE_GROCERY_LIST="configureGroceryList";
     public static final String ACTIVITY_OFFERED_SERVICE="offeredService";
-    public static final String ACTIVITY_WALK_THROUGH_SERVICE="walkThroughService";
+    public static final String ACTIVITY_COOK_SELECTION="cookSelection";
+    public static final String ACTIVITY_COOK_FOR_VEG_NON_VEG="cookForVegOrNonVeg";
+    public static final String ACTIVITY_SELECT_GROCERY_LIST="selectGroceryList";
+    public static final String ACTIVITY_FLAT_SUB_SERVICES="flatSubServices";
+    public static final String ACTIVITY_MY_ACCOUNT="myAccount";
+    public static final String ACTIVITY_COOKING_FINAL_SCREEN="cookingFinaScreen";
+    public static final String ACTIVITY_SELECT_GROCERY_ITEM="selectGroceryItem";
+    public static final String ACTIVITY_SELECT_ITEMS_FOR_FLAT="selectItemsForFlat";
+    public static final String ACTIVITY_UPDATE_ACCOUNT="updateAccount";
+    public static final String ACTIVITY_SIGH_IN="signIn";
 
 
     //One liners
@@ -172,10 +176,11 @@ public class Constants {
 
     //GroceryList Mapping Keys
 
-    public static final String GROCERY_LIST_SUBHEADING="subHeading";
+    public static final String GROCERY_LIST_ITEM_NAME="subHeading";
     public static final String GROCERY_LIST_ITEM_IMAGE="itemImage";
-    public static final String GROCERY_LIST_ITEM_INDEX="itemIndex";
+    public static final String GROCERY_LIST_ITEM_WEIGHT="itemIndex";
     public static final String GROCERY_LIST_ITEM_PRICE="itemPrice";
+
 
     public static final String GROCERY_LIST_MAIN_CATEGORY="mainCategory";
 

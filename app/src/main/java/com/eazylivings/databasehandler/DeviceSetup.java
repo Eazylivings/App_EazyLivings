@@ -17,7 +17,7 @@ public class DeviceSetup  {
         this.applicationContext=context;
     }
 
-    public void saveUserDetailsUsingSharedPreference(UserDetails userDetails,Context context){
+    public void saveUserDetailsUsingSharedPreference(UserDetails userDetails){
 
         SharedPreference preference=new SharedPreference(applicationContext);
         preference.setStringValueInSharedPreference(Constants.SHARED_PREFERENCE_USERNAME,userDetails.getUserName());
@@ -27,7 +27,7 @@ public class DeviceSetup  {
         preference.setBooleanValueInSharedPreference(Constants.SHARED_PREFERENCE_PROFILE_ALREADY_LOADED,true);
     }
 
-    public UserDetails getUserDetailsUsingSharedPreferences(Context context){
+    public UserDetails getUserDetailsUsingSharedPreferences(){
 
         SharedPreference sharedPreference=new SharedPreference(applicationContext);
         UserDetails userDetails=new UserDetails();

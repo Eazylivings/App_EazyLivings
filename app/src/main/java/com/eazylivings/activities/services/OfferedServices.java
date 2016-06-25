@@ -1,7 +1,5 @@
 package com.eazylivings.activities.services;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,9 +7,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import com.eazylivings.activities.WelcomeScreen;
-import com.eazylivings.adapter.ServicesOfferedAdaptor;
 
+import com.eazylivings.adapter.ServicesOfferedAdaptor;
 import com.eazylivings.R;
 import com.eazylivings.commonfuntionality.CommonFunctionality;
 import com.eazylivings.constant.Constants;
@@ -20,7 +17,7 @@ import com.eazylivings.sharedpreference.SharedPreference;
 public class OfferedServices extends AppCompatActivity {
 
     SharedPreference preference;
-    String previousActivity;
+    CommonFunctionality commonFunctionality;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +28,7 @@ public class OfferedServices extends AppCompatActivity {
 
         try {
 
-            CommonFunctionality commonFunctionality=new CommonFunctionality(this);
+            commonFunctionality=new CommonFunctionality(getApplicationContext(),this);
             commonFunctionality.setTitleBar(R.id.offeredServices_backButton,R.id.offeredServices_titleBar,R.id.offeredServices_homeButton,Constants.TITLE_OFFERED_SERVICES);
             commonFunctionality.onClickListenerForImage(R.id.offeredServices_backButton);
             commonFunctionality.onClickListenerForImage(R.id.offeredServices_homeButton);
@@ -58,42 +55,22 @@ public class OfferedServices extends AppCompatActivity {
                 );
             }
         }catch(Exception e){
-            generatePopupMessage(Constants.EXCEPTION_LOADING_PAGE);
+            commonFunctionality.generatePopupMessage(Constants.EXCEPTION_LOADING_PAGE);
         }
-
     }
 
     @Override
     public void onBackPressed(){
 
-        Intent intent = new Intent(getApplicationContext(),WelcomeScreen.class);
-        startActivity(intent);
-        finish();
+        commonFunctionality.onBackPressed(Constants.ACTIVITY_WELCOME_SCREEN);
     }
     public void onClickBackButton(View view){
 
-        Intent intent=new Intent(getApplicationContext(),WelcomeScreen.class);
-        startActivity(intent);
-        finish();
+        commonFunctionality.onBackPressed(Constants.ACTIVITY_WELCOME_SCREEN);
     }
 
     public void onClickHomeButton(View view){
 
-        Intent intent=new Intent(getApplicationContext(),WelcomeScreen.class);
-        startActivity(intent);
-        finish();
-    }
-
-    private void generatePopupMessage(String message){
-        AlertDialog alertDialog = new AlertDialog.Builder(this).create(); //Use context
-        alertDialog.setTitle(Constants.ALERT_WARNING);
-        alertDialog.setMessage(message);
-        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-        alertDialog.show();
+        commonFunctionality.onClickHomeButton();
     }
 }

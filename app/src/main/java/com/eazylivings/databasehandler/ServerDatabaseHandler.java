@@ -136,7 +136,7 @@ public class ServerDatabaseHandler  extends AsyncTask<String,Void,String> {
                     if (userDetails!=null) {
                         DeviceSetup deviceSetup;
                         deviceSetup=new DeviceSetup(applicationContext);
-                        deviceSetup.saveUserDetailsUsingSharedPreference(userDetails,applicationContext);
+                        deviceSetup.saveUserDetailsUsingSharedPreference(userDetails);
                     }else {
                         generatePopupMessage("Some error occurred. Please try again after sometime");
                     }
@@ -183,10 +183,9 @@ public class ServerDatabaseHandler  extends AsyncTask<String,Void,String> {
         if (accountAuthenticationString.equalsIgnoreCase(Constants.SERVER_HANDLER_LOGIN_SUCCESS)) {
 
             SharedPreference sharedPreference=new SharedPreference(applicationContext);
-            String previousActivity=sharedPreference.getStringValueFromSharedPreference(Constants.SHARED_PREFERENCE_PREVIOUS_ACTIVITY);
 
             setSharedPreferences(Constants.SHARED_PREFERENCE_USERNAME,emailAddress);
-            Intent intent = new Intent(applicationContext,sharedPreference.getPreviousActivity(previousActivity));
+            Intent intent = new Intent(applicationContext,sharedPreference.getPreviousActivity(Constants.SHARED_PREFERENCE_PREVIOUS_ACTIVITY));
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             applicationContext.startActivity(intent);
             activity.finish();

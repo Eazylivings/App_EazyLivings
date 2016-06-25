@@ -4,10 +4,22 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.eazylivings.activities.MyAccount;
 import com.eazylivings.activities.WelcomeScreen;
+import com.eazylivings.activities.login.UpdateMyAccount;
+import com.eazylivings.activities.services.OfferedServices;
+import com.eazylivings.activities.services.cooking.ConfigureGroceryList;
+import com.eazylivings.activities.services.cooking.CookForVegOrNonVeg;
+import com.eazylivings.activities.services.cooking.CookSelection;
+import com.eazylivings.activities.services.cooking.CookingFinalScreen;
 import com.eazylivings.activities.services.cooking.PreferredWayOfCooking;
+import com.eazylivings.activities.services.cooking.SelectGroceryItems;
 import com.eazylivings.activities.services.flatsetup.FlatSubServices;
+import com.eazylivings.activities.services.flatsetup.SelectItemsForFlat;
 import com.eazylivings.constant.Constants;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class SharedPreference {
@@ -61,8 +73,6 @@ public class SharedPreference {
 
     }
 
-
-
     public void removeValueFromSharedPreference(String valueToBeDeleted){
         SharedPreferences preferences =  PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = preferences.edit();
@@ -81,14 +91,36 @@ public class SharedPreference {
 
     public Class getPreviousActivity(String activity){
 
+        if(activity.equalsIgnoreCase(Constants.SHARED_PREFERENCE_PREVIOUS_ACTIVITY)){
+            activity=getStringValueFromSharedPreference(Constants.SHARED_PREFERENCE_PREVIOUS_ACTIVITY);
+        }
+
        if(activity.equalsIgnoreCase(Constants.ACTIVITY_WELCOME_SCREEN)){
            return WelcomeScreen.class;
+       }else if(activity.equalsIgnoreCase(Constants.ACTIVITY_FLAT_SUB_SERVICES)){
+           return FlatSubServices.class;
        }else if(activity.equalsIgnoreCase(Constants.ACTIVITY_PREFERRED_WAY_OF_COOKING)){
            return PreferredWayOfCooking.class;
-       }else if(activity.equalsIgnoreCase(Constants.ACTIVITY_FLAT_SETUP)){
-           return FlatSubServices.class;
+       }else if(activity.equalsIgnoreCase(Constants.ACTIVITY_COOK_FOR_VEG_NON_VEG)){
+           return CookForVegOrNonVeg.class;
+       }else if(activity.equalsIgnoreCase(Constants.ACTIVITY_COOK_SELECTION)){
+           return CookSelection.class;
+       }else if(activity.equalsIgnoreCase(Constants.ACTIVITY_CONFIGURE_GROCERY_LIST)){
+           return ConfigureGroceryList.class;
+       }else if(activity.equalsIgnoreCase(Constants.ACTIVITY_COOKING_FINAL_SCREEN)){
+           return CookingFinalScreen.class;
+       }else if(activity.equalsIgnoreCase(Constants.ACTIVITY_SELECT_GROCERY_ITEM)){
+           return SelectGroceryItems.class;
+       }else if(activity.equalsIgnoreCase(Constants.ACTIVITY_SELECT_ITEMS_FOR_FLAT)){
+           return SelectItemsForFlat.class;
+       }else if(activity.equalsIgnoreCase(Constants.ACTIVITY_OFFERED_SERVICE)){
+           return OfferedServices.class;
+       }else if(activity.equalsIgnoreCase(Constants.ACTIVITY_MY_ACCOUNT)){
+           return MyAccount.class;
+       }else if(activity.equalsIgnoreCase(Constants.ACTIVITY_UPDATE_ACCOUNT)){
+           return UpdateMyAccount.class;
        }else{
-           return null;
+           return WelcomeScreen.class;
        }
 
     }

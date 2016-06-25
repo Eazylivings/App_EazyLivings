@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,16 +16,14 @@ import java.util.HashMap;
 
 public class SelectGroceryItemsAdaptor extends BaseAdapter {
 
-    HashMap<String, Object> map=new HashMap<>();
-    String[] services;
+    ArrayList<HashMap<String, String>> listOfMap=new ArrayList<>();
     Context context;
 
 
-    public SelectGroceryItemsAdaptor(Context context, String[] services, HashMap<String,Object> map) {
+    public SelectGroceryItemsAdaptor(Context context, ArrayList<HashMap<String,String>> listOfMap) {
 
         this.context=context;
-        this.services=services;
-        this.map=map;
+        this.listOfMap=listOfMap;
     }
 
     @Override
@@ -43,12 +40,13 @@ public class SelectGroceryItemsAdaptor extends BaseAdapter {
         ImageView itemQuantityIncrease=(ImageView)view.findViewById(R.id.selectGroceryItems_imageView_increase);
         ImageView itemQuantityDecrease=(ImageView)view.findViewById(R.id.selectGroceryItems_imageView_decrease);
 
-        if(itemName!=null && itemWeight!=null && itemQuantity!=null && itemPrice!=null){
-            itemName.setText(services[position]);
-            itemWeight.setText("500 gms");
-            itemQuantity.setText("1");
-            itemPrice.setText("Rs. 50");
+        HashMap<String,String> map=listOfMap.get(position);
 
+        if(itemName!=null && itemWeight!=null && itemQuantity!=null && itemPrice!=null && itemImage!=null){
+            itemName.setText(map.get(Constants.GROCERY_LIST_ITEM_NAME));
+            itemWeight.setText(map.get(Constants.GROCERY_LIST_ITEM_WEIGHT));
+            itemPrice.setText(map.get(Constants.GROCERY_LIST_ITEM_PRICE));
+            itemImage.setImageResource(Integer.valueOf(map.get(Constants.GROCERY_LIST_ITEM_IMAGE)));
         }
 
         itemQuantityIncrease.setOnClickListener(new View.OnClickListener() {
@@ -62,8 +60,6 @@ public class SelectGroceryItemsAdaptor extends BaseAdapter {
                     quantity = quantity + 1;
                     itemQuantity.setText(String.valueOf(quantity));
                 }
-
-
             }
         });
 
@@ -89,7 +85,7 @@ public class SelectGroceryItemsAdaptor extends BaseAdapter {
     @Override
     public int getCount() {
         // TODO Auto-generated method stub
-        return services.length;
+        return listOfMap.size();
     }
 
     @Override

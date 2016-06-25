@@ -1,22 +1,23 @@
 package com.eazylivings.activities.services.flatsetup;
 
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+
 import com.eazylivings.R;
-import com.eazylivings.activities.WelcomeScreen;
-import com.eazylivings.activities.services.OfferedServices;
 import com.eazylivings.adapter.OptionFlatSubServiceAdaptor;
 import com.eazylivings.commonfuntionality.CommonFunctionality;
 import com.eazylivings.constant.Constants;
+import com.eazylivings.sharedpreference.SharedPreference;
 
 public class FlatSubServices extends AppCompatActivity {
+
+    CommonFunctionality commonFunctionality;
+    SharedPreference preference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +25,9 @@ public class FlatSubServices extends AppCompatActivity {
         setContentView(R.layout.activity_flat_sub_services);
 
         try {
-            CommonFunctionality commonFunctionality=new CommonFunctionality(this);
+            preference=new SharedPreference(getApplicationContext());
+
+            commonFunctionality=new CommonFunctionality(getApplicationContext(),this);
             commonFunctionality.setTitleBar(R.id.flatSubServices_backButton,R.id.flatSubServices_titleBar,R.id.flatSubServices_homeButton,Constants.TITLE_FLAT_SUB_SERVICE);
             commonFunctionality.onClickListenerForImage(R.id.flatSubServices_backButton);
             commonFunctionality.onClickListenerForImage(R.id.flatSubServices_homeButton);
@@ -42,6 +45,8 @@ public class FlatSubServices extends AppCompatActivity {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+
+                                preference.setStringValueInSharedPreference(Constants.SHARED_PREFERENCE_PREVIOUS_ACTIVITY,Constants.ACTIVITY_FLAT_SUB_SERVICES);
                                 Intent intent = new Intent(getApplicationContext(), SelectItemsForFlat.class);
                                 intent.putExtra(Constants.SHARED_PREFERENCE_CLICKED_SERVICE, position);
                                 startActivity(intent);
@@ -52,45 +57,23 @@ public class FlatSubServices extends AppCompatActivity {
             }
 
         }catch(Exception e){
-            generatePopupMessage(Constants.EXCEPTION_LOADING_PAGE);
+            commonFunctionality.generatePopupMessage(Constants.EXCEPTION_LOADING_PAGE);
         }
     }
 
     @Override
     public void onBackPressed(){
 
-        Intent intent = new Intent(getApplicationContext(),OfferedServices.class);
-        startActivity(intent);
-        finish();
+        commonFunctionality.onBackPressed(Constants.SHARED_PREFERENCE_PREVIOUS_ACTIVITY);
     }
 
     public void onClickBackButton(View view){
 
-        Intent intent=new Intent(getApplicationContext(),OfferedServices.class);
-        startActivity(intent);
-        finish();
+        commonFunctionality.onBackPressed(Constants.SHARED_PREFERENCE_PREVIOUS_ACTIVITY);
     }
 
     public void onClickHomeButton(View view){
 
-        Intent intent=new Intent(getApplicationContext(),WelcomeScreen.class);
-        startActivity(intent);
-        finish();
-    }
-
-    private void generatePopupMessage(String message){
-
-        {
-            AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-            alertDialog.setTitle(Constants.ALERT_TITLE);
-            alertDialog.setMessage(message);
-            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
-            alertDialog.show();
-        }
+        commonFunctionality.onClickHomeButton();
     }
 }

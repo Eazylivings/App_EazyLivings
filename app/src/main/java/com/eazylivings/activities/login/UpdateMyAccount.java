@@ -22,6 +22,7 @@ public class UpdateMyAccount extends AppCompatActivity {
     String previousEmailAddress="";
     String previousContactNumber="";
     String previousResidentialAddress="";
+    CommonFunctionality commonFunctionality;
 
 
 
@@ -32,7 +33,7 @@ public class UpdateMyAccount extends AppCompatActivity {
 
         try {
 
-            CommonFunctionality commonFunctionality=new CommonFunctionality(this);
+            commonFunctionality=new CommonFunctionality(getApplicationContext(),this);
             commonFunctionality.setTitleBar(R.id.updateMyAccount_backButton,R.id.updateMyAccount_titleBar,R.id.updateMyAccount_homeButton,Constants.TITLE_UPDATE_ACCOUNT);
             commonFunctionality.onClickListenerForImage(R.id.updateMyAccount_backButton);
             commonFunctionality.onClickListenerForImage(R.id.updateMyAccount_homeButton);
@@ -59,7 +60,7 @@ public class UpdateMyAccount extends AppCompatActivity {
                 residentialAddress.setText(sharedPreference.getStringValueFromSharedPreference(Constants.SHARED_PREFERENCE_ADDRESS));
             }
         }catch(Exception e){
-            generatePopupMessage(Constants.EXCEPTION_LOADING_PAGE);
+            commonFunctionality.generatePopupMessage(Constants.EXCEPTION_LOADING_PAGE);
         }
     }
 
@@ -86,7 +87,7 @@ public class UpdateMyAccount extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }else{
-                generatePopupMessage(Constants.UPDATE_ACCOUNT);
+                commonFunctionality.generatePopupMessage(Constants.UPDATE_ACCOUNT);
             }
         }
     }
@@ -115,11 +116,11 @@ public class UpdateMyAccount extends AppCompatActivity {
                 finish();
                 return true;
             } else {
-                generatePopupMessage(Constants.UPDATE_ACCOUNT);
+                commonFunctionality.generatePopupMessage(Constants.UPDATE_ACCOUNT);
                 return true;
             }
         }else{
-            generatePopupMessage(Constants.UPDATE_ACCOUNT);
+            commonFunctionality.generatePopupMessage(Constants.UPDATE_ACCOUNT);
             return true;
         }
     }
@@ -146,10 +147,10 @@ public class UpdateMyAccount extends AppCompatActivity {
                 startActivityForResult(myIntent, 0);
                 finish();
             } else {
-                generatePopupMessage(Constants.UPDATE_ACCOUNT);
+                commonFunctionality.generatePopupMessage(Constants.UPDATE_ACCOUNT);
             }
         }else{
-            generatePopupMessage(Constants.UPDATE_ACCOUNT);
+            commonFunctionality.generatePopupMessage(Constants.UPDATE_ACCOUNT);
         }
     }
 
@@ -181,34 +182,7 @@ public class UpdateMyAccount extends AppCompatActivity {
                 handler.execute(Constants.SAVE_USER_UPDATE, userName.getText().toString(), emailAddress.getText().toString(), contactNumber.getText().toString(), residentialAddress.getText().toString());
             }
         }catch(Exception e){
-            generatePopupMessage(Constants.EXCEPTION_UPDATE_INFORMATION);
+            commonFunctionality.generatePopupMessage(Constants.EXCEPTION_UPDATE_INFORMATION);
         }
-    }
-
-    private void generatePopupMessage(String message){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
-        builder.setTitle(Constants.ALERT_CONFIRM);
-        builder.setMessage(message);
-
-        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-
-            public void onClick(DialogInterface dialog, int which) {
-                Intent intent=new Intent(getApplicationContext(), MyAccount.class);
-                startActivity(intent);
-                finish();
-                dialog.dismiss();
-            }
-        });
-
-        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-        AlertDialog alert = builder.create();
-        alert.show();
     }
 }

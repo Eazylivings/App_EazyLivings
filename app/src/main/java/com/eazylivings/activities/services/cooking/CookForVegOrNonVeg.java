@@ -1,19 +1,14 @@
 package com.eazylivings.activities.services.cooking;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Point;
-import android.graphics.PorterDuff;
-import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Display;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import com.eazylivings.R;
-import com.eazylivings.activities.WelcomeScreen;
 import com.eazylivings.commonfuntionality.CommonFunctionality;
 import com.eazylivings.constant.Constants;
 import com.eazylivings.sharedpreference.SharedPreference;
@@ -22,6 +17,8 @@ public class CookForVegOrNonVeg extends AppCompatActivity {
 
     int clickedSelection;
     String selectedVegOrNonVeg = "";
+    CommonFunctionality commonFunctionality;
+    SharedPreference preference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +26,9 @@ public class CookForVegOrNonVeg extends AppCompatActivity {
         setContentView(R.layout.activity_cook_for_veg_or_non_veg);
         try {
 
-            CommonFunctionality commonFunctionality = new CommonFunctionality(this);
+            preference=new SharedPreference(getApplicationContext());
+
+            commonFunctionality = new CommonFunctionality(getApplicationContext(),this);
             commonFunctionality.setTitleBar(R.id.cookForVegOrNonVeg_backButton, R.id.cookForVegOrNonVeg_titleBar, R.id.cookForVegOrNonVeg_homeButton, Constants.TITLE_COOK_FOR_VEG_OR_NON_VEG);
             commonFunctionality.onClickListenerForImage(R.id.cookForVegOrNonVeg_imageView_veg);
             commonFunctionality.onClickListenerForImage(R.id.cookForVegOrNonVeg_imageView_nonVeg);
@@ -45,23 +44,24 @@ public class CookForVegOrNonVeg extends AppCompatActivity {
                 clickedSelection = bundle.getInt(Constants.SHARED_PREFERENCE_CLICKED_SERVICE);
             }
         } catch (Exception e) {
-            generatePopupMessage(Constants.EXCEPTION_LOADING_PAGE);
+            commonFunctionality.generatePopupMessage(Constants.EXCEPTION_LOADING_PAGE);
         }
     }
 
     @Override
     public void onBackPressed() {
 
-        Intent intent = new Intent(getApplicationContext(), PreferredWayOfCooking.class);
-        startActivity(intent);
-        finish();
+        commonFunctionality.onBackPressed(Constants.ACTIVITY_PREFERRED_WAY_OF_COOKING);
     }
 
     public void onClickBackButton(View view) {
 
-        Intent intent = new Intent(getApplicationContext(), PreferredWayOfCooking.class);
-        startActivity(intent);
-        finish();
+        commonFunctionality.onBackPressed(Constants.ACTIVITY_PREFERRED_WAY_OF_COOKING);
+    }
+
+    public void onClickHomeButton(View view) {
+
+        commonFunctionality.onClickHomeButton();
     }
 
     public void onClickRadioButton(View view) {
@@ -92,7 +92,7 @@ public class CookForVegOrNonVeg extends AppCompatActivity {
                     break;
             }
         } catch (Exception e) {
-            generatePopupMessage(Constants.EXCEPTION_COOK_FOR_VEG_OR_NON_VEG);
+            commonFunctionality.generatePopupMessage(Constants.EXCEPTION_COOK_FOR_VEG_OR_NON_VEG);
         }
     }
 
@@ -130,24 +130,16 @@ public class CookForVegOrNonVeg extends AppCompatActivity {
                     nonVegRadio.setChecked(false);
                     selectedVegOrNonVeg = "both";
                 }
-
                 break;
         }
-    }
-
-    public void onClickHomeButton(View view) {
-
-        Intent intent = new Intent(getApplicationContext(), WelcomeScreen.class);
-        startActivity(intent);
-        finish();
     }
 
     public void onClickSelectCook(View view) {
 
         if (selectedVegOrNonVeg.equalsIgnoreCase("")) {
-            generatePopupMessage(Constants.COOK_FOR_VEG_NON_VEG_SELECT_CHOICE);
+            commonFunctionality.generatePopupMessage(Constants.COOK_FOR_VEG_NON_VEG_SELECT_CHOICE);
         } else {
-            SharedPreference preference = new SharedPreference(getApplicationContext());
+
             preference.setStringValueInSharedPreference(Constants.SHARED_PREFERENCE_SELECTED_VEG_NON_VEG, selectedVegOrNonVeg);
 
             Intent intent = new Intent(getApplicationContext(), CookSelection.class);
@@ -183,29 +175,16 @@ public class CookForVegOrNonVeg extends AppCompatActivity {
                 bothCook.getLayoutParams().height = height / 2;
             }
 
-            vegCook.requestLayout();
-            nonVegCook.requestLayout();
-            bothCook.requestLayout();
+            if(vegCook!=null && nonVegCook!=null && bothCook!=null) {
+
+                vegCook.requestLayout();
+                nonVegCook.requestLayout();
+                bothCook.requestLayout();
+            }
         } catch (Exception e) {
-            generatePopupMessage(Constants.EXCEPTION_SETTING_WIDTH_HEIGHT);
+            commonFunctionality.generatePopupMessage(Constants.EXCEPTION_SETTING_WIDTH_HEIGHT);
         }
-
     }
-
-    private void generatePopupMessage(String message) {
-        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-        alertDialog.setTitle(Constants.ALERT_TITLE);
-        alertDialog.setMessage(message);
-        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-        alertDialog.show();
-    }
-
-
 }
 
 

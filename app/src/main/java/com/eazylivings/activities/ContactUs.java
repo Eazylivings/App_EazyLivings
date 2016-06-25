@@ -1,9 +1,6 @@
 package com.eazylivings.activities;
 
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
@@ -13,6 +10,8 @@ import com.eazylivings.constant.Constants;
 
 public class ContactUs extends AppCompatActivity {
 
+    CommonFunctionality commonFunctionality;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,52 +19,30 @@ public class ContactUs extends AppCompatActivity {
 
         try {
 
-            CommonFunctionality commonFunctionality=new CommonFunctionality(this);
+            commonFunctionality=new CommonFunctionality(getApplicationContext(),this);
             commonFunctionality.setTitleBar(R.id.contactUs_backButton,R.id.contactUs_titleBar,R.id.contactUs_homeButton,Constants.TITLE_CONTACT_US);
             commonFunctionality.onClickListenerForImage(R.id.contactUs_backButton);
             commonFunctionality.onClickListenerForImage(R.id.contactUs_homeButton);
 
 
         }catch(Exception e){
-            generatePopupMessage(Constants.EXCEPTION_LOADING_PAGE);
+            commonFunctionality.generatePopupMessage(Constants.EXCEPTION_LOADING_PAGE);
         }
     }
 
     @Override
     public void onBackPressed(){
 
-        Intent intent = new Intent(getApplicationContext(),WelcomeScreen.class);
-        startActivity(intent);
-        finish();
+        commonFunctionality.onBackPressed(Constants.ACTIVITY_WELCOME_SCREEN);
     }
 
     public void onClickBackButton(View view){
 
-        Intent intent=new Intent(getApplicationContext(),WelcomeScreen.class);
-        startActivity(intent);
-        finish();
+        commonFunctionality.onBackPressed(Constants.ACTIVITY_WELCOME_SCREEN);
     }
 
     public void onClickHomeButton(View view){
 
-        Intent intent=new Intent(getApplicationContext(),WelcomeScreen.class);
-        startActivity(intent);
-        finish();
-    }
-
-    private void generatePopupMessage(String message){
-
-        {
-            AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-            alertDialog.setTitle(Constants.ALERT_TITLE);
-            alertDialog.setMessage(message);
-            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
-            alertDialog.show();
-        }
+        commonFunctionality.onClickHomeButton();
     }
 }
