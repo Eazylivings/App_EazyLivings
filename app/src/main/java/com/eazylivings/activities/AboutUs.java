@@ -21,6 +21,8 @@ public class AboutUs extends AppCompatActivity {
         try {
             CommonFunctionality commonFunctionality=new CommonFunctionality(this);
             commonFunctionality.setTitleBar(R.id.aboutUs_backButton,R.id.aboutUs_titleBar,R.id.aboutUs_homeButton,Constants.TITLE_ABOUT_US);
+            commonFunctionality.onClickListenerForImage(R.id.aboutUs_backButton);
+            commonFunctionality.onClickListenerForImage(R.id.aboutUs_homeButton);
 
         }catch(Exception e){
             generatePopupMessage(Constants.EXCEPTION_LOADING_PAGE);

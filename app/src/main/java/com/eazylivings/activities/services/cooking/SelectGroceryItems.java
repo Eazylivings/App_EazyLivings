@@ -27,10 +27,14 @@ public class SelectGroceryItems extends AppCompatActivity {
 
         try {
 
+            String[] testArray={"w","e","r"};
+
             CommonFunctionality commonFunctionality = new CommonFunctionality(this);
             commonFunctionality.setTitleBar(R.id.selectGroceryItems_backButton, R.id.selectGroceryItems_titleBar, R.id.selectGroceryItems_homeButton, Constants.TITLE_SELECT_GROCERY_ITEMS);
+            commonFunctionality.onClickListenerForImage(R.id.selectGroceryItems_backButton);
+            commonFunctionality.onClickListenerForImage(R.id.selectGroceryItems_homeButton);
 
-            ListAdapter listAdapter = new SelectGroceryItemsAdaptor(this, null);
+            ListAdapter listAdapter = new SelectGroceryItemsAdaptor(this, testArray,null);
             ListView listView = (ListView) findViewById(R.id.selectGroceryItems_listView);
             if (listView != null) {
                 listView.setAdapter(listAdapter);

@@ -10,12 +10,17 @@ import android.view.View;
 
 import com.eazylivings.R;
 import com.eazylivings.activities.WelcomeScreen;
+import com.eazylivings.activities.services.OfferedServices;
+import com.eazylivings.activities.services.WalkthroughServices;
 import com.eazylivings.commonfuntionality.CommonFunctionality;
 import com.eazylivings.constant.Constants;
+import com.eazylivings.sharedpreference.SharedPreference;
 
 public class SelectItemsForFlat extends AppCompatActivity {
 
-    int clickedSubService;
+    String clickedFlatSubService;
+    SharedPreference preference;
+    String previousActivity="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,13 +29,17 @@ public class SelectItemsForFlat extends AppCompatActivity {
 
         try {
 
+            preference=new SharedPreference(getApplicationContext());
+            previousActivity=preference.getStringValueFromSharedPreference(Constants.SHARED_PREFERENCE_PREVIOUS_ACTIVITY);
             CommonFunctionality commonFunctionality=new CommonFunctionality(this);
             commonFunctionality.setTitleBar(R.id.selectItemsForFlat_backButton,R.id.selectItemsForFlat_titleBar,R.id.selectItemsForFlat_homeButton,Constants.TITLE_SELECT_ITEMS_FOR_FLAT);
+            commonFunctionality.onClickListenerForImage(R.id.selectItemsForFlat_backButton);
+            commonFunctionality.onClickListenerForImage(R.id.selectItemsForFlat_homeButton);
 
 
             Bundle bundle = getIntent().getExtras();
             if (bundle != null) {
-                clickedSubService = bundle.getInt(Constants.SHARED_PREFERENCE_CLICKED_SERVICE);
+                clickedFlatSubService = bundle.getString(Constants.SHARED_PREFERENCE_CLICKED_FLAT_SUB_SERVICE);
             }
 
         }catch(Exception e){
@@ -41,16 +50,28 @@ public class SelectItemsForFlat extends AppCompatActivity {
     @Override
     public void onBackPressed(){
 
-        Intent intent = new Intent(getApplicationContext(),FlatSubServices.class);
-        startActivity(intent);
-        finish();
+        if(previousActivity.equalsIgnoreCase(Constants.ACTIVITY_OFFERED_SERVICE)){
+            Intent intent = new Intent(getApplicationContext(),OfferedServices.class);
+            startActivity(intent);
+            finish();
+        }else{
+            Intent intent = new Intent(getApplicationContext(),FlatSubServices.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
     public void onClickBackButton(View view){
 
-        Intent intent=new Intent(getApplicationContext(),FlatSubServices.class);
-        startActivity(intent);
-        finish();
+        if(previousActivity.equalsIgnoreCase(Constants.ACTIVITY_OFFERED_SERVICE)){
+            Intent intent = new Intent(getApplicationContext(),OfferedServices.class);
+            startActivity(intent);
+            finish();
+        }else{
+            Intent intent = new Intent(getApplicationContext(),FlatSubServices.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
     public void onClickHomeButton(View view){

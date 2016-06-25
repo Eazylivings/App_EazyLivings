@@ -38,6 +38,8 @@ public class CookSelection extends AppCompatActivity {
 
             CommonFunctionality commonFunctionality=new CommonFunctionality(this);
             commonFunctionality.setTitleBar(R.id.cookSelection_backButton,R.id.cookSelection_titleBar,R.id.cookSelection_homeButton,Constants.TITLE_COOK_SELECTION);
+            commonFunctionality.onClickListenerForImage(R.id.cookSelection_backButton);
+            commonFunctionality.onClickListenerForImage(R.id.cookSelection_homeButton);
 
             map.put("name","Shwetang");
             map.put("gender","Male");

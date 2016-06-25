@@ -53,7 +53,7 @@
 
     <Button
         android:layout_height="50dp"
-        android:layout_width="360dp"
+        android:layout_width="match_parent"
         android:layout_gravity="center_horizontal"
         android:id="@+id/walkthroughService_button_letMeChoose"
         android:onClick="onClickLetMeChoose"

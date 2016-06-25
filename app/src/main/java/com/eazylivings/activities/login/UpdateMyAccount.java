@@ -34,6 +34,8 @@ public class UpdateMyAccount extends AppCompatActivity {
 
             CommonFunctionality commonFunctionality=new CommonFunctionality(this);
             commonFunctionality.setTitleBar(R.id.updateMyAccount_backButton,R.id.updateMyAccount_titleBar,R.id.updateMyAccount_homeButton,Constants.TITLE_UPDATE_ACCOUNT);
+            commonFunctionality.onClickListenerForImage(R.id.updateMyAccount_backButton);
+            commonFunctionality.onClickListenerForImage(R.id.updateMyAccount_homeButton);
 
 
             SharedPreference sharedPreference = new SharedPreference(getApplicationContext());

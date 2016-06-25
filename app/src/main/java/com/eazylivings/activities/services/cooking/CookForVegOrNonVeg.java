@@ -28,12 +28,15 @@ public class CookForVegOrNonVeg extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cook_for_veg_or_non_veg);
         try {
-            onClickListenerForImage(R.id.cookForVegOrNonVeg_imageView_veg);
-            onClickListenerForImage(R.id.cookForVegOrNonVeg_imageView_nonVeg);
-            onClickListenerForImage(R.id.cookForVegOrNonVeg_imageView_both);
 
             CommonFunctionality commonFunctionality = new CommonFunctionality(this);
             commonFunctionality.setTitleBar(R.id.cookForVegOrNonVeg_backButton, R.id.cookForVegOrNonVeg_titleBar, R.id.cookForVegOrNonVeg_homeButton, Constants.TITLE_COOK_FOR_VEG_OR_NON_VEG);
+            commonFunctionality.onClickListenerForImage(R.id.cookForVegOrNonVeg_imageView_veg);
+            commonFunctionality.onClickListenerForImage(R.id.cookForVegOrNonVeg_imageView_nonVeg);
+            commonFunctionality.onClickListenerForImage(R.id.cookForVegOrNonVeg_imageView_both);
+            commonFunctionality.onClickListenerForImage(R.id.cookForVegOrNonVeg_backButton);
+            commonFunctionality.onClickListenerForImage(R.id.cookForVegOrNonVeg_homeButton);
+
 
             setHeightAndWidth();
 
@@ -202,41 +205,7 @@ public class CookForVegOrNonVeg extends AppCompatActivity {
         alertDialog.show();
     }
 
-    private void onClickListenerForImage(int imageid){
 
-        ImageView imageView = (ImageView) findViewById(imageid);
-
-        if (imageView != null) {
-
-            imageView.setOnTouchListener(new View.OnTouchListener() {
-
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-
-                    switch (event.getAction()) {
-                        case MotionEvent.ACTION_DOWN: {
-                            ImageView view = (ImageView) v;
-                            //overlay is black with transparency of 0x77 (119)
-                            view.getDrawable().setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP);
-                            view.invalidate();
-                            break;
-                        }
-                        case MotionEvent.ACTION_UP:
-                        case MotionEvent.ACTION_CANCEL: {
-                            ImageView view = (ImageView) v;
-                            //clear the overlay
-                            view.getDrawable().clearColorFilter();
-                            view.invalidate();
-                            break;
-                        }
-                    }
-
-                    return false;
-                }
-            });
-        }
-
-    }
 }
 
 

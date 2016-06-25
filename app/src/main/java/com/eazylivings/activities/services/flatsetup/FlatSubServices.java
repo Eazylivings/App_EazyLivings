@@ -26,9 +26,11 @@ public class FlatSubServices extends AppCompatActivity {
         try {
             CommonFunctionality commonFunctionality=new CommonFunctionality(this);
             commonFunctionality.setTitleBar(R.id.flatSubServices_backButton,R.id.flatSubServices_titleBar,R.id.flatSubServices_homeButton,Constants.TITLE_FLAT_SUB_SERVICE);
+            commonFunctionality.onClickListenerForImage(R.id.flatSubServices_backButton);
+            commonFunctionality.onClickListenerForImage(R.id.flatSubServices_homeButton);
 
 
-            String services[] = {"0", "1", "2", "3","4"};
+            String services[] = {Constants.FLAT_SUB_SERVICE_ENTRANCE, Constants.FLAT_SUB_SERVICE_COMMON_AREA, Constants.FLAT_SUB_SERVICE_KITCHEN, Constants.FLAT_SUB_SERVICE_BEDROOM,Constants.FLAT_SUB_SERVICE_WASHROOM};
             ListAdapter listAdapter = new OptionFlatSubServiceAdaptor(this, services);
             ListView listView = (ListView) findViewById(R.id.flatSubServices_listView);
             if (listView != null) {

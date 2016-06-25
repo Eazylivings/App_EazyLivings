@@ -56,6 +56,8 @@ implements NavigationView.OnNavigationItemSelectedListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_screen);
 
+        sharedPreference=new SharedPreference(getApplicationContext());
+
         coverUrl = new int[] { R.drawable.background, R.drawable.background,
                 R.drawable.background, R.drawable.background, R.drawable.background };
 
@@ -96,7 +98,7 @@ implements NavigationView.OnNavigationItemSelectedListener {
                 }
             });
     }*/
-            sharedPreference=new SharedPreference(getApplicationContext());
+
 
             HorizontalScrollView horizontalScrollView=(HorizontalScrollView)findViewById(R.id.welcomeScreen_horizontalScrollView);
             horizontalScrollView.setHorizontalScrollBarEnabled(false);
@@ -137,13 +139,13 @@ implements NavigationView.OnNavigationItemSelectedListener {
 
     public void setWelcomeScreen(){
 
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        boolean isUserLoggedIn=prefs.getBoolean(Constants.SHARED_PREFERENCE_LOGIN_STATUS,false);
+
+        boolean isUserLoggedIn=sharedPreference.getBooleanValueFromSharedPreference(Constants.SHARED_PREFERENCE_LOGIN_STATUS);
 
 
         if(isUserLoggedIn){
 
-            userName = prefs.getString(Constants.SHARED_PREFERENCE_USERNAME,Constants.SHARED_PREFERENCE_DEFAULT_USERNAME);
+            userName = sharedPreference.getStringValueFromSharedPreference(Constants.SHARED_PREFERENCE_USERNAME);
             if(toolbar!=null) {
                 toolbar.setTitle(Constants.WELCOME + userName + "!!");
             }
@@ -156,6 +158,8 @@ implements NavigationView.OnNavigationItemSelectedListener {
     }
 
     public void onClickStart(View view){
+
+        sharedPreference.setStringValueInSharedPreference(Constants.SHARED_PREFERENCE_PREVIOUS_ACTIVITY,Constants.ACTIVITY_WELCOME_SCREEN);
         Intent intent=new Intent(getApplicationContext(), OfferedServices.class);
         startActivity(intent);
         finish();
@@ -163,9 +167,37 @@ implements NavigationView.OnNavigationItemSelectedListener {
 
     public void onClickExplore(View view){
 
-        Intent intent=new Intent(getApplicationContext(), WalkthroughServices.class);
-        intent.putExtra(Constants.SHARED_PREFERENCE_CLICKED_SERVICE,0);
-        startActivity(intent);
+        int clickedId=view.getId();
+        Intent intent;
+
+
+        if(clickedId==R.id.welcomeScreen_imageButton_bathroom){
+            intent=new Intent(getApplicationContext(), WalkthroughServices.class);
+            intent.putExtra(Constants.SHARED_PREFERENCE_CLICKED_SERVICE,0);
+            intent.putExtra(Constants.SHARED_PREFERENCE_CLICKED_FLAT_SUB_SERVICE,Constants.FLAT_SUB_SERVICE_WASHROOM);
+            startActivity(intent);
+
+        }else if(clickedId==R.id.welcomeScreen_imageButton_kitchen){
+            intent=new Intent(getApplicationContext(), WalkthroughServices.class);
+            intent.putExtra(Constants.SHARED_PREFERENCE_CLICKED_SERVICE,0);
+            intent.putExtra(Constants.SHARED_PREFERENCE_CLICKED_FLAT_SUB_SERVICE,Constants.FLAT_SUB_SERVICE_KITCHEN);
+            startActivity(intent);
+
+        }else if(clickedId==R.id.welcomeScreen_imageButton_bedroom){
+            intent=new Intent(getApplicationContext(), WalkthroughServices.class);
+            intent.putExtra(Constants.SHARED_PREFERENCE_CLICKED_SERVICE,0);
+            intent.putExtra(Constants.SHARED_PREFERENCE_CLICKED_FLAT_SUB_SERVICE,Constants.FLAT_SUB_SERVICE_BEDROOM);
+            startActivity(intent);
+
+        }else if(clickedId==R.id.welcomeScreen_textView_movingToFlat || clickedId==R.id.welcomeScreen_textView_moveForward){
+            intent=new Intent(getApplicationContext(), WalkthroughServices.class);
+            intent.putExtra(Constants.SHARED_PREFERENCE_CLICKED_SERVICE,0);
+            intent.putExtra(Constants.SHARED_PREFERENCE_CLICKED_FLAT_SUB_SERVICE,"");
+            startActivity(intent);
+        }
+        sharedPreference.setStringValueInSharedPreference(Constants.SHARED_PREFERENCE_PREVIOUS_ACTIVITY,Constants.ACTIVITY_WELCOME_SCREEN);
+
+
 
     }
 
@@ -202,7 +234,6 @@ implements NavigationView.OnNavigationItemSelectedListener {
 
             Intent intent;
             super.onOptionsItemSelected(item);
-            sharedPreference = new SharedPreference(getApplicationContext());
 
             switch (item.getItemId()) {
                 case R.id.drawer_userProfile:

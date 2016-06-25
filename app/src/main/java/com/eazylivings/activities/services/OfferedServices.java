@@ -15,18 +15,26 @@ import com.eazylivings.adapter.ServicesOfferedAdaptor;
 import com.eazylivings.R;
 import com.eazylivings.commonfuntionality.CommonFunctionality;
 import com.eazylivings.constant.Constants;
+import com.eazylivings.sharedpreference.SharedPreference;
 
 public class OfferedServices extends AppCompatActivity {
+
+    SharedPreference preference;
+    String previousActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_offered_services);
 
+        preference=new SharedPreference(getApplicationContext());
+
         try {
 
             CommonFunctionality commonFunctionality=new CommonFunctionality(this);
             commonFunctionality.setTitleBar(R.id.offeredServices_backButton,R.id.offeredServices_titleBar,R.id.offeredServices_homeButton,Constants.TITLE_OFFERED_SERVICES);
+            commonFunctionality.onClickListenerForImage(R.id.offeredServices_backButton);
+            commonFunctionality.onClickListenerForImage(R.id.offeredServices_homeButton);
 
             String services[] = {"0", "1", "2", "3"};
             ListAdapter listAdapter = new ServicesOfferedAdaptor(this, services);
@@ -42,6 +50,7 @@ public class OfferedServices extends AppCompatActivity {
 
                                 Intent intent = new Intent(getApplicationContext(), WalkthroughServices.class);
                                 intent.putExtra(Constants.SHARED_PREFERENCE_CLICKED_SERVICE, position);
+                                preference.setStringValueInSharedPreference(Constants.SHARED_PREFERENCE_PREVIOUS_ACTIVITY,Constants.ACTIVITY_OFFERED_SERVICE);
                                 startActivity(intent);
                                 finish();
                             }

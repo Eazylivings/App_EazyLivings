@@ -29,6 +29,8 @@ public class ForgotPassword extends AppCompatActivity {
 
             CommonFunctionality commonFunctionality=new CommonFunctionality(this);
             commonFunctionality.setTitleBar(R.id.forgotPassword_backButton,R.id.forgotPassword_titleBar,R.id.forgotPassword_homeButton,Constants.TITLE_FORGOT_PASSWORD);
+            commonFunctionality.onClickListenerForImage(R.id.forgotPassword_backButton);
+            commonFunctionality.onClickListenerForImage(R.id.forgotPassword_homeButton);
 
 
             signInButton = (Button) findViewById(R.id.forgotPassword_button_signIn);

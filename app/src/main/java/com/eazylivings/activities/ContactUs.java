@@ -22,6 +22,8 @@ public class ContactUs extends AppCompatActivity {
 
             CommonFunctionality commonFunctionality=new CommonFunctionality(this);
             commonFunctionality.setTitleBar(R.id.contactUs_backButton,R.id.contactUs_titleBar,R.id.contactUs_homeButton,Constants.TITLE_CONTACT_US);
+            commonFunctionality.onClickListenerForImage(R.id.contactUs_backButton);
+            commonFunctionality.onClickListenerForImage(R.id.contactUs_homeButton);
 
 
         }catch(Exception e){

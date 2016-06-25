@@ -25,6 +25,8 @@ public class SignUp extends AppCompatActivity {
 
         CommonFunctionality commonFunctionality=new CommonFunctionality(this);
         commonFunctionality.setTitleBar(R.id.signUp_backButton,R.id.signUp_titleBar,R.id.signUp_homeButton,Constants.TITLE_SIGN_UP);
+        commonFunctionality.onClickListenerForImage(R.id.signUp_backButton);
+        commonFunctionality.onClickListenerForImage(R.id.signUp_homeButton);
     }
 
 

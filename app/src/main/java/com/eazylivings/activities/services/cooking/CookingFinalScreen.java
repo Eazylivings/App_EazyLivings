@@ -24,6 +24,8 @@ public class CookingFinalScreen extends AppCompatActivity {
 
             CommonFunctionality commonFunctionality = new CommonFunctionality(this);
             commonFunctionality.setTitleBar(R.id.cookingFinalScreen_backButton, R.id.cookingFinalScreen_titleBar, R.id.cookingFinalScreen_homeButton, Constants.TITLE_COOK_FINAL_SCREEN);
+            commonFunctionality.onClickListenerForImage(R.id.cookingFinalScreen_backButton);
+            commonFunctionality.onClickListenerForImage(R.id.cookingFinalScreen_homeButton);
         }catch(Exception e){
             generatePopupMessage(Constants.EXCEPTION_LOADING_PAGE);
         }

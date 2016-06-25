@@ -17,6 +17,7 @@ import com.eazylivings.activities.WelcomeScreen;
 import com.eazylivings.activities.login.SignIn;
 import com.eazylivings.activities.services.cooking.PreferredWayOfCooking;
 import com.eazylivings.activities.services.flatsetup.FlatSubServices;
+import com.eazylivings.activities.services.flatsetup.SelectItemsForFlat;
 import com.eazylivings.commonfuntionality.CommonFunctionality;
 import com.eazylivings.constant.Constants;
 import com.eazylivings.sharedpreference.SharedPreference;
@@ -24,15 +25,25 @@ import com.eazylivings.sharedpreference.SharedPreference;
 public class WalkthroughServices extends AppCompatActivity {
 
     int clickedService;
+    String clickedFlatSubService;
+    String previousActivity="";
+    SharedPreference preference;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_walkthrough_services);
 
+        preference=new SharedPreference(getApplicationContext());
+        previousActivity=preference.getStringValueFromSharedPreference(Constants.SHARED_PREFERENCE_PREVIOUS_ACTIVITY);
+
         try {
             Bundle bundle = getIntent().getExtras();
             if (bundle != null) {
                 clickedService = bundle.getInt(Constants.SHARED_PREFERENCE_CLICKED_SERVICE);
+                clickedFlatSubService=bundle.getString(Constants.SHARED_PREFERENCE_CLICKED_FLAT_SUB_SERVICE);
+                if(clickedFlatSubService==null){
+                    clickedFlatSubService="";
+                }
             }
             setServiceBasedContent(clickedService);
         }catch(Exception e){
@@ -43,16 +54,28 @@ public class WalkthroughServices extends AppCompatActivity {
     @Override
     public void onBackPressed(){
 
-        Intent intent = new Intent(getApplicationContext(),OfferedServices.class);
-        startActivity(intent);
-        finish();
+        if(previousActivity.equalsIgnoreCase(Constants.ACTIVITY_WELCOME_SCREEN)){
+            Intent intent = new Intent(getApplicationContext(),WelcomeScreen.class);
+            startActivity(intent);
+            finish();
+        }else if(previousActivity.equalsIgnoreCase(Constants.ACTIVITY_OFFERED_SERVICE)){
+            Intent intent = new Intent(getApplicationContext(),OfferedServices.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
     public void onClickBackButton(View view){
 
-        Intent intent=new Intent(getApplicationContext(),OfferedServices.class);
-        startActivity(intent);
-        finish();
+        if(previousActivity.equalsIgnoreCase(Constants.ACTIVITY_WELCOME_SCREEN)){
+            Intent intent = new Intent(getApplicationContext(),WelcomeScreen.class);
+            startActivity(intent);
+            finish();
+        }else if(previousActivity.equalsIgnoreCase(Constants.ACTIVITY_OFFERED_SERVICE)){
+            Intent intent = new Intent(getApplicationContext(),OfferedServices.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
     public void onClickHomeButton(View view){
@@ -64,17 +87,46 @@ public class WalkthroughServices extends AppCompatActivity {
 
     public void onClickLetMeChoose(View view){
         Intent intent;
-
+        preference.setStringValueInSharedPreference(Constants.SHARED_PREFERENCE_PREVIOUS_ACTIVITY,Constants.ACTIVITY_OFFERED_SERVICE);
         switch (clickedService){
 
             case 0:
-                intent=new Intent(getApplicationContext(), FlatSubServices.class);
-                startActivity(intent);
-                finish();
+                if(clickedFlatSubService.equalsIgnoreCase(Constants.FLAT_SUB_SERVICE_ENTRANCE)){
+                    intent=new Intent(getApplicationContext(), SelectItemsForFlat.class);
+                    startActivity(intent);
+                    finish();
+
+                }else if(clickedFlatSubService.equalsIgnoreCase(Constants.FLAT_SUB_SERVICE_COMMON_AREA)){
+                    intent=new Intent(getApplicationContext(), SelectItemsForFlat.class);
+                    startActivity(intent);
+                    finish();
+
+                }else if(clickedFlatSubService.equalsIgnoreCase(Constants.FLAT_SUB_SERVICE_KITCHEN)){
+                    intent=new Intent(getApplicationContext(), SelectItemsForFlat.class);
+                    startActivity(intent);
+                    finish();
+
+                }else if(clickedFlatSubService.equalsIgnoreCase(Constants.FLAT_SUB_SERVICE_BEDROOM)){
+                    intent=new Intent(getApplicationContext(), SelectItemsForFlat.class);
+                    startActivity(intent);
+                    finish();
+
+                }else if(clickedFlatSubService.equalsIgnoreCase(Constants.FLAT_SUB_SERVICE_WASHROOM)){
+                    intent=new Intent(getApplicationContext(), SelectItemsForFlat.class);
+                    startActivity(intent);
+                    finish();
+
+                }else{
+                    intent=new Intent(getApplicationContext(), FlatSubServices.class);
+                    startActivity(intent);
+                    finish();
+                }
+
                 break;
 
             case 1:
                 intent=new Intent(getApplicationContext(), PreferredWayOfCooking.class);
+                intent.putExtra(Constants.SHARED_PREFERENCE_CLICKED_SERVICE,1);
                 startActivity(intent);
                 finish();
                 break;
@@ -114,6 +166,8 @@ public class WalkthroughServices extends AppCompatActivity {
 
                     case 0:
                         commonFunctionality.setTitleBar(R.id.walkThroughServices_backButton,R.id.walkThroughServices_titleBar,R.id.walkThroughServices_homeButton,Constants.TITLE_WALK_THROUGH_SERVICES_FLAT);
+                        commonFunctionality.onClickListenerForImage(R.id.walkThroughServices_backButton);
+                        commonFunctionality.onClickListenerForImage(R.id.walkThroughServices_homeButton);
                         layout.setBackgroundResource(R.drawable.blur_background_services_description);
                         textViewText = "1. Choose all the amenities you want in your flat.\n\n" +
                                 "2. Select other services if required and configure them.\n\n" +
@@ -126,6 +180,8 @@ public class WalkthroughServices extends AppCompatActivity {
 
                     case 1:
                         commonFunctionality.setTitleBar(R.id.walkThroughServices_backButton,R.id.walkThroughServices_titleBar,R.id.walkThroughServices_homeButton,Constants.TITLE_WALK_THROUGH_SERVICES_COOKING);
+                        commonFunctionality.onClickListenerForImage(R.id.walkThroughServices_backButton);
+                        commonFunctionality.onClickListenerForImage(R.id.walkThroughServices_homeButton);
                         layout.setBackgroundResource(R.drawable.blur_background_services_description);
                         textViewText = "1. Select the preferred way of cooking which can be either cook or a mess.\n\n" +
                                 "2. If it is cook or self cooking, configure your weekly and monthly grocery list in our planner. We will provide those items on weekly and monthly basis.\n\n" +
@@ -137,6 +193,8 @@ public class WalkthroughServices extends AppCompatActivity {
                     case 2:
 
                         commonFunctionality.setTitleBar(R.id.walkThroughServices_backButton,R.id.walkThroughServices_titleBar,R.id.walkThroughServices_homeButton,Constants.TITLE_WALK_THROUGH_SERVICES_CLEANING);
+                        commonFunctionality.onClickListenerForImage(R.id.walkThroughServices_backButton);
+                        commonFunctionality.onClickListenerForImage(R.id.walkThroughServices_homeButton);
                         layout.setBackgroundResource(R.drawable.blur_background_services_description);
                         textViewText = "1. Select the preferred choice of cleaner you want.\n\n" +
                                 "2.Configure the areas and type of cleaning you want on daily, weekly and monthly basis.\n\n" +
@@ -147,6 +205,8 @@ public class WalkthroughServices extends AppCompatActivity {
 
                     case 3:
                         commonFunctionality.setTitleBar(R.id.walkThroughServices_backButton,R.id.walkThroughServices_titleBar,R.id.walkThroughServices_homeButton,Constants.TITLE_WALK_THROUGH_SERVICES_WASHING);
+                        commonFunctionality.onClickListenerForImage(R.id.walkThroughServices_backButton);
+                        commonFunctionality.onClickListenerForImage(R.id.walkThroughServices_homeButton);
                         layout.setBackgroundResource(R.drawable.blur_background_services_description);
                         textViewText = "1. Select the type of washing you want.\n\n" +
                                 "2. Configure the washing preferences along with numbers of clothes on average and whether it is weekly once or twice.\n\n" +

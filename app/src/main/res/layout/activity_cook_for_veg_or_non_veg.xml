@@ -155,7 +155,7 @@
 
     <Button
         android:layout_height="50dp"
-        android:layout_width="360dp"
+        android:layout_width="match_parent"
         android:layout_gravity="center_horizontal"
         android:id="@+id/cookSelection_button_selectCook"
         android:background="#2E9AFE"

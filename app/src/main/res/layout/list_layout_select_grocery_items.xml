@@ -19,43 +19,61 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Item Name"
         android:id="@+id/selectGroceryItems_textView_itemName"
+        android:layout_marginLeft="26dp"
         android:layout_alignTop="@+id/selectGroceryItems_imageView_itemImage"
-        android:layout_alignRight="@+id/textView3"
-        android:layout_alignEnd="@+id/textView3"
-        android:layout_marginRight="32dp"
-        android:layout_marginEnd="32dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Price :"
-        android:id="@+id/textView2"
-        android:layout_alignBottom="@+id/selectGroceryItems_imageView_itemImage"
-        android:layout_alignLeft="@+id/selectGroceryItems_textView_itemName"
-        android:layout_alignStart="@+id/selectGroceryItems_textView_itemName" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="20 KG"
-        android:id="@+id/textView3"
-        android:layout_alignTop="@+id/textView2"
         android:layout_toRightOf="@+id/selectGroceryItems_imageView_itemImage"
         android:layout_toEndOf="@+id/selectGroceryItems_imageView_itemImage"
-        android:layout_marginLeft="115dp"
-        android:layout_marginStart="115dp" />
+        android:layout_marginBottom="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="500 gm"
+        android:id="@+id/selectGroceryItems_textView_itemWeight"
+        android:layout_below="@+id/selectGroceryItems_textView_itemName"
+        android:layout_toRightOf="@+id/selectGroceryItems_imageView_itemImage"
+        android:layout_marginLeft="26dp"
+        android:layout_marginBottom="10dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="99"
-        android:id="@+id/textView4"
-        android:layout_marginRight="59dp"
-        android:layout_marginEnd="59dp"
-        android:layout_above="@+id/textView3"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:text="Rs. 50"
+        android:id="@+id/selectGroceryItems_textView_itemPrice"
+        android:layout_toRightOf="@+id/selectGroceryItems_imageView_itemImage"
+        android:layout_marginLeft="26dp"
+        android:layout_below="@+id/selectGroceryItems_textView_itemWeight" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="00"
+        android:id="@+id/selectGroceryItems_textView_itemQuantity"
+        android:layout_marginLeft="62dp"
+        android:layout_marginStart="62dp"
+        android:layout_alignBottom="@+id/selectGroceryItems_textView_itemWeight"
+        android:layout_toRightOf="@+id/selectGroceryItems_textView_itemPrice"
+        android:layout_toEndOf="@+id/selectGroceryItems_textView_itemPrice" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/selectGroceryItems_imageView_increase"
+        android:src="@drawable/increase"
+        android:layout_above="@+id/selectGroceryItems_textView_itemWeight"
+        android:layout_alignLeft="@+id/selectGroceryItems_textView_itemQuantity"
+        android:layout_alignStart="@+id/selectGroceryItems_textView_itemQuantity" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/selectGroceryItems_imageView_decrease"
+        android:src="@drawable/decrease"
+        android:layout_below="@+id/selectGroceryItems_textView_itemQuantity"
+        android:layout_alignLeft="@+id/selectGroceryItems_textView_itemQuantity"
+        android:layout_alignStart="@+id/selectGroceryItems_textView_itemQuantity" />
+
 </RelativeLayout>

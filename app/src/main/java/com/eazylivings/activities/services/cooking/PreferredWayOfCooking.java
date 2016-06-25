@@ -29,6 +29,8 @@ public class PreferredWayOfCooking extends AppCompatActivity {
         try {
             CommonFunctionality commonFunctionality=new CommonFunctionality(this);
             commonFunctionality.setTitleBar(R.id.preferredWayOfCooking_backButton,R.id.preferredWayOfCooking_titleBar,R.id.preferredWayOfCooking_homeButton,Constants.TITLE_PREFERRED_WAY_OF_COOKING);
+            commonFunctionality.onClickListenerForImage(R.id.preferredWayOfCooking_backButton);
+            commonFunctionality.onClickListenerForImage(R.id.preferredWayOfCooking_homeButton);
 
 
             String services[] = {"0", "1", "2"};

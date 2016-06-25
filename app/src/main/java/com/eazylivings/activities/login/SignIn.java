@@ -29,6 +29,8 @@ public class SignIn extends AppCompatActivity {
             }
             CommonFunctionality commonFunctionality=new CommonFunctionality(this);
             commonFunctionality.setTitleBar(R.id.signIn_backButton,R.id.signIn_titleBar,R.id.signIn_homeButton,Constants.TITLE_SIGN_IN);
+            commonFunctionality.onClickListenerForImage(R.id.signIn_backButton);
+            commonFunctionality.onClickListenerForImage(R.id.signIn_homeButton);
 
         }catch(Exception e){
             generatePopupMessage(Constants.EXCEPTION_LOADING_PAGE);

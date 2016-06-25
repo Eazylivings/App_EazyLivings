@@ -88,6 +88,7 @@ public class Constants {
 
     //Shared Preference Key
     public static final String SHARED_PREFERENCE_CLICKED_SERVICE="clickedService";
+    public static final String SHARED_PREFERENCE_CLICKED_FLAT_SUB_SERVICE="flatSubService";
     public static final String SHARED_PREFERENCE_USERNAME="userName";
     public static final String SHARED_PREFERENCE_LOGIN_STATUS="loginStatus";
     public static final String SHARED_PREFERENCE_PROFILE_ALREADY_LOADED="isProfileAlreadyLoaded";
@@ -102,6 +103,7 @@ public class Constants {
     public static final String SHARED_PREFERENCE_MEALS_CHOICE="mealChoice";
     public static final String SHARED_PREFERENCE_COOK_CHOICE="cookCohice";
     public static final String SHARED_PREFERENCE_PREFERRED_WAY_OF_COOKING="preferredWayOfCooking";
+
 
 
     //Exception messages
@@ -147,6 +149,8 @@ public class Constants {
     public static final String ACTIVITY_FLAT_SETUP="FlatSubServices";
     public static final String ACTIVITY_COOK_SELECTION="cookSelection";
     public static final String ACTIVITY_CONFIGURE_GROCERY_LIST="configureGroceryList";
+    public static final String ACTIVITY_OFFERED_SERVICE="offeredService";
+    public static final String ACTIVITY_WALK_THROUGH_SERVICE="walkThroughService";
 
 
     //One liners
@@ -179,6 +183,12 @@ public class Constants {
     public static final String GROCERY_LIST_MAIN_FRUITS="fruits";
     public static final String GROCERY_LIST_MAIN_WHEAT_AND_FLOUR="wheatAndFlour";
     public static final String GROCERY_LIST_MAIN_MASALAE="masalae";
+
+    public static final String FLAT_SUB_SERVICE_ENTRANCE="entrance";
+    public static final String FLAT_SUB_SERVICE_COMMON_AREA="commonArea";
+    public static final String FLAT_SUB_SERVICE_KITCHEN="kitchen";
+    public static final String FLAT_SUB_SERVICE_BEDROOM="bedroom";
+    public static final String FLAT_SUB_SERVICE_WASHROOM="washroom";
 
 
 

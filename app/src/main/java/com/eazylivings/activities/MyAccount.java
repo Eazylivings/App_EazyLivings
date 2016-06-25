@@ -29,6 +29,8 @@ public class MyAccount extends AppCompatActivity {
         try {
             CommonFunctionality commonFunctionality=new CommonFunctionality(this);
             commonFunctionality.setTitleBar(R.id.myAccount_backButton,R.id.myAccount_titleBar,R.id.myAccount_homeButton,Constants.TITLE_MY_ACCOUNT);
+            commonFunctionality.onClickListenerForImage(R.id.myAccount_backButton);
+            commonFunctionality.onClickListenerForImage(R.id.myAccount_homeButton);
 
 
             SharedPreference preference = new SharedPreference(getApplicationContext());

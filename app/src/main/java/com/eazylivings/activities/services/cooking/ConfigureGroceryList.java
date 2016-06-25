@@ -37,6 +37,8 @@ public class ConfigureGroceryList extends AppCompatActivity {
 
             CommonFunctionality commonFunctionality=new CommonFunctionality(this);
             commonFunctionality.setTitleBar(R.id.configureGroceryList_backButton,R.id.configureGroceryList_titleBar,R.id.configureGroceryList_homeButton,Constants.TITLE_CONFIGURE_GROCERY_LIST);
+            commonFunctionality.onClickListenerForImage(R.id.configureGroceryList_backButton);
+            commonFunctionality.onClickListenerForImage(R.id.configureGroceryList_homeButton);
 
 
 
