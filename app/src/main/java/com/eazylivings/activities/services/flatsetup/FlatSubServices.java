@@ -45,8 +45,6 @@ public class FlatSubServices extends AppCompatActivity {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-
-                                preference.setStringValueInSharedPreference(Constants.SHARED_PREFERENCE_PREVIOUS_ACTIVITY,Constants.ACTIVITY_FLAT_SUB_SERVICES);
                                 Intent intent = new Intent(getApplicationContext(), SelectItemsForFlat.class);
                                 intent.putExtra(Constants.SHARED_PREFERENCE_CLICKED_SERVICE, position);
                                 startActivity(intent);

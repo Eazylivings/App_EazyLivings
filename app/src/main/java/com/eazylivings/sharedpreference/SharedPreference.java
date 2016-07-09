@@ -20,6 +20,7 @@ import com.eazylivings.constant.Constants;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
 
 
 public class SharedPreference {
@@ -70,6 +71,23 @@ public class SharedPreference {
     public boolean getBooleanValueFromSharedPreference(String key){
         SharedPreferences preferences =  PreferenceManager.getDefaultSharedPreferences(context);
         return preferences.getBoolean(key, false);
+
+    }
+
+    public void setItemList(String key,Set<String> value){
+
+        SharedPreferences preferences =  PreferenceManager.getDefaultSharedPreferences(context);
+        if(preferences!=null) {
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putStringSet(key,value);
+            editor.apply();
+        }
+    }
+
+    public Set<String> getItemList(String key){
+
+        SharedPreferences preferences =  PreferenceManager.getDefaultSharedPreferences(context);
+        return preferences.getStringSet(key,null);
 
     }
 

@@ -57,15 +57,15 @@ public class ServerDatabaseHandler  extends AsyncTask<String,Void,String> {
         String post_data="";
 
         try {
-            URL url=new URL(Constants.LOGIN_URL);
+            URL url=new URL(Constants.URL_LOGIN);
 
             if(currentAction.equalsIgnoreCase(Constants.LOGIN)){
-                url = new URL(Constants.LOGIN_URL);
+                url = new URL(Constants.URL_LOGIN);
                 post_data = URLEncoder.encode(Constants.SERVER_HANDLER_USERNAME, Constants.SERVER_HANDLER_UTF) + "=" + URLEncoder.encode(emailAddress, Constants.SERVER_HANDLER_UTF) + "&"
                         + URLEncoder.encode(Constants.SERVER_HANDLER_PASSWORD,Constants.SERVER_HANDLER_UTF) + "=" + URLEncoder.encode(params[2], Constants.SERVER_HANDLER_UTF);
 
             }else if(currentAction.equalsIgnoreCase(Constants.REGISTER)){
-                url = new URL(Constants.REGISTER_URL);
+                url = new URL(Constants.URL_REGISTER);
                 userDetails=new UserDetails();
                 post_data = URLEncoder.encode(Constants.SERVER_HANDLER_USERNAME,Constants.SERVER_HANDLER_UTF) + "=" + URLEncoder.encode(params[1], Constants.SERVER_HANDLER_UTF) + "&"
                         + URLEncoder.encode(Constants.SERVER_HANDLER_PASSWORD, Constants.SERVER_HANDLER_UTF) + "=" + URLEncoder.encode(params[2], Constants.SERVER_HANDLER_UTF)+"&"
@@ -78,19 +78,19 @@ public class ServerDatabaseHandler  extends AsyncTask<String,Void,String> {
                 userDetails.setContact_number(params[4]);
 
             }else if(currentAction.equalsIgnoreCase(Constants.USER_PROFILE_ACTION)){
-                url = new URL(Constants.USER_PROFILE_URL);
+                url = new URL(Constants.URL_USER_PROFILE);
                 post_data = URLEncoder.encode(Constants.SERVER_HANDLER_EMAIL_ADDRESS, Constants.SERVER_HANDLER_UTF) + "=" + URLEncoder.encode(emailAddress,Constants.SERVER_HANDLER_UTF);
 
            }else if(currentAction.equalsIgnoreCase(Constants.SAVE_USER_UPDATE)){
-                url = new URL(Constants.USER_PROFILE_URL);
+                url = new URL(Constants.URL_USER_PROFILE);
                 post_data = URLEncoder.encode(Constants.SERVER_HANDLER_USERNAME, Constants.SERVER_HANDLER_UTF) + "=" + URLEncoder.encode(emailAddress, Constants.SERVER_HANDLER_UTF) + "&"
                         + URLEncoder.encode("name", Constants.SERVER_HANDLER_UTF) + "=" + URLEncoder.encode(params[2], Constants.SERVER_HANDLER_UTF)+"&"
                         + URLEncoder.encode(Constants.SERVER_HANDLER_PHONE_NUMBER, Constants.SERVER_HANDLER_UTF) + "=" + URLEncoder.encode(params[3], Constants.SERVER_HANDLER_UTF);
             }else if(currentAction.equalsIgnoreCase(Constants.FORGOT_PASSWORD)){
-                url = new URL(Constants.FORGOT_PASSWORD_MAIL_URL);
+                url = new URL(Constants.URL_FORGOT_PASSWORD_MAIL);
                 post_data = URLEncoder.encode(Constants.SERVER_HANDLER_EMAIL_ADDRESS, Constants.SERVER_HANDLER_UTF) + "=" + URLEncoder.encode(params[1], Constants.SERVER_HANDLER_UTF);
             }else if(currentAction.equalsIgnoreCase(Constants.CHECK_EXISTING_USER)){
-                url = new URL(Constants.CHECK_EXISTING_USER_URL);
+                url = new URL(Constants.URL_CHECK_EXISTING_USER);
                 post_data = URLEncoder.encode(Constants.SERVER_HANDLER_EMAIL_ADDRESS, Constants.SERVER_HANDLER_UTF) + "=" + URLEncoder.encode(params[1], Constants.SERVER_HANDLER_UTF);
             }
 

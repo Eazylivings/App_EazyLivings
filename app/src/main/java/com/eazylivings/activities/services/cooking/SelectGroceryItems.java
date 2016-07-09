@@ -1,23 +1,33 @@
 package com.eazylivings.activities.services.cooking;
 
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.TextView;
 
 import com.eazylivings.R;
+import com.eazylivings.TestClass;
 import com.eazylivings.adapter.SelectGroceryItemsAdaptor;
 import com.eazylivings.commonfuntionality.CommonFunctionality;
 import com.eazylivings.constant.Constants;
 import com.eazylivings.sharedpreference.SharedPreference;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
+
 public class SelectGroceryItems extends AppCompatActivity {
 
     CommonFunctionality commonFunctionality;
     SharedPreference preference;
-
+    Set<String> finalGroceryList=new HashSet<>();
+    String clickedMainGroceryCategory="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -34,7 +44,12 @@ public class SelectGroceryItems extends AppCompatActivity {
             commonFunctionality.onClickListenerForImage(R.id.selectGroceryItems_backButton);
             commonFunctionality.onClickListenerForImage(R.id.selectGroceryItems_homeButton);
 
-            ListAdapter listAdapter = new SelectGroceryItemsAdaptor(this, null);
+            Bundle bundle = getIntent().getExtras();
+            if (bundle != null) {
+                clickedMainGroceryCategory = bundle.getString(Constants.GROCERY_LIST_MAIN_CATEGORY);
+            }
+
+            ListAdapter listAdapter = new SelectGroceryItemsAdaptor(this, TestClass.inputsForGroceryItems());
             ListView listView = (ListView) findViewById(R.id.selectGroceryItems_listView);
             if (listView != null) {
                 listView.setAdapter(listAdapter);
@@ -73,4 +88,42 @@ public class SelectGroceryItems extends AppCompatActivity {
         commonFunctionality.onClickHomeButton();
     }
 
+
+    public void onClickAddToCart(View view){
+
+        String finalString="";
+        String selectedRadio="";
+
+        TextView itemName=(TextView)view.findViewById(R.id.selectGroceryItems_textView_itemName);
+        TextView itemWeight=(TextView)view.findViewById(R.id.selectGroceryItems_textView_itemWeight);
+        TextView itemQuantity=(TextView)view.findViewById(R.id.selectGroceryItems_textView_itemQuantity);
+        TextView itemPrice=(TextView)view.findViewById(R.id.selectGroceryItems_textView_itemPrice);
+        RadioButton radioButtonWeekly=(RadioButton)findViewById(R.id.selectGroceryItems_radioButton_weekly);
+        RadioButton radioButtonMonthly=(RadioButton)findViewById(R.id.selectGroceryItems_radioButton_monthly);
+        if(radioButtonWeekly.isChecked()){
+            selectedRadio="weekly";
+        }else if(radioButtonWeekly.isChecked()){
+            selectedRadio="monthly";
+        }else{
+            commonFunctionality.generatePopupMessage("Please select one.");
+        }
+
+        if(itemName!=null && itemWeight!=null && itemQuantity!=null && itemPrice!=null ){
+
+            finalString=finalString.concat(itemName.getText().toString()).concat("_").concat(itemWeight.getText().toString()).concat("_").concat(itemQuantity.getText().toString()).concat("_").concat(selectedRadio);
+        }
+        finalGroceryList.add(finalString);
+    }
+
+    public void onClickContinue(View view){
+
+        preference.setItemList(clickedMainGroceryCategory,finalGroceryList);
+
+    }
+
+    public void onClickViewCart(View view){
+
+        preference.setItemList(clickedMainGroceryCategory,finalGroceryList);
+
+    }
 }

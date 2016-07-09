@@ -25,6 +25,7 @@ import com.eazylivings.activities.services.OfferedServices;
 import com.eazylivings.activities.services.WalkthroughServices;
 
 import com.eazylivings.adapter.CustomSwipeAdapter;
+import com.eazylivings.commonfuntionality.CommonFunctionality;
 import com.eazylivings.constant.Constants;
 import com.eazylivings.sharedpreference.SharedPreference;
 
@@ -43,7 +44,7 @@ implements NavigationView.OnNavigationItemSelectedListener {
         setContentView(R.layout.activity_welcome_screen);
 
         viewPager = (ViewPager) findViewById(R.id.viewPager);
-        PagerAdapter adapter = new CustomSwipeAdapter(this);
+        PagerAdapter adapter = new CustomSwipeAdapter(this,this);
         viewPager.setAdapter(adapter);
 
         sharedPreference=new SharedPreference(getApplicationContext());
@@ -108,6 +109,11 @@ implements NavigationView.OnNavigationItemSelectedListener {
 
     public void setWelcomeScreen(){
 
+        CommonFunctionality commonFunctionality=new CommonFunctionality(this,this);
+        commonFunctionality.setTextSize(R.id.welcomeScreen_textView_explore);
+        commonFunctionality.setTextSize(R.id.welcomeScreen_textView_movingToFlat);
+        commonFunctionality.setTextSize(R.id.contentWelcomeScreen_mediumText_messageTwo);
+        commonFunctionality.setTextSize(R.id.contentWelcomeScreen_mediumText_messageThree);
 
         boolean isUserLoggedIn=sharedPreference.getBooleanValueFromSharedPreference(Constants.SHARED_PREFERENCE_LOGIN_STATUS);
 
@@ -158,7 +164,7 @@ implements NavigationView.OnNavigationItemSelectedListener {
             intent.putExtra(Constants.SHARED_PREFERENCE_CLICKED_FLAT_SUB_SERVICE,Constants.FLAT_SUB_SERVICE_BEDROOM);
             startActivity(intent);
 
-        }else if(clickedId==R.id.welcomeScreen_textView_movingToFlat || clickedId==R.id.welcomeScreen_textView_moveForward){
+        }else if(clickedId==R.id.welcomeScreen_textView_movingToFlat || clickedId==R.id.welcomeScreen_textView_moveForward || clickedId==R.id.welcomeScreen_textView_explore   ){
             intent=new Intent(getApplicationContext(), WalkthroughServices.class);
             intent.putExtra(Constants.SHARED_PREFERENCE_CLICKED_SERVICE,0);
             intent.putExtra(Constants.SHARED_PREFERENCE_CLICKED_FLAT_SUB_SERVICE,"");

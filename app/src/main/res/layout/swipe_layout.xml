@@ -6,7 +6,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/welcomeScreen_textView_background"
+        android:id="@+id/welcomeScreen_imageView_background"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 </LinearLayout>

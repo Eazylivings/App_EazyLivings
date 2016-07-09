@@ -31,9 +31,10 @@
         android:layout_alignTop="@+id/welcomeScreen_horizontalScrollView"
         android:id="@+id/welcomeScreen_textView_movingToFlat"
         android:layout_marginTop="118dp"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentTop="false"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:onClick="onClickExplore" />
 
     <TextView
         android:layout_width="wrap_content"

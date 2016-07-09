@@ -158,6 +158,38 @@ public class CommonFunctionality {
         alertDialog.show();
     }
 
+    public int getDeviceWidth(){
 
+        Display display = activity.getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+
+        return size.x;
+
+    }
+
+    public int getDeviceHeight(){
+
+        Display display = activity.getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+
+        return size.y;
+    }
+
+    public void setTextSize(int textViewId){
+
+        Display display = activity.getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int width = size.x;
+
+        TextView textView = (TextView) activity.findViewById(textViewId);
+        if(textView!=null) {
+            int textSize=(width*4)/100;
+            textView.setTextSize(TypedValue.COMPLEX_UNIT_PX,textSize);
+        }
+
+    }
 
 }

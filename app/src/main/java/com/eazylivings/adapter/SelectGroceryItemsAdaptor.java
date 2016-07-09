@@ -16,7 +16,7 @@ import java.util.HashMap;
 
 public class SelectGroceryItemsAdaptor extends BaseAdapter {
 
-    ArrayList<HashMap<String, String>> listOfMap=new ArrayList<>();
+    ArrayList<HashMap<String, String>> listOfMap;
     Context context;
 
 

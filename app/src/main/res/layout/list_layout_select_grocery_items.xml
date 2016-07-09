@@ -52,18 +52,18 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="00"
         android:id="@+id/selectGroceryItems_textView_itemQuantity"
-        android:layout_marginLeft="62dp"
-        android:layout_marginStart="62dp"
         android:layout_alignBottom="@+id/selectGroceryItems_textView_itemWeight"
-        android:layout_toRightOf="@+id/selectGroceryItems_textView_itemPrice"
-        android:layout_toEndOf="@+id/selectGroceryItems_textView_itemPrice" />
+        android:layout_toLeftOf="@+id/selectGroceryItems_imageView_addToCart"
+        android:layout_toStartOf="@+id/selectGroceryItems_imageView_addToCart"
+        android:layout_marginRight="33dp"
+        android:layout_marginEnd="33dp" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/selectGroceryItems_imageView_increase"
         android:src="@drawable/increase"
-        android:layout_above="@+id/selectGroceryItems_textView_itemWeight"
+        android:layout_alignBottom="@+id/selectGroceryItems_textView_itemName"
         android:layout_alignLeft="@+id/selectGroceryItems_textView_itemQuantity"
         android:layout_alignStart="@+id/selectGroceryItems_textView_itemQuantity" />
 
@@ -72,8 +72,52 @@
         android:layout_height="wrap_content"
         android:id="@+id/selectGroceryItems_imageView_decrease"
         android:src="@drawable/decrease"
-        android:layout_below="@+id/selectGroceryItems_textView_itemQuantity"
+        android:layout_alignBottom="@+id/selectGroceryItems_textView_itemPrice"
         android:layout_alignLeft="@+id/selectGroceryItems_textView_itemQuantity"
         android:layout_alignStart="@+id/selectGroceryItems_textView_itemQuantity" />
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/selectGroceryItems_imageView_addToCart"
+        android:src="@drawable/add_to_cart"
+        android:layout_marginRight="46dp"
+        android:layout_marginEnd="46dp"
+        android:layout_above="@+id/selectGroceryItems_textView_addToCart"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="onClickAddToCart" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Add to Cart"
+        android:id="@+id/selectGroceryItems_textView_addToCart"
+        android:textStyle="bold"
+        android:layout_alignTop="@+id/selectGroceryItems_imageView_decrease"
+        android:layout_alignLeft="@+id/selectGroceryItems_imageView_addToCart"
+        android:layout_alignStart="@+id/selectGroceryItems_imageView_addToCart" />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/selectGroceryItems_imageView_decrease"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/selectGroceryItems_radioGroup">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="WEEKLY"
+            android:id="@+id/selectGroceryItems_radioButton_weekly" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New RadioButton"
+            android:id="@+id/selectGroceryItems_radioButton_monthly" />
+
+    </RadioGroup>
 
 </RelativeLayout>

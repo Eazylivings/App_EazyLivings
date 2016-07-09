@@ -24,9 +24,6 @@ public class Constants {
     public final static String CLEANING_NAME="Looking for a cleaner?";
     public static final String SAVE_USER_UPDATE="update information";
 
-
-
-
     //Popup messages
     public static final String CHECK_EMAIL_ADDRESS ="Please check email address";
     public static final String ENTER_USERNAME="Hey Mate, you forgot to enter username!!";
@@ -47,15 +44,14 @@ public class Constants {
     public static final String REGISTRATION_SUCCESS_POPUP="Successfully Registered. Welcome to EazyLivings. You will be redirected to Home page.";
     public static final String LOGIN_TO_PROCEED="Please login to proceed further";
     public static final String COOK_FOR_VEG_NON_VEG_SELECT_CHOICE="Please select one of the options.";
-    public static final String CHECK_BOX_SELECTION="Please choose alteast two options.";
+    public static final String CHECK_BOX_SELECTION="Please choose atleast two options.";
 
     //URLS
-    public final static String LOGIN_URL="http://eazylivings.com/login.php";
-    public final static String REGISTER_URL="http://eazylivings.com/register.php";
-    public static final String USER_PROFILE_URL="http://eazylivings.com/profile.php";
-    public static final String FORGOT_PASSWORD_MAIL_URL="http://eazylivings.com/mail.php";
-    public static final String CHECK_EXISTING_USER_URL="http://eazylivings.com/ExistingUser.php";
-
+    public final static String URL_LOGIN ="http://eazylivings.com/login.php";
+    public final static String URL_REGISTER ="http://eazylivings.com/register.php";
+    public static final String URL_USER_PROFILE ="http://eazylivings.com/profile.php";
+    public static final String URL_FORGOT_PASSWORD_MAIL ="http://eazylivings.com/mail.php";
+    public static final String URL_CHECK_EXISTING_USER ="http://eazylivings.com/ExistingUser.php";
 
     //Alert Titles
     public static final String ALERT_TITLE="Message";
@@ -182,7 +178,7 @@ public class Constants {
     public static final String GROCERY_LIST_ITEM_PRICE="itemPrice";
 
 
-    public static final String GROCERY_LIST_MAIN_CATEGORY="mainCategory";
+    public static final String GROCERY_LIST_MAIN_CATEGORY="mainGroceryCategory";
 
     public static final String GROCERY_LIST_VEGETABLES="vegetables";
     public static final String GROCERY_LIST_MAIN_FRUITS="fruits";

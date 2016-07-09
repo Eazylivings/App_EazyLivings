@@ -10,25 +10,32 @@ import android.widget.ImageView;
 
 
 import com.eazylivings.R;
+import com.eazylivings.commonfuntionality.CommonFunctionality;
 
 public class CustomSwipeAdapter extends PagerAdapter {
     Context context;
+    Activity activity;
     int[] imageId = { R.drawable.background, R.drawable.background,
             R.drawable.background, R.drawable.background, R.drawable.background };
 
-    public CustomSwipeAdapter(Context context){
+    public CustomSwipeAdapter(Context context,Activity activity){
         this.context = context;
+        this.activity=activity;
 
     }
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
 
+        CommonFunctionality commonFunctionality=new CommonFunctionality(context,activity);
+
         LayoutInflater inflater = ((Activity)context).getLayoutInflater();
 
         View viewItem = inflater.inflate(R.layout.swipe_layout, container, false);
-        ImageView imageView = (ImageView) viewItem.findViewById(R.id.welcomeScreen_textView_background);
+        ImageView imageView = (ImageView) viewItem.findViewById(R.id.welcomeScreen_imageView_background);
         imageView.setImageResource(imageId[position]);
+
+        imageView.getLayoutParams().height = commonFunctionality.getDeviceHeight() / 4;
         (container).addView(viewItem);
 
         return viewItem;
